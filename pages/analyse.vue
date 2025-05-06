@@ -24,7 +24,7 @@
                 <!-- right -->
                 <Container>
                     <h3>Zeitstrahl</h3>
-
+                    <LineGraph />
                 </Container>
 
             </div>
@@ -33,6 +33,8 @@
 </template>
 
 <script setup>
+import LineGraph from '~/components/LineGraph.vue';
+
 
 </script>
 

@@ -4,8 +4,7 @@
         @mouseenter="isHovered = true"
         @mouseleave="isHovered = false"
     >
-        <div class="flex flex-row items-center justify-center pb-4 pt-2">
-
+        <div class="flex flex-row items-center pb-4 pt-2">
             <img
                 src="/public/logo.svg"
                 alt="logo"
