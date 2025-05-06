@@ -12,5 +12,17 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxt/icon",
     "nuxt-mcp",
+    "shadcn-nuxt",
   ],
+
+  shadcn: {
+    componentDir: "./components/ui",
+  },
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
 });

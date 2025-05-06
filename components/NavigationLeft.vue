@@ -1,9 +1,5 @@
 <template>
-    <nav
-        class="nav-container "
-        @mouseenter="isHovered = true"
-        @mouseleave="isHovered = false"
-    >
+    <nav class="nav-container ">
         <div class="flex flex-row items-center pb-4 pt-2">
             <img
                 src="/public/logo.svg"
@@ -35,6 +31,11 @@
 </template>
 
 <script setup>
+
+/*
+        @mouseenter="isHovered = true"
+        @mouseleave="isHovered = false"
+        */
 
 const isHovered = ref(false)
 
@@ -79,6 +80,8 @@ const routes = [
     border: 1px var(--color-outline_grayNormal) solid;
     transition: width 0.3s ease;
     background-color: white;
+
+
 }
 
 .nav-el {
