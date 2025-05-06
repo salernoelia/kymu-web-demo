@@ -1,15 +1,22 @@
 <template>
-    <div :class="['c flex flex-col gap-2 p-4', outline]">
-        <slot></slot>
+    <div :class="['c flex flex-col gap-2 p-2', outline]">
+        <p>
+            <slot />
+
+        </p>
     </div>
 </template>
 
 <script setup>
-defineProps({
-    outline: {
-        default: 'gray'
+const props = defineProps({
+    active: {
+        default: false
     }
 })
+
+const outline = computed(() => props.active ? 'primary' : 'gray');
+
+
 </script>
 
 <style lang="scss" scoped>

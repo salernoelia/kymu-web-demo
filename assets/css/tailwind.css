@@ -177,3 +177,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-outline_grayNormal);
+}
