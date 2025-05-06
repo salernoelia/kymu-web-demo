@@ -28,6 +28,10 @@ const props = defineProps({
     maxScale: {
         type: Number,
         default: 10
+    },
+    unit: {
+        type: String,
+        default: ''
     }
 });
 
@@ -180,7 +184,7 @@ const drawChart = () => {
 
             tooltip
                 .style('opacity', 1)
-                .html(`Date: ${new Date(d.date).toLocaleDateString()}<br/>Value: ${d.value}${painDegreesText}`)
+                .html(`Date: ${new Date(d.date).toLocaleDateString()}<br/>Value: ${d.value}${props.unit ? ` ${props.unit}` : ''}${painDegreesText}`)
                 .style('left', (event.pageX - 160) + 'px')
                 .style('top', (event.pageY - 28) + 'px');
         }

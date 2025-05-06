@@ -52,56 +52,36 @@
                         </Popover>
 
                         <div class="flex flex-row gap-2">
-                            <Select>
+                            <Select v-model="activeDataset">
                                 <SelectTrigger class="w-[180px]">
-                                    <SelectValue placeholder="Datensatz" />
+                                    <SelectValue :placeholder="datasetTypes[activeDataset].name" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectLabel>Datensätze</SelectLabel>
-                                        <SelectItem value="apple">
-                                            ROM
+                                        <SelectItem
+                                            v-for="(dataset, key) in datasetTypes"
+                                            :key="key"
+                                            :value="key"
+                                        >
+                                            {{ dataset.name }}
                                         </SelectItem>
-                                        <SelectItem value="banana">
-                                            Balance
-                                        </SelectItem>
-                                        <SelectItem value="blueberry">
-                                            Stärke
-                                        </SelectItem>
-                                        <SelectItem value="grapes">
-                                            Motorik
-                                        </SelectItem>
-
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
-                            <Select>
+                            <Select v-model="activeBodyPart">
                                 <SelectTrigger class="w-[180px]">
-                                    <SelectValue placeholder="Körperteil" />
+                                    <SelectValue :placeholder="bodyParts[activeBodyPart].name" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectLabel>Körperteile</SelectLabel>
-                                        <SelectItem value="shoulders">
-                                            Schultern
-                                        </SelectItem>
-                                        <SelectItem value="elbows">
-                                            Ellenbogen
-                                        </SelectItem>
-                                        <SelectItem value="wrists">
-                                            Handgelenke
-                                        </SelectItem>
-                                        <SelectItem value="hips">
-                                            Hüften
-                                        </SelectItem>
-                                        <SelectItem value="knees">
-                                            Knie
-                                        </SelectItem>
-                                        <SelectItem value="ankles">
-                                            Fussgelenke
-                                        </SelectItem>
-                                        <SelectItem value="spine">
-                                            Wirbelsäule
+                                        <SelectItem
+                                            v-for="(part, key) in bodyParts"
+                                            :key="key"
+                                            :value="key"
+                                        >
+                                            {{ part.name }}
                                         </SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
@@ -109,14 +89,18 @@
                         </div>
 
                         <div class="divider" />
-                        <h4>Test AROM 1</h4>
-                        <TestContainer :active="true">
-                            Schulter Flexion/Extension
-                        </TestContainer>
-                        <TestContainer :active="false">
-                            Schulter Abduktion/Adduktion
-                        </TestContainer>
-
+                        <h4>{{ datasetTypes[activeDataset].name }} Tests</h4>
+                        <div
+                            v-for="test in bodyParts[activeBodyPart].tests"
+                            :key="test"
+                        >
+                            <TestContainer
+                                :active="activeTest === test"
+                                @click="activeTest = test"
+                            >
+                                {{ bodyParts[activeBodyPart].name }} {{ test }}
+                            </TestContainer>
+                        </div>
 
                         <div class="divider" />
                         <h4>Balance Test </h4>
@@ -128,65 +112,96 @@
 
                     </Container>
                     <Container class="h-full">
-                        <div class="flex flex-row gap-4 justify-between">
+                        <div class="flex flex-row gap-4 justify-between mb-2">
                             <h3>Zusammenfassung</h3>
                             <UiButton variant="outline">
                                 Analyse
                             </UiButton>
                         </div>
-                        <p>Durchschnittlicher AROM</p>
+                        <p class="text-sm text-gray-600 mb-2">{{ datasetTypes[activeDataset].name }} Durchschnitt</p>
                         <div class="flex flex-row gap-2">
-                            <Container>
-                                <p>Links</p>
+                            <Container class="flex-1">
+                                <p class="text-sm font-medium mb-1">Links</p>
                                 <div class="flex flex-row items-center justify-between">
-                                    <h3>13</h3>
-                                    <div class="flex flex-row items-center bg-gray-100 p-2 rounded-md">
-                                        <p>-0.4%</p>
+                                    <h3>{{ leftSideSummary.average }}{{ datasetTypes[activeDataset].unit }}</h3>
+                                    <div :class="[
+                                        'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
+                                        leftSideSummary.change > 0 ? 'bg-successLight text-successNormal' :
+                                            leftSideSummary.change < 0 ? 'bg-dangerLight text-dangerNormal' :
+                                                'bg-gray-100'
+                                    ]">
+                                        <p>{{ leftSideSummary.change > 0 ? '+' : '' }}{{ leftSideSummary.change }}%</p>
                                     </div>
                                 </div>
                             </Container>
-                            <Container>
-                                <p>Rechts</p>
+                            <Container class="flex-1">
+                                <p class="text-sm font-medium mb-1">Rechts</p>
                                 <div class="flex flex-row items-center justify-between">
-                                    <h3>13</h3>
-                                    <div class="flex flex-row items-center bg-gray-100 p-2 rounded-md">
-                                        <p>-0.4%</p>
+                                    <h3>{{ rightSideSummary.average }}{{ datasetTypes[activeDataset].unit }}</h3>
+                                    <div :class="[
+                                        'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
+                                        rightSideSummary.change > 0 ? 'bg-successLight text-successNormal' :
+                                            rightSideSummary.change < 0 ? 'bg-dangerLight text-dangerNormal' :
+                                                'bg-gray-100'
+                                    ]">
+                                        <p>{{ rightSideSummary.change > 0 ? '+' : '' }}{{ rightSideSummary.change }}%
+                                        </p>
                                     </div>
                                 </div>
                             </Container>
                         </div>
-                        <p>Schmerzpunkte</p>
+                        <p class="text-sm text-gray-600 mt-4 mb-2">Schmerzpunkte</p>
                         <div class="flex flex-row gap-2">
-                            <Container>
-                                <p>Links</p>
+                            <Container class="flex-1">
+                                <p class="text-sm font-medium mb-1">Links</p>
                                 <div class="flex flex-row items-center justify-between">
-                                    <h3>13</h3>
-                                    <div class="flex flex-row items-center bg-gray-100 p-2 rounded-md">
-                                        <p>-0.4%</p>
+                                    <h3>{{ painPointsSummary.left.count }}</h3>
+                                    <div :class="[
+                                        'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
+                                        painPointsSummary.left.change < 0 ? 'bg-successLight text-successNormal' :
+                                            painPointsSummary.left.change > 0 ? 'bg-dangerLight text-dangerNormal' :
+                                                'bg-gray-100'
+                                    ]">
+                                        <p>{{ painPointsSummary.left.change > 0 ? '+' : '' }}{{
+                                            Math.round(painPointsSummary.left.change) }}%
+                                        </p>
                                     </div>
                                 </div>
                             </Container>
-                            <Container>
-                                <p>Links</p>
+                            <Container class="flex-1">
+                                <p class="text-sm font-medium mb-1">Rechts</p>
                                 <div class="flex flex-row items-center justify-between">
-                                    <h3>13</h3>
-                                    <div class="flex flex-row items-center bg-gray-100 p-2 rounded-md">
-                                        <p>-0.4%</p>
+                                    <h3>{{ painPointsSummary.right.count }}</h3>
+                                    <div :class="[
+                                        'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
+                                        painPointsSummary.right.change < 0 ? 'bg-successLight text-successNormal' :
+                                            painPointsSummary.right.change > 0 ? 'bg-dangerLight text-dangerNormal' :
+                                                'bg-gray-100'
+                                    ]">
+                                        <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
+                                            Math.round(painPointsSummary.right.change)
+                                            }}%</p>
                                     </div>
                                 </div>
                             </Container>
                         </div>
-
-
                     </Container>
                 </div>
 
                 <!-- right -->
                 <Container class="h-full">
                     <h3>Zeitstrahl</h3>
+                    <p>Links</p>
                     <LineGraph
                         :data="filteredData"
                         :maxScale="maxScale"
+                        :unit="datasetTypes[activeDataset].unit"
+                    />
+                    <p>Rechts</p>
+                    <LineGraph
+                        :data="filteredData"
+                        :maxScale="maxScale"
+                        :unit="datasetTypes[activeDataset].unit"
                     />
                 </Container>
 
@@ -217,7 +232,6 @@ import {
     SelectValue,
 } from '@/components/ui/select'
 import TestContainer from '~/components/TestContainer.vue'
-import { UiButton } from '#components'
 
 const df = new DateFormatter('en-US', {
     dateStyle: 'medium',
@@ -260,28 +274,148 @@ const timeFrame = ref([
 const activeTimeFrame = ref('W')
 
 
-const data = ref([
-    { date: '2025-05-6', value: 30, painDegrees: [5, 7] },
-    { date: '2025-05-7', value: 60, painDegrees: [4, 8, 9] },
-    { date: '2025-05-8', value: 43, painDegrees: [3, 6] },
-    { date: '2025-05-9', value: 85, painDegrees: [30, 60] },
-    { date: '2025-05-10', value: 53, painDegrees: [7, 8] },
-    { date: '2025-05-11', value: 28, painDegrees: [5, 9] }
-])
+const datasetTypes = {
+    ROM: { name: 'ROM', unit: '°', range: [0, 180] },
+    BALANCE: { name: 'Balance', unit: 'score', range: [0, 100] },
+    STRENGTH: { name: 'Stärke', unit: 'kg', range: [0, 100] },
+    MOTOR: { name: 'Motorik', unit: 'score', range: [0, 10] }
+}
+
+const bodyParts = {
+    shoulders: { name: 'Schultern', tests: ['Flexion/Extension', 'Abduktion/Adduktion', 'Rotation'] },
+    elbows: { name: 'Ellenbogen', tests: ['Flexion/Extension', 'Pronation/Supination'] },
+    wrists: { name: 'Handgelenke', tests: ['Flexion/Extension', 'Radial/Ulnar'] },
+    hips: { name: 'Hüften', tests: ['Flexion/Extension', 'Abduktion/Adduktion', 'Rotation'] },
+    knees: { name: 'Knie', tests: ['Flexion/Extension'] },
+    ankles: { name: 'Fussgelenke', tests: ['Dorsal/Plantar', 'Inversion/Eversion'] },
+    spine: { name: 'Wirbelsäule', tests: ['Flexion/Extension', 'Lateral Flexion', 'Rotation'] }
+}
+
+const activeDataset = ref('ROM')
+const activeBodyPart = ref('shoulders')
+const activeTest = ref('Flexion/Extension')
+
+const datasets = ref({})
+
+const generateDataForRange = (startDate, endDate, datasetType) => {
+    const dates = []
+    const currentDate = new Date(startDate)
+    const end = new Date(endDate)
+
+    while (currentDate <= end) {
+        const { range } = datasetTypes[datasetType]
+        const value = Math.floor(Math.random() * (range[1] - range[0])) + range[0]
+        // Ensure pain degrees don't exceed the value
+        const painDegrees = Math.random() > 0.7 ?
+            Array.from({ length: Math.floor(Math.random() * 3) + 1 },
+                () => Math.floor(Math.random() * (value * 0.8))) : []
+
+        dates.push({
+            date: currentDate.toISOString().split('T')[0],
+            value,
+            painDegrees
+        })
+
+        currentDate.setDate(currentDate.getDate() + 1)
+    }
+    return dates
+}
+
+const calculateSummary = (data) => {
+    if (!data || data.length === 0) return { average: 0, change: 0 }
+
+    const values = data.map(d => d.value)
+    const average = values.reduce((a, b) => a + b, 0) / values.length
+
+    // Calculate change over the period
+    const firstValue = values[0]
+    const lastValue = values[values.length - 1]
+    const change = ((lastValue - firstValue) / firstValue) * 100
+
+    return {
+        average: Math.round(average * 10) / 10,
+        change: Math.round(change * 10) / 10
+    }
+}
+
+const leftSideSummary = computed(() => {
+    return calculateSummary(filteredData.value)
+})
+
+const rightSideSummary = computed(() => {
+    // For demo purposes, creating slightly different values for right side
+    const rightData = filteredData.value.map(d => ({
+        ...d,
+        value: d.value * (Math.random() * 0.4 + 0.8) // 80-120% of left side
+    }))
+    return calculateSummary(rightData)
+})
+
+const painPointsSummary = computed(() => {
+    const leftPainCount = filteredData.value.reduce((count, d) => count + (d.painDegrees?.length || 0), 0)
+    const rightPainCount = Math.floor(leftPainCount * (Math.random() * 0.4 + 0.8)) // Similar variation
+
+    // Calculate change in pain points compared to previous period
+    const daysInPeriod = filteredData.value.length
+    const previousPeriodPainCount = Math.floor(leftPainCount * (Math.random() * 0.4 + 0.8))
+    const rightPreviousPeriodPainCount = Math.floor(rightPainCount * (Math.random() * 0.4 + 0.8))
+
+    return {
+        left: {
+            count: leftPainCount,
+            change: ((leftPainCount - previousPeriodPainCount) / previousPeriodPainCount) * 100
+        },
+        right: {
+            count: rightPainCount,
+            change: ((rightPainCount - rightPreviousPeriodPainCount) / rightPreviousPeriodPainCount) * 100
+        }
+    }
+})
+
+const initializeDatasets = () => {
+    const startDate = new Date(value.value.start.year, value.value.start.month - 1, value.value.start.day)
+    const endDate = new Date(value.value.end.year, value.value.end.month - 1, value.value.end.day)
+
+    Object.keys(datasetTypes).forEach(type => {
+        if (!datasets.value[type]) {
+            datasets.value[type] = {}
+        }
+        Object.keys(bodyParts).forEach(part => {
+            if (!datasets.value[type][part]) {
+                datasets.value[type][part] = {}
+            }
+            bodyParts[part].tests.forEach(test => {
+                datasets.value[type][part][test] = generateDataForRange(startDate, endDate, type)
+            })
+        })
+    })
+}
+
+const activeData = computed(() => {
+    return datasets.value[activeDataset.value]?.[activeBodyPart.value]?.[activeTest.value] || []
+})
+
+watch([() => value.value.start, () => value.value.end], () => {
+    initializeDatasets()
+})
+
+onMounted(() => {
+    initializeDatasets()
+})
 
 const filteredData = computed(() => {
-    return data.value.filter(item => {
-        const itemDate = new Date(item.date);
-        const startDate = new Date(value.value.start.year, value.value.start.month - 1, value.value.start.day);
-        const endDate = new Date(value.value.end.year, value.value.end.month - 1, value.value.end.day);
-        return itemDate >= startDate && itemDate <= endDate;
-    });
-});
+    return activeData.value.filter(item => {
+        const itemDate = new Date(item.date)
+        const startDate = new Date(value.value.start.year, value.value.start.month - 1, value.value.start.day)
+        const endDate = new Date(value.value.end.year, value.value.end.month - 1, value.value.end.day)
+        return itemDate >= startDate && itemDate <= endDate
+    })
+})
 
 const maxScale = computed(() => {
-    return Math.max(...data.value.map(item => Math.max(item.value + item.value / 10)));
-});
-
+    const dataset = datasetTypes[activeDataset.value]
+    return dataset.range[1]
+})
 
 </script>
 

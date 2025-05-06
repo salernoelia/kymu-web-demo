@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>opqsaadip</h1>
+        <h1>Patient</h1>
     </div>
 </template>
 
