@@ -194,10 +194,14 @@ const exerciseCategories = computed(() => {
 // Filter exercises based on search and filters
 const filteredExercises = computed(() => {
     return exercises.exercises.filter(ex => {
+        const searchTerms = searchQuery.value.toLowerCase().trim()
+
         const matchesSearch = searchQuery.value === '' ||
-            ex.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-            ex.description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-            (ex.improves && ex.improves.toLowerCase().includes(searchQuery.value.toLowerCase()))
+            ex.name.toLowerCase().includes(searchTerms) ||
+            ex.description.toLowerCase().includes(searchTerms) ||
+            (Array.isArray(ex.improves) && ex.improves.some(improvement =>
+                improvement.toLowerCase().includes(searchTerms)
+            ))
 
         const matchesType = selectedType.value === 'all' || ex.type === selectedType.value
         const matchesCategory = selectedCategory.value === 'all' || ex.category === selectedCategory.value
