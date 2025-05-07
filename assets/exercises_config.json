@@ -40,8 +40,8 @@
       "tempo_instructions": "Langsam halten.",
       "pain_monitoring_instruction": "Leichter Druck ist akzeptabel, aber kein signifikanter Schmerz.",
       "therapist_added_image_urls": [
-        "static/thoracic_extension_start.png",
-        "static/thoracic_extension_end.png"
+        "/ComfyUI_00007_.png",
+        "/ComfyUI_00011_.png"
       ],
       "therapist_added_video_urls": ["video/thoracic_extension_demo.mp4"],
       "family_scene_adjustment_access": true
@@ -85,8 +85,8 @@
       "tempo_instructions": "Langsam und kontrolliert.",
       "pain_monitoring_instruction": "Sollte schmerzfrei sein. Stoppen Sie bei Beschwerden.",
       "therapist_added_image_urls": [
-        "static/pelvic_tilt_supine_start.png",
-        "static/pelvic_tilt_supine_end.png"
+        "/ComfyUI_00097_.png",
+        "/ComfyUI_00113_.png"
       ],
       "therapist_added_video_urls": ["video/pelvic_tilt_supine_demo.mp4"],
       "family_scene_adjustment_access": false
@@ -130,8 +130,8 @@
       "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 2 Sekunden runter.",
       "pain_monitoring_instruction": "Stoppen Sie, wenn Schmerzen im unteren Rücken oder in den Knien auftreten.",
       "therapist_added_image_urls": [
-        "static/bridge_start.png",
-        "static/bridge_top.png"
+        "/ComfyUI_00124_.png",
+        "/ComfyUI_00179_.png"
       ],
       "therapist_added_video_urls": ["video/bridge_demo.mp4"],
       "family_scene_adjustment_access": true
@@ -159,7 +159,7 @@
         "Stellen Sie sich vor, Sie balancieren ein Glas Wasser auf Ihrem unteren Rücken.",
         "Halten Sie Kopf und Nacken neutral.",
         "Halten Sie kurz, dann kehren Sie kontrolliert in die Ausgangsposition zurück.",
-        "Wiederholen Sie auf der gegenüberliegenden Seite (linker Arm, rechtes Bein)."
+        "Wiederholen Sie auf der gegenüberliegenden Seite (linker Arm, rechter Bein)."
       ],
       "breathing_instructions": "Atmen Sie aus, wenn Sie strecken, atmen Sie ein, wenn Sie zurückkehren.",
       "safety_precautions": [
@@ -177,8 +177,8 @@
       "tempo_instructions": "Langsam und kontrolliert.",
       "pain_monitoring_instruction": "Sollte schmerzfrei im Rücken und in den Gelenken sein.",
       "therapist_added_image_urls": [
-        "static/bird_dog_start.png",
-        "static/bird_dog_extended.png"
+        "/ComfyUI_00189_.png",
+        "/ComfyUI_00195_.png"
       ],
       "therapist_added_video_urls": ["video/bird_dog_demo.mp4"],
       "family_scene_adjustment_access": true
@@ -223,7 +223,7 @@
       "joint_focus": ["Knöchel", "Knie", "Hüfte"],
       "tempo_instructions": "Stabil halten.",
       "pain_monitoring_instruction": "Stoppen Sie bei Gelenkschmerzen.",
-      "therapist_added_image_urls": ["static/single_leg_stance.png"],
+      "therapist_added_image_urls": ["/ComfyUI_00252_.png"],
       "therapist_added_video_urls": ["video/single_leg_stance_demo.mp4"],
       "family_scene_adjustment_access": true
     },
@@ -248,7 +248,7 @@
       "execution_instructions": [
         "Lassen Sie Ihren Rücken die Wand hinuntergleiten, während Sie Ihre Knie beugen.",
         "Senken Sie sich ab, bis Ihre Oberschenkel parallel zum Boden sind, oder so weit wie angenehm ohne Schmerzen.",
-        "Stellen Sie sicher, dass Ihre Knie direkt über Ihren Knöcheln sind (oder leicht dahinter, aber nicht davor).",
+        "Stellen Sie sicher, dass Ihre Knie direkt über Ihren Zehen sind (oder leicht dahinter, aber nicht davor).",
         "Halten Sie Ihren Rücken flach an der Wand.",
         "Halten Sie die Position für die vorgegebene Dauer.",
         "Gleiten Sie zurück die Wand hoch in die Ausgangsposition."
@@ -268,8 +268,8 @@
       "tempo_instructions": "Langsam abwärts, kontrolliert halten, langsam aufwärts.",
       "pain_monitoring_instruction": "Stoppen Sie bei stechenden Schmerzen, insbesondere in den Knien.",
       "therapist_added_image_urls": [
-        "static/wall_squat_start.png",
-        "static/wall_squat_hold.png"
+        "/ComfyUI_00352_.png",
+        "/ComfyUI_00519_.png"
       ],
       "therapist_added_video_urls": ["video/wall_squat_demo.mp4"],
       "family_scene_adjustment_access": false
@@ -313,8 +313,8 @@
       "tempo_instructions": "2 Sekunden ziehen, 1 Sekunde halten, 3 Sekunden nachgeben.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in Schulter oder Rücken.",
       "therapist_added_image_urls": [
-        "static/seated_row_band_start.png",
-        "static/seated_row_band_end.png"
+        "/ComfyUI_00522_.png",
+        "/ComfyUI_00523_.png"
       ],
       "therapist_added_video_urls": ["video/seated_row_band_demo.mp4"],
       "family_scene_adjustment_access": true
@@ -353,8 +353,8 @@
       "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 2 Sekunden runter.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen im Knöchel oder in der Wade.",
       "therapist_added_image_urls": [
-        "static/calf_raise_start.png",
-        "static/calf_raise_top.png"
+        "/ComfyUI_00531_.png",
+        "/ComfyUI_00541_.png"
       ],
       "therapist_added_video_urls": ["video/calf_raise_demo.mp4"],
       "family_scene_adjustment_access": false
@@ -393,7 +393,7 @@
       "joint_focus": ["Knie"],
       "tempo_instructions": "5 Sekunden halten.",
       "pain_monitoring_instruction": "Sollte schmerzfrei sein.",
-      "therapist_added_image_urls": ["static/quad_set.png"],
+      "therapist_added_image_urls": ["/ComfyUI_00550_.png"],
       "therapist_added_video_urls": ["video/quad_set_demo.mp4"],
       "family_scene_adjustment_access": false
     },
@@ -433,7 +433,7 @@
       "joint_focus": ["Knöchel"],
       "tempo_instructions": "Langsam und gleichmäßig.",
       "pain_monitoring_instruction": "Sollte schmerzfrei sein.",
-      "therapist_added_image_urls": ["static/ankle_pumps.png"],
+      "therapist_added_image_urls": ["/ComfyUI_00561_.png"],
       "therapist_added_video_urls": ["video/ankle_pumps_demo.mp4"],
       "family_scene_adjustment_access": false
     },
@@ -471,7 +471,7 @@
       "joint_focus": ["Schulterblatt", "Schultergürtel"],
       "tempo_instructions": "2 Sekunden zusammenziehen, 1 Sekunde halten, 2 Sekunden lösen.",
       "pain_monitoring_instruction": "Sollte schmerzfrei sein.",
-      "therapist_added_image_urls": ["static/shoulder_squeeze.png"],
+      "therapist_added_image_urls": ["/ComfyUI_00564_.png"],
       "therapist_added_video_urls": ["video/shoulder_squeeze_demo.mp4"],
       "family_scene_adjustment_access": true
     },
@@ -513,8 +513,8 @@
       "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 3 Sekunden runter.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in der Hüfte oder Seite.",
       "therapist_added_image_urls": [
-        "static/side_lying_abduction_start.png",
-        "static/side_lying_abduction_end.png"
+        "/ComfyUI_00568_.png",
+        "/ComfyUI_00571_.png"
       ],
       "therapist_added_video_urls": ["video/side_lying_abduction_demo.mp4"],
       "family_scene_adjustment_access": true
@@ -538,7 +538,7 @@
       "resistance_level": "niedrig_bis_mittel",
       "starting_position_description": "Stellen Sie sich mit den Füßen hüftbreit auseinander auf, Zehen zeigen leicht nach vorne. Halten Sie sich bei Bedarf an einer Unterstützung fest.",
       "execution_instructions": [
-        "Beugen Sie langsam Knie und Hüften und senken Sie Ihren Körper nur ein kleines Stück ab (z. B. 15-30 Grad Kniebeugung).",
+        "Beugen Sie langsam Knie und Hüften, senken Sie Ihren Körper nur ein kleines Stück ab (z. B. 15-30 Grad Kniebeugung).",
         "Halten Sie Ihren Rücken gerade und die Brust oben.",
         "Stellen Sie sicher, dass die Knie über Ihren Zehen bleiben (oder leicht dahinter, aber nicht davor).",
         "Drücken Sie sich durch die Fersen zurück in den Stand."
@@ -552,10 +552,7 @@
       "joint_focus": ["Knie", "Hüfte", "Knöchel"],
       "tempo_instructions": "2 Sekunden runter, 1 Sekunde halten, 2 Sekunden hoch.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in den Knien oder Hüften.",
-      "therapist_added_image_urls": [
-        "static/mini_squat_start.png",
-        "static/mini_squat_end.png"
-      ],
+      "therapist_added_image_urls": ["/ComfyUI_00572_.png"],
       "therapist_added_video_urls": ["video/mini_squat_demo.mp4"],
       "family_scene_adjustment_access": true
     },
@@ -638,8 +635,8 @@
       "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 2 Sekunden runter.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in der Hüfte oder im unteren Rücken.",
       "therapist_added_image_urls": [
-        "static/slr_supine_start.png",
-        "static/slr_supine_end.png"
+        "/ComfyUI_00007_.png",
+        "/ComfyUI_00011_.png"
       ],
       "therapist_added_video_urls": ["video/slr_supine_demo.mp4"],
       "family_scene_adjustment_access": true
@@ -664,7 +661,7 @@
       "starting_position_description": "Stehen Sie aufrecht mit den Armen an den Seiten.",
       "execution_instructions": [
         "Halten Sie Ihren linken Arm gestreckt.",
-        "Heben Sie Ihren linken Arm zur Seite, weg vom Körper, so hoch wie möglich ohne Schmerzen.",
+        "Heben Sie Ihren linken Arm aus der Seite, weg vom Körper, so hoch wie möglich ohne Schmerzen.",
         "Halten Sie die Handfläche nach unten oder leicht nach vorne gerichtet.",
         "Senken Sie Ihren Arm langsam wieder an die Seite."
       ],
@@ -678,8 +675,8 @@
       "tempo_instructions": "Langsame und kontrollierte Bewegung.",
       "pain_monitoring_instruction": "Notieren Sie den Punkt, an dem Schmerz oder Steifheit beginnt.",
       "therapist_added_image_urls": [
-        "static/left_arm_abduction_start.png",
-        "static/left_arm_abduction_end.png"
+        "/ComfyUI_00007_.png",
+        "/ComfyUI_00011_.png"
       ],
       "therapist_added_video_urls": null,
       "family_scene_adjustment_access": false
@@ -718,8 +715,8 @@
       "tempo_instructions": "Langsame und kontrollierte Bewegung.",
       "pain_monitoring_instruction": "Notieren Sie jegliches Klicken, Hängenbleiben oder Schmerzen.",
       "therapist_added_image_urls": [
-        "static/right_leg_abduction_start.png",
-        "static/right_leg_abduction_end.png"
+        "/ComfyUI_00097_.png",
+        "/ComfyUI_00113_.png"
       ],
       "therapist_added_video_urls": null,
       "family_scene_adjustment_access": true
@@ -756,8 +753,8 @@
       "tempo_instructions": "Langsame und kontrollierte Bewegung.",
       "pain_monitoring_instruction": "Notieren Sie den Punkt, an dem Schmerz oder Einschränkung auftritt.",
       "therapist_added_image_urls": [
-        "static/left_elbow_flexion_start.png",
-        "static/left_elbow_flexion_end.png"
+        "/ComfyUI_00124_.png",
+        "/ComfyUI_00179_.png"
       ],
       "therapist_added_video_urls": null,
       "family_scene_adjustment_access": false

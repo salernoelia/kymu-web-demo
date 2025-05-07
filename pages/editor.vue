@@ -1,162 +1,159 @@
 <template>
-    <div class="h-full flex flex-col">
-        <div class="flex justify-between items-center pb-4">
-            <h1 class="text-2xl font-semibold">Übungseditor</h1>
-            <UiButton @click="createNewExercise">
-                <Plus class="h-4 w-4 mr-2" />
-                Neue Übung
-            </UiButton>
-        </div>
+    <div class="editor h-full flex flex-col">
+        <div class="overlay"></div>
+        <h1 class="pb-4">Editor</h1>
 
 
-        <div class="filters mb-6">
-            <div class="search-bar mb-4">
-                <div class="relative">
-                    <UiInput
-                        v-model="searchQuery"
-                        placeholder="Suche nach Name oder Beschreibung..."
-                        class="pl-10"
-                    />
-                    <Search class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                </div>
+
+    </div>
+    <div class="flex flex-col sidebar gap-4">
+        <h3>Einstellungen</h3>
+
+
+        <div class="flex flex-row gap-4">
+
+            <div class="relative w-full max-w-sm items-center">
+
+                <Input
+                    id="search"
+                    type="text"
+                    placeholder="Search..."
+                    class="pl-10"
+                />
+                <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+                    <Search class="size-6 text-muted-foreground" />
+                </span>
             </div>
 
-            <div class="filter-controls flex gap-4">
-                <UiSelect v-model="selectedCategory">
-                    <UiSelectTrigger class="w-[200px]">
-                        <UiSelectValue placeholder="Kategorie" />
-                    </UiSelectTrigger>
-                    <UiSelectContent>
-                        <UiSelectGroup>
-                            <UiSelectItem value="all">Alle Kategorien</UiSelectItem>
-                            <UiSelectItem
-                                v-for="category in uniqueCategories"
-                                :key="category"
-                                :value="category"
-                            >
-                                {{ formatCategory(category) }}
-                            </UiSelectItem>
-                        </UiSelectGroup>
-                    </UiSelectContent>
-                </UiSelect>
+            <Select>
+                <SelectTrigger class="w-[180px]">
+                    <SelectValue placeholder="Hilfsmittel" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectGroup>
+                        <SelectItem value="apple">
+                            Apple
+                        </SelectItem>
+                        <SelectItem value="banana">
+                            Banana
+                        </SelectItem>
+                        <SelectItem value="blueberry">
+                            Blueberry
+                        </SelectItem>
+                        <SelectItem value="grapes">
+                            Grapes
+                        </SelectItem>
+                        <SelectItem value="pineapple">
+                            Pineapple
+                        </SelectItem>
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
+            <Select>
+                <SelectTrigger class="w-[180px]">
+                    <SelectValue placeholder="Art" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectGroup>
+                        <SelectItem value="apple">
+                            Apple
+                        </SelectItem>
+                        <SelectItem value="banana">
+                            Banana
+                        </SelectItem>
+                        <SelectItem value="blueberry">
+                            Blueberry
+                        </SelectItem>
+                        <SelectItem value="grapes">
+                            Grapes
+                        </SelectItem>
+                        <SelectItem value="pineapple">
+                            Pineapple
+                        </SelectItem>
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
+        </div>
 
-                <UiSelect v-model="selectedType">
-                    <UiSelectTrigger class="w-[200px]">
-                        <UiSelectValue placeholder="Übungstyp" />
-                    </UiSelectTrigger>
-                    <UiSelectContent>
-                        <UiSelectGroup>
-                            <UiSelectItem value="all">Alle Typen</UiSelectItem>
-                            <UiSelectItem value="guided_exercise">Geführte Übung</UiSelectItem>
-                            <UiSelectItem value="assessment_screen">Bewertung</UiSelectItem>
-                        </UiSelectGroup>
-                    </UiSelectContent>
-                </UiSelect>
+        <div class="catalogue grid grid-cols-3 gap-4 overflow-auto">
+            <div
+                v-for="ex in exercises.exercises"
+                :key="ex.id"
+                class="flex flex-col bg-white card"
+            >
+
+                <img
+                    v-if="ex.therapist_added_image_urls && ex.therapist_added_image_urls.length"
+                    :src="ex.therapist_added_image_urls[0]"
+                    alt=""
+                >
+
+                {{ ex.name }}
             </div>
         </div>
 
-        <div class="exercises-grid">
-            <ExerciseCard
-                v-for="exercise in filteredExercises"
-                :key="exercise.id"
-                :exercise="exercise"
-                @select="openExerciseSidebar"
-            />
-        </div>
 
-        <ExerciseSidebar
-            v-if="selectedExercise"
-            :exercise="selectedExercise"
-            :is-open="isSidebarOpen"
-            @close="closeSidebar"
-            @save="saveExercise"
-        />
     </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { Search, Plus } from 'lucide-vue-next'
 import exercises from '~/assets/exercises_config.json'
+import { Input } from '@/components/ui/input'
+import { Search } from 'lucide-vue-next'
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
 
-const activeTab = ref('Aktiv')
-const searchQuery = ref('')
-const selectedCategory = ref('all')
-const selectedType = ref('all')
-const selectedExercise = ref(null)
-const isSidebarOpen = ref(false)
 
-const uniqueCategories = computed(() => {
-    return [...new Set(exercises.exercises.map(ex => ex.category))]
-})
+const open = ref(false)
 
-const formatCategory = (category) => {
-    return category.replace(/_/g, ' ')
-}
 
-const filteredExercises = computed(() => {
-    return exercises.exercises.filter(exercise => {
-        const matchesSearch = searchQuery.value === '' ||
-            exercise.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-            exercise.description.toLowerCase().includes(searchQuery.value.toLowerCase())
 
-        const matchesCategory = selectedCategory.value === 'all' ||
-            exercise.category === selectedCategory.value
 
-        const matchesType = selectedType.value === 'all' ||
-            exercise.exercise_type === selectedType.value
 
-        return matchesSearch && matchesCategory && matchesType
-    })
-})
-
-const openExerciseSidebar = (exercise) => {
-    selectedExercise.value = exercise
-    isSidebarOpen.value = true
-}
-
-const closeSidebar = () => {
-    isSidebarOpen.value = false
-    selectedExercise.value = null
-}
-
-const saveExercise = (updatedExercise) => {
-    // Here you would implement the logic to save the updated exercise
-    console.log('Saving exercise:', updatedExercise)
-}
-
-const createNewExercise = () => {
-    const newExercise = {
-        id: `exercise_${Date.now()}`,
-        name: '',
-        description: '',
-        category: '',
-        exercise_type: 'guided_exercise',
-        goal_type: 'repetitions_goal',
-        repetitions_goal: 10,
-        duration_seconds_goal: null,
-        sets: 3,
-        rest_between_sets_seconds: 60,
-        execution_instructions: [],
-        starting_position_description: '',
-        // Add other required fields with default values
-    }
-    openExerciseSidebar(newExercise)
-}
 </script>
 
-<style scoped>
-.exercises-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-    padding: 1rem 0;
+<style lang="scss" scoped>
+.editor {
+    position: relative;
 }
 
-.filters {
+.overlay {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Dark overlay */
+    backdrop-filter: blur(5px);
+    /* Blur effect */
+    z-index: -1;
+    /* Place it behind the content */
+}
+
+.sidebar {
+    width: 70vw;
+    height: 100vh;
+    padding: 1.5rem 2rem;
+    border-radius: 1rem 0 0 1rem;
     background-color: white;
-    border-radius: var(--radius);
-    padding: 1rem;
-    border: 1px solid hsl(var(--border));
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.card {
+    border: 1px var(--color-outline_grayNormal) solid;
+    border-radius: 0.75rem;
+    padding: 0.75rem;
 }
 </style>
