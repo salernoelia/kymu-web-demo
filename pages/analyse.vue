@@ -52,8 +52,11 @@
                         </Popover>
 
                         <div class="flex flex-row gap-2">
-                            <Select v-model="activeDataset">
-                                <SelectTrigger class="w-[180px]">
+                            <Select
+                                v-model="activeDataset"
+                                class="w-full"
+                            >
+                                <SelectTrigger class="w-full">
                                     <SelectValue :placeholder="datasetTypes[activeDataset].name" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -70,7 +73,7 @@
                                 </SelectContent>
                             </Select>
                             <Select v-model="activeBodyPart">
-                                <SelectTrigger class="w-[180px]">
+                                <SelectTrigger class="w-full]">
                                     <SelectValue :placeholder="bodyParts[activeBodyPart].name" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -180,7 +183,7 @@
                                     ]">
                                         <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                             Math.round(painPointsSummary.right.change)
-                                            }}%</p>
+                                        }}%</p>
                                     </div>
                                 </div>
                             </Container>

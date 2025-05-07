@@ -17,6 +17,7 @@ export default defineNuxtConfig({
 
   shadcn: {
     componentDir: "./components/ui",
+    prefix: "ui",
   },
 
   postcss: {

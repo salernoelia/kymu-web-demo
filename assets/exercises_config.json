@@ -1,51 +1,766 @@
 {
-    "name": "Unit",
-    "description": "Focus on improving body balance.",
-    "exercises": [
-        {
-            "id": "exercise_0",
-            "name": "Left Arm",
-            "results": null,
-            "category": "shoulder_abduction_left",
-            "description": "A test to assess the flexibility of the left arm",
-            "exercise_type": "assessment_screen",
-            "goal_type": "repetitions_goal",
-            "repetitions_goal": 3,
-            "duration_seconds_goal": null,
-            "type": "range-of-motion",
-            "therapist_added_image_urls": ["static", "left_arm_180"],
-            "therapist_added_video_urls": null,
-            "family_scene_adjustment_access": false
-        },
-        {
-            "id": "exercise_1",
-            "name": "Right Leg",
-            "results": null,
-            "category": "leg_abduction_right",
-            "description": "Test for the flexibility of the left hip side.",
-            "exercise_type": "assessment_screen",
-            "goal_type": "repetitions_goal",
-            "repetitions_goal": 3,
-            "duration_seconds_goal": null,
-            "type": "range-of-motion",
-            "therapist_added_image_urls": ["static", "right_leg_45"],
-            "therapist_added_video_urls": null,
-            "family_scene_adjustment_access": true
-        },
-        {
-            "id": "exercise_2",
-            "name": "Left Elbow",
-            "results": null,
-            "category": "elbow_flexion_left",
-            "description": "Move the dumbbell up and down five times with your left arm.",
-            "exercise_type": "assessment_screen",
-            "goal_type": "repetitions_goal",
-            "repetitions_goal": 5,
-            "duration_seconds_goal": null,
-            "type": "range-of-motion",
-            "therapist_added_image_urls": ["left_arm_90", "left_elbow_90"],
-            "therapist_added_video_urls": null,
-            "family_scene_adjustment_access": false
-        }
-    ]
+  "name": "Haltungskontrolle & Rumpfstabilität",
+  "description": "Dieses Modul konzentriert sich auf die Stärkung der Rumpfmuskulatur, die Verbesserung der Körperhaltung und die Steigerung des Gleichgewichts.",
+  "exercises": [
+    {
+      "id": "exercise_001",
+      "name": "Dehnung der Brustwirbelsäule",
+      "results": null,
+      "category": "Beweglichkeit_der_Wirbelsäule",
+      "description": "Verbessern Sie die Flexibilität im oberen Rücken.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "duration_seconds_goal",
+      "repetitions_goal": null,
+      "duration_seconds_goal": 30,
+      "sets": 3,
+      "rest_between_sets_seconds": 20,
+      "type": "Dehnung",
+      "equipment_needed": ["Schaumstoffrolle"],
+      "position": "Rückenlage",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": null,
+      "starting_position_description": "Legen Sie sich auf den Rücken, wobei eine Schaumstoffrolle quer unter Ihrem oberen Rücken platziert ist. Unterstützen Sie Ihren Kopf mit den Händen.",
+      "execution_instructions": [
+        "Strecken Sie Ihren oberen Rücken langsam über die Schaumstoffrolle, sodass sich Ihre Brust öffnet.",
+        "Bewegen Sie die Rolle leicht nach oben oder unten entlang Ihrer Brustwirbelsäule, um verspannte Bereiche zu finden.",
+        "Halten Sie die Dehnung sanft.",
+        "Vermeiden Sie eine Überstreckung im unteren Rücken."
+      ],
+      "breathing_instructions": "Atmen Sie tief ein und entspannen Sie sich in die Dehnung.",
+      "safety_precautions": [
+        "Stoppen Sie bei stechenden Schmerzen.",
+        "Halten Sie den Nacken gestützt."
+      ],
+      "target_muscles": [
+        "Rückenstrecker_(Brustwirbelsäule)",
+        "Rautenmuskeln",
+        "Kapuzenmuskel"
+      ],
+      "joint_focus": ["Brustwirbelsäule", "Schultergürtel"],
+      "tempo_instructions": "Langsam halten.",
+      "pain_monitoring_instruction": "Leichter Druck ist akzeptabel, aber kein signifikanter Schmerz.",
+      "therapist_added_image_urls": [
+        "static/thoracic_extension_start.png",
+        "static/thoracic_extension_end.png"
+      ],
+      "therapist_added_video_urls": ["video/thoracic_extension_demo.mp4"],
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_002",
+      "name": "Beckenkippung (Rückenlage)",
+      "results": null,
+      "category": "Rumpfstabilität",
+      "description": "Aktivieren Sie tiefe Bauch- und untere Rückenmuskeln.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 15,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 30,
+      "type": "Kraft",
+      "equipment_needed": ["Matte"],
+      "position": "Rückenlage",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "niedrig",
+      "starting_position_description": "Legen Sie sich auf den Rücken, Knie gebeugt, Füße flach auf dem Boden, hüftbreit auseinander. Entspannen Sie Ihren unteren Rücken.",
+      "execution_instructions": [
+        "Flachen Sie Ihren unteren Rücken sanft gegen die Matte, indem Sie Ihre Bauchmuskeln anspannen und das Becken leicht nach oben kippen.",
+        "Stellen Sie sich vor, Sie ziehen Ihren Schambein in Richtung Bauchnabel.",
+        "Halten Sie kurz, und wölben Sie dann Ihren unteren Rücken sanft von der Matte, indem Sie das Becken nach unten kippen.",
+        "Bewegen Sie sich langsam und kontrolliert."
+      ],
+      "breathing_instructions": "Atmen Sie aus, wenn Sie den Rücken abflachen, atmen Sie ein, wenn Sie wölben.",
+      "safety_precautions": [
+        "Vermeiden Sie starkes Drücken oder Schmerzen.",
+        "Halten Sie Nacken und Schultern entspannt."
+      ],
+      "target_muscles": [
+        "Querbauchmuskel",
+        "innere_schräge_Bauchmuskeln",
+        "Beckenboden",
+        "Rückenstrecker_(Lendenwirbelsäule)"
+      ],
+      "joint_focus": ["Becken", "Lendenwirbelsäule"],
+      "tempo_instructions": "Langsam und kontrolliert.",
+      "pain_monitoring_instruction": "Sollte schmerzfrei sein. Stoppen Sie bei Beschwerden.",
+      "therapist_added_image_urls": [
+        "static/pelvic_tilt_supine_start.png",
+        "static/pelvic_tilt_supine_end.png"
+      ],
+      "therapist_added_video_urls": ["video/pelvic_tilt_supine_demo.mp4"],
+      "family_scene_adjustment_access": false
+    },
+    {
+      "id": "exercise_003",
+      "name": "Brücke",
+      "results": null,
+      "category": "Gesäßmuskelkraft",
+      "description": "Stärkt Gesäß, Hamstrings und unteren Rücken.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 12,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 60,
+      "type": "Kraft",
+      "equipment_needed": ["Matte"],
+      "position": "Rückenlage",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "mittel",
+      "starting_position_description": "Legen Sie sich auf den Rücken, Knie gebeugt, Füße flach auf dem Boden, hüftbreit auseinander. Arme liegen seitlich am Körper.",
+      "execution_instructions": [
+        "Spannen Sie Ihre Gesäßmuskeln an und heben Sie Ihre Hüften vom Boden, bis Ihr Körper eine gerade Linie von den Schultern zu den Knien bildet.",
+        "Halten Sie den Rumpf angespannt, um ein übermäßiges Wölben des unteren Rückens zu vermeiden.",
+        "Halten Sie kurz oben und spannen Sie die Gesäßmuskeln an.",
+        "Senken Sie Ihre Hüften langsam zurück in die Ausgangsposition."
+      ],
+      "breathing_instructions": "Atmen Sie aus, wenn Sie die Hüften heben, atmen Sie ein, wenn Sie senken.",
+      "safety_precautions": [
+        "Vermeiden Sie eine Überstreckung des unteren Rückens.",
+        "Halten Sie die Bewegung kontrolliert."
+      ],
+      "target_muscles": [
+        "großer_Gesäßmuskel",
+        "Hamstrings",
+        "Rückenstrecker",
+        "Rumpf"
+      ],
+      "joint_focus": ["Hüfte", "Knie", "Lendenwirbelsäule"],
+      "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 2 Sekunden runter.",
+      "pain_monitoring_instruction": "Stoppen Sie, wenn Schmerzen im unteren Rücken oder in den Knien auftreten.",
+      "therapist_added_image_urls": [
+        "static/bridge_start.png",
+        "static/bridge_top.png"
+      ],
+      "therapist_added_video_urls": ["video/bridge_demo.mp4"],
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_004",
+      "name": "Vierfüßlerstand mit Bein- und Armhebung (Bird-Dog)",
+      "results": null,
+      "category": "Rumpfstabilität",
+      "description": "Verbessert Rumpfkraft, Gleichgewicht und Koordination.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 10,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 45,
+      "type": "Kraft",
+      "equipment_needed": ["Matte"],
+      "position": "Vierfüßlerstand",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "mittel",
+      "starting_position_description": "Beginnen Sie im Vierfüßlerstand, Hände direkt unter den Schultern, Knie direkt unter den Hüften. Halten Sie Ihren Rücken gerade und den Rumpf angespannt.",
+      "execution_instructions": [
+        "Strecken Sie langsam Ihren rechten Arm nach vorne und Ihr linkes Bein gerade nach hinten, halten Sie dabei Ihren Rumpf stabil und den Rücken flach.",
+        "Stellen Sie sich vor, Sie balancieren ein Glas Wasser auf Ihrem unteren Rücken.",
+        "Halten Sie Kopf und Nacken neutral.",
+        "Halten Sie kurz, dann kehren Sie kontrolliert in die Ausgangsposition zurück.",
+        "Wiederholen Sie auf der gegenüberliegenden Seite (linker Arm, rechtes Bein)."
+      ],
+      "breathing_instructions": "Atmen Sie aus, wenn Sie strecken, atmen Sie ein, wenn Sie zurückkehren.",
+      "safety_precautions": [
+        "Vermeiden Sie ein Wölben oder Runden des Rückens.",
+        "Halten Sie den Rumpf während der gesamten Übung angespannt."
+      ],
+      "target_muscles": [
+        "Querbauchmuskel",
+        "Rückenstrecker",
+        "großer_Gesäßmuskel",
+        "Deltamuskeln",
+        "Trizeps"
+      ],
+      "joint_focus": ["Wirbelsäule", "Schulter", "Hüfte"],
+      "tempo_instructions": "Langsam und kontrolliert.",
+      "pain_monitoring_instruction": "Sollte schmerzfrei im Rücken und in den Gelenken sein.",
+      "therapist_added_image_urls": [
+        "static/bird_dog_start.png",
+        "static/bird_dog_extended.png"
+      ],
+      "therapist_added_video_urls": ["video/bird_dog_demo.mp4"],
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_005",
+      "name": "Einbeinstand (Augen geöffnet)",
+      "results": null,
+      "category": "Gleichgewicht",
+      "description": "Verbessern Sie das statische Gleichgewicht.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "duration_seconds_goal",
+      "repetitions_goal": null,
+      "duration_seconds_goal": 30,
+      "sets": 3,
+      "rest_between_sets_seconds": 30,
+      "type": "Gleichgewicht",
+      "equipment_needed": ["stabile_Unterstützung_optional"],
+      "position": "Stehend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": null,
+      "starting_position_description": "Stellen Sie sich bei Bedarf in der Nähe einer Wand oder einer stabilen Oberfläche zur Unterstützung auf. Füße hüftbreit auseinander.",
+      "execution_instructions": [
+        "Verlagern Sie Ihr Gewicht auf ein Bein.",
+        "Heben Sie den anderen Fuß langsam vom Boden, wobei das Knie leicht gebeugt ist.",
+        "Halten Sie das Standbein-Knie leicht gebeugt (nicht durchgedrückt).",
+        "Halten Sie Ihren Rumpf angespannt und die Brust angehoben.",
+        "Halten Sie die Position für die vorgegebene Dauer.",
+        "Kehren Sie zum Stand auf beiden Füßen zurück.",
+        "Wiederholen Sie auf dem anderen Bein."
+      ],
+      "breathing_instructions": "Atmen Sie normal.",
+      "safety_precautions": [
+        "Verwenden Sie Unterstützung, wenn Sie sich unsicher fühlen.",
+        "Stellen Sie sicher, dass der Bereich frei ist."
+      ],
+      "target_muscles": [
+        "Knöchelstabilisatoren",
+        "mittlerer_Gesäßmuskel",
+        "Rumpf"
+      ],
+      "joint_focus": ["Knöchel", "Knie", "Hüfte"],
+      "tempo_instructions": "Stabil halten.",
+      "pain_monitoring_instruction": "Stoppen Sie bei Gelenkschmerzen.",
+      "therapist_added_image_urls": ["static/single_leg_stance.png"],
+      "therapist_added_video_urls": ["video/single_leg_stance_demo.mp4"],
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_006",
+      "name": "Wandsquat",
+      "results": null,
+      "category": "Kraft_Unterkörper_funktionell",
+      "description": "Stärkt Quadrizeps, Hamstrings und Gesäß mit Wandunterstützung.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "duration_seconds_goal",
+      "repetitions_goal": null,
+      "duration_seconds_goal": 45,
+      "sets": 3,
+      "rest_between_sets_seconds": 60,
+      "type": "Kraft",
+      "equipment_needed": ["Wand"],
+      "position": "Stehend_gegen_Wand",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "mittel",
+      "starting_position_description": "Stellen Sie sich mit dem Rücken an eine Wand, Füße schulterbreit auseinander, etwa 30-60 cm von der Wand entfernt.",
+      "execution_instructions": [
+        "Lassen Sie Ihren Rücken die Wand hinuntergleiten, während Sie Ihre Knie beugen.",
+        "Senken Sie sich ab, bis Ihre Oberschenkel parallel zum Boden sind, oder so weit wie angenehm ohne Schmerzen.",
+        "Stellen Sie sicher, dass Ihre Knie direkt über Ihren Knöcheln sind (oder leicht dahinter, aber nicht davor).",
+        "Halten Sie Ihren Rücken flach an der Wand.",
+        "Halten Sie die Position für die vorgegebene Dauer.",
+        "Gleiten Sie zurück die Wand hoch in die Ausgangsposition."
+      ],
+      "breathing_instructions": "Atmen Sie während des Haltens normal.",
+      "safety_precautions": [
+        "Nicht absenken, wenn es Knieschmerzen verursacht.",
+        "Stellen Sie sicher, dass die Füße weit genug von der Wand entfernt sind."
+      ],
+      "target_muscles": [
+        "Quadrizeps",
+        "Hamstrings",
+        "großer_Gesäßmuskel",
+        "Waden"
+      ],
+      "joint_focus": ["Knie", "Hüfte", "Knöchel"],
+      "tempo_instructions": "Langsam abwärts, kontrolliert halten, langsam aufwärts.",
+      "pain_monitoring_instruction": "Stoppen Sie bei stechenden Schmerzen, insbesondere in den Knien.",
+      "therapist_added_image_urls": [
+        "static/wall_squat_start.png",
+        "static/wall_squat_hold.png"
+      ],
+      "therapist_added_video_urls": ["video/wall_squat_demo.mp4"],
+      "family_scene_adjustment_access": false
+    },
+    {
+      "id": "exercise_007",
+      "name": "Rudern im Sitzen mit Band",
+      "results": null,
+      "category": "Kraft_oberer_Rücken",
+      "description": "Stärkt Muskeln im oberen Rücken und den Schultern.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 15,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 60,
+      "type": "Kraft",
+      "equipment_needed": ["Widerstandsband", "Stuhl_optional"],
+      "position": "Sitzend_oder_Lang_sitzen",
+      "resistance_type": "Widerstandsband",
+      "resistance_level": "mittel",
+      "starting_position_description": "Setzen Sie sich mit ausgestreckten Beinen auf den Boden oder auf einen Stuhl. Schlingen Sie ein Widerstandsband um Ihre Füße (oder einen stabilen Gegenstand, wenn auf einem Stuhl). Halten Sie die Enden des Bandes mit den Händen, Arme nach vorne ausgestreckt.",
+      "execution_instructions": [
+        "Halten Sie Ihren Rücken gerade und den Rumpf angespannt.",
+        "Ziehen Sie das Band zur Brust, indem Sie Ihre Schulterblätter zusammendrücken.",
+        "Halten Sie die Ellbogen nah am Körper.",
+        "Kontrollieren Sie die Bewegung, während Sie Ihre Arme langsam in die Ausgangsposition zurückführen."
+      ],
+      "breathing_instructions": "Atmen Sie aus, wenn Sie ziehen, atmen Sie ein, wenn Sie nachgeben.",
+      "safety_precautions": [
+        "Vermeiden Sie Schulterzucken.",
+        "Halten Sie die Bewegung flüssig, keine ruckartigen Züge."
+      ],
+      "target_muscles": [
+        "Rautenmuskeln",
+        "Kapuzenmuskel_(Mitte)",
+        "breiter_Rückenmuskel",
+        "Bizeps"
+      ],
+      "joint_focus": ["Schulter", "Ellbogen", "Schulterblatt"],
+      "tempo_instructions": "2 Sekunden ziehen, 1 Sekunde halten, 3 Sekunden nachgeben.",
+      "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in Schulter oder Rücken.",
+      "therapist_added_image_urls": [
+        "static/seated_row_band_start.png",
+        "static/seated_row_band_end.png"
+      ],
+      "therapist_added_video_urls": ["video/seated_row_band_demo.mp4"],
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_008",
+      "name": "Wadenheben im Stehen",
+      "results": null,
+      "category": "Kraft_Unterschenkel",
+      "description": "Stärkt die Wadenmuskulatur.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 15,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 45,
+      "type": "Kraft",
+      "equipment_needed": ["stabile_Unterstützung"],
+      "position": "Stehend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "mittel",
+      "starting_position_description": "Stellen Sie sich in der Nähe einer Wand oder einer stabilen Oberfläche zur Unterstützung auf. Füße flach auf dem Boden, hüftbreit auseinander.",
+      "execution_instructions": [
+        "Heben Sie sich langsam auf die Fußballen und heben Sie Ihre Fersen so hoch wie möglich vom Boden ab.",
+        "Halten Sie Ihre Knie gestreckt.",
+        "Halten Sie kurz oben.",
+        "Senken Sie Ihre Fersen langsam zurück zum Boden."
+      ],
+      "breathing_instructions": "Atmen Sie aus, wenn Sie sich heben, atmen Sie ein, wenn Sie senken.",
+      "safety_precautions": [
+        "Verwenden Sie Unterstützung, um den Gleichgewicht zu halten.",
+        "Vermeiden Sie überstürzte Bewegungen."
+      ],
+      "target_muscles": ["Wadenmuskel_(Gastrocnemius)", "Schollenmuskel"],
+      "joint_focus": ["Knöchel"],
+      "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 2 Sekunden runter.",
+      "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen im Knöchel oder in der Wade.",
+      "therapist_added_image_urls": [
+        "static/calf_raise_start.png",
+        "static/calf_raise_top.png"
+      ],
+      "therapist_added_video_urls": ["video/calf_raise_demo.mp4"],
+      "family_scene_adjustment_access": false
+    },
+    {
+      "id": "exercise_009",
+      "name": "Quadrizeps-Anspannung",
+      "results": null,
+      "category": "Quadrizepsaktivierung",
+      "description": "Aktivieren und stärken Sie den Quadrizepsmuskel.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 10,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 30,
+      "type": "Kraft",
+      "equipment_needed": ["Handtuchrolle_optional"],
+      "position": "Rückenlage_oder_Lang_sitzen",
+      "resistance_type": "isometrisch",
+      "resistance_level": "niedrig",
+      "starting_position_description": "Legen Sie sich auf den Rücken oder setzen Sie sich mit ausgestrecktem Bein. Legen Sie bei Bedarf eine Handtuchrolle unter Ihr Knie.",
+      "execution_instructions": [
+        "Spannen Sie den Muskel oben auf Ihrem Oberschenkel an (Quadrizeps).",
+        "Drücken Sie die Kniekehle gegen die Unterlage (oder Handtuchrolle).",
+        "Sie sollten sehen, wie sich Ihre Kniescheibe leicht nach oben bewegt.",
+        "Halten Sie die Anspannung.",
+        "Entspannen Sie den Muskel."
+      ],
+      "breathing_instructions": "Atmen Sie während des Haltens normal.",
+      "safety_precautions": [
+        "Vermeiden Sie das Anhalten des Atems.",
+        "Konzentrieren Sie sich auf die Muskelkontraktion, nicht auf die Gelenkbewegung."
+      ],
+      "target_muscles": ["Quadrizeps_(vastus_medialis)"],
+      "joint_focus": ["Knie"],
+      "tempo_instructions": "5 Sekunden halten.",
+      "pain_monitoring_instruction": "Sollte schmerzfrei sein.",
+      "therapist_added_image_urls": ["static/quad_set.png"],
+      "therapist_added_video_urls": ["video/quad_set_demo.mp4"],
+      "family_scene_adjustment_access": false
+    },
+    {
+      "id": "exercise_010",
+      "name": "Fußgelenk-Pumpen",
+      "results": null,
+      "category": "Fußgelenk_ROM",
+      "description": "Verbessert die Durchblutung und Beweglichkeit in den Fußgelenken.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 20,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 20,
+      "type": "Bewegungsradius",
+      "equipment_needed": ["keine"],
+      "position": "Rückenlage_oder_Sitzend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "sehr_niedrig",
+      "starting_position_description": "Legen Sie sich auf den Rücken oder setzen Sie sich mit ausgestreckten oder bequem gebeugten Beinen.",
+      "execution_instructions": [
+        "Strecken Sie Ihre Zehen so weit wie möglich vom Körper weg (Plantarflexion).",
+        "Ziehen Sie dann Ihre Zehen so weit wie möglich zum Körper hoch (Dorsalextension).",
+        "Führen Sie die Bewegung rhythmisch und kontrolliert aus."
+      ],
+      "breathing_instructions": "Atmen Sie normal.",
+      "safety_precautions": [
+        "Führen Sie die Übung im schmerzfreien Bereich durch.",
+        "Vermeiden Sie es, die Bewegung zu erzwingen."
+      ],
+      "target_muscles": [
+        "Schienbeinmuskel_(anterior)",
+        "Wadenmuskel_(Gastrocnemius)",
+        "Schollenmuskel"
+      ],
+      "joint_focus": ["Knöchel"],
+      "tempo_instructions": "Langsam und gleichmäßig.",
+      "pain_monitoring_instruction": "Sollte schmerzfrei sein.",
+      "therapist_added_image_urls": ["static/ankle_pumps.png"],
+      "therapist_added_video_urls": ["video/ankle_pumps_demo.mp4"],
+      "family_scene_adjustment_access": false
+    },
+    {
+      "id": "exercise_011",
+      "name": "Schulterblatt-Zusammenziehen",
+      "results": null,
+      "category": "Schulterblatt_Beweglichkeit_und_Kraft",
+      "description": "Aktivieren Sie Muskeln, die die Schulterblätter unterstützen, und verbessern Sie die Körperhaltung.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 15,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 30,
+      "type": "Kraft",
+      "equipment_needed": ["keine"],
+      "position": "Sitzend_oder_Stehend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "niedrig",
+      "starting_position_description": "Sitzen oder stehen Sie aufrecht mit entspannten Armen seitlich am Körper.",
+      "execution_instructions": [
+        "Drücken Sie Ihre Schulterblätter sanft zusammen, als ob Sie versuchen würden, einen Stift zwischen ihnen zu halten.",
+        "Halten Sie Ihre Schultern gesenkt, weg von den Ohren.",
+        "Vermeiden Sie Schulterzucken.",
+        "Halten Sie das Zusammendrücken kurz.",
+        "Entspannen Sie sich und kehren Sie in die Ausgangsposition zurück."
+      ],
+      "breathing_instructions": "Atmen Sie normal.",
+      "safety_precautions": [
+        "Erzwingen Sie das Zusammendrücken nicht.",
+        "Konzentrieren Sie sich auf Kontrolle, nicht auf Intensität."
+      ],
+      "target_muscles": ["Rautenmuskeln", "Kapuzenmuskel_(Mitte_und_unten)"],
+      "joint_focus": ["Schulterblatt", "Schultergürtel"],
+      "tempo_instructions": "2 Sekunden zusammenziehen, 1 Sekunde halten, 2 Sekunden lösen.",
+      "pain_monitoring_instruction": "Sollte schmerzfrei sein.",
+      "therapist_added_image_urls": ["static/shoulder_squeeze.png"],
+      "therapist_added_video_urls": ["video/shoulder_squeeze_demo.mp4"],
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_012",
+      "name": "Hüftabduktion in Seitenlage",
+      "results": null,
+      "category": "Kraft_Hüftabduktion",
+      "description": "Stärkt die seitlichen Hüft- und Gesäßmuskeln (Gluteus Medius).",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 12,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 60,
+      "type": "Kraft",
+      "equipment_needed": ["Matte"],
+      "position": "Seitenlage",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "mittel",
+      "starting_position_description": "Legen Sie sich auf die Seite, Beine gestreckt, übereinander gestapelt. Sie können Ihren Kopf mit der Hand oder einem Kissen stützen. Halten Sie Ihren Rumpf angespannt.",
+      "execution_instructions": [
+        "Halten Sie das obere Bein gestreckt und die Hüfte über der unteren Hüfte gestapelt, heben Sie das obere Bein nach oben zur Decke.",
+        "Vermeiden Sie eine Rotation Ihrer Hüfte nach hinten.",
+        "Heben Sie nur so hoch wie Sie kontrollieren können, ohne Schmerzen.",
+        "Senken Sie das Bein langsam wieder in die Ausgangsposition."
+      ],
+      "breathing_instructions": "Atmen Sie aus, wenn Sie das Bein heben, atmen Sie ein, wenn Sie senken.",
+      "safety_precautions": [
+        "Hüften gestapelt halten.",
+        "Vermeiden Sie das Zurückrollen."
+      ],
+      "target_muscles": [
+        "mittlerer_Gesäßmuskel",
+        "kleiner_Gesäßmuskel",
+        "Spanner_der_Oberschenkelfaszie"
+      ],
+      "joint_focus": ["Hüfte"],
+      "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 3 Sekunden runter.",
+      "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in der Hüfte oder Seite.",
+      "therapist_added_image_urls": [
+        "static/side_lying_abduction_start.png",
+        "static/side_lying_abduction_end.png"
+      ],
+      "therapist_added_video_urls": ["video/side_lying_abduction_demo.mp4"],
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_013",
+      "name": "Mini-Kniebeuge",
+      "results": null,
+      "category": "Kraft_Unterkörper_funktionell",
+      "description": "Stärkt die Beine und übt funktionelles Bewegungsmuster.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 15,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 45,
+      "type": "funktionell",
+      "equipment_needed": ["stabile_Unterstützung_optional"],
+      "position": "Stehend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "niedrig_bis_mittel",
+      "starting_position_description": "Stellen Sie sich mit den Füßen hüftbreit auseinander auf, Zehen zeigen leicht nach vorne. Halten Sie sich bei Bedarf an einer Unterstützung fest.",
+      "execution_instructions": [
+        "Beugen Sie langsam Knie und Hüften und senken Sie Ihren Körper nur ein kleines Stück ab (z. B. 15-30 Grad Kniebeugung).",
+        "Halten Sie Ihren Rücken gerade und die Brust oben.",
+        "Stellen Sie sicher, dass die Knie über Ihren Zehen bleiben (oder leicht dahinter, aber nicht davor).",
+        "Drücken Sie sich durch die Fersen zurück in den Stand."
+      ],
+      "breathing_instructions": "Atmen Sie ein, wenn Sie senken, atmen Sie aus, wenn Sie sich heben.",
+      "safety_precautions": [
+        "Nicht über das Komfortlevel hinaus absenken.",
+        "Knie ausgerichtet halten."
+      ],
+      "target_muscles": ["Quadrizeps", "Hamstrings", "großer_Gesäßmuskel"],
+      "joint_focus": ["Knie", "Hüfte", "Knöchel"],
+      "tempo_instructions": "2 Sekunden runter, 1 Sekunde halten, 2 Sekunden hoch.",
+      "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in den Knien oder Hüften.",
+      "therapist_added_image_urls": [
+        "static/mini_squat_start.png",
+        "static/mini_squat_end.png"
+      ],
+      "therapist_added_video_urls": ["video/mini_squat_demo.mp4"],
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_014",
+      "name": "Gehen (Zeitbasiert)",
+      "results": null,
+      "category": "Herz-Kreislauf-Ausdauer",
+      "description": "Verbessern Sie die Geh-Ausdauer und das Gangbild.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "duration_seconds_goal",
+      "repetitions_goal": null,
+      "duration_seconds_goal": 600,
+      "sets": 1,
+      "rest_between_sets_seconds": null,
+      "type": "Ausdauer",
+      "equipment_needed": ["bequeme_Schuhe", "sichere_Gehumgebung"],
+      "position": "Gehend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "variable_Geschwindigkeit/Steigung",
+      "starting_position_description": "Stehen Sie aufrecht, bereit zum Gehen.",
+      "execution_instructions": [
+        "Beginnen Sie mit einem angenehmen Tempo zu gehen.",
+        "Konzentrieren Sie sich auf ein flüssiges Gangbild.",
+        "Behalten Sie eine aufrechte Haltung bei.",
+        "Gehen Sie für die vorgegebene Dauer."
+      ],
+      "breathing_instructions": "Atmen Sie rhythmisch.",
+      "safety_precautions": [
+        "Seien Sie sich Ihrer Umgebung bewusst.",
+        "Stoppen Sie, wenn Sie sich schwindelig fühlen oder erhebliche Schmerzen haben.",
+        "Gehen Sie auf einer ebenen Fläche."
+      ],
+      "target_muscles": [
+        "Quadrizeps",
+        "Hamstrings",
+        "Waden",
+        "Gesäßmuskeln",
+        "Rumpf"
+      ],
+      "joint_focus": ["Knöchel", "Knie", "Hüfte"],
+      "tempo_instructions": "Halten Sie ein gleichmäßiges Tempo bei.",
+      "pain_monitoring_instruction": "Überwachen Sie zunehmende Gelenkschmerzen oder ungewöhnliche Müdigkeit.",
+      "therapist_added_image_urls": null,
+      "therapist_added_video_urls": null,
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_015",
+      "name": "Gerades Beinheben (Rückenlage)",
+      "results": null,
+      "category": "Kraft_Hüftbeuger",
+      "description": "Stärkt Hüftbeuger und Quadrizeps.",
+      "exercise_type": "guided_exercise",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 12,
+      "duration_seconds_goal": null,
+      "sets": 3,
+      "rest_between_sets_seconds": 60,
+      "type": "Kraft",
+      "equipment_needed": ["Matte"],
+      "position": "Rückenlage",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "mittel",
+      "starting_position_description": "Legen Sie sich auf den Rücken, ein Bein gestreckt, das andere Bein gebeugt mit dem Fuß flach auf dem Boden.",
+      "execution_instructions": [
+        "Spannen Sie den Oberschenkelmuskel des gestreckten Beins an.",
+        "Heben Sie das Bein, während es gestreckt und das Knie fixiert ist, langsam einige Zentimeter vom Boden ab (z. B. 15-30 cm).",
+        "Vermeiden Sie ein Wölben Ihres unteren Rückens – halten Sie Ihren Rumpf angespannt und den Rücken flach.",
+        "Senken Sie das Bein langsam und kontrolliert wieder ab.",
+        "Wiederholen Sie für den Satz, wechseln Sie dann die Beine."
+      ],
+      "breathing_instructions": "Atmen Sie aus, wenn Sie heben, atmen Sie ein, wenn Sie senken.",
+      "safety_precautions": [
+        "Halten Sie den unteren Rücken sanft gegen den Boden gedrückt.",
+        "Heben Sie nur so hoch wie Sie kontrollieren können."
+      ],
+      "target_muscles": ["Quadrizeps", "Hüft-Lenden-Muskel"],
+      "joint_focus": ["Hüfte", "Knie"],
+      "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 2 Sekunden runter.",
+      "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in der Hüfte oder im unteren Rücken.",
+      "therapist_added_image_urls": [
+        "static/slr_supine_start.png",
+        "static/slr_supine_end.png"
+      ],
+      "therapist_added_video_urls": ["video/slr_supine_demo.mp4"],
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_16",
+      "name": "Linker Arm (Bewertung)",
+      "results": null,
+      "category": "Schulterabduktion_links",
+      "description": "Ein Test zur Beurteilung des Bewegungsumfangs und der Kontrolle der Schulterabduktion links.",
+      "exercise_type": "assessment_screen",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 3,
+      "duration_seconds_goal": null,
+      "sets": 1,
+      "rest_between_sets_seconds": null,
+      "type": "Bewegungsradius",
+      "equipment_needed": ["keine"],
+      "position": "Stehend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "niedrig",
+      "starting_position_description": "Stehen Sie aufrecht mit den Armen an den Seiten.",
+      "execution_instructions": [
+        "Halten Sie Ihren linken Arm gestreckt.",
+        "Heben Sie Ihren linken Arm zur Seite, weg vom Körper, so hoch wie möglich ohne Schmerzen.",
+        "Halten Sie die Handfläche nach unten oder leicht nach vorne gerichtet.",
+        "Senken Sie Ihren Arm langsam wieder an die Seite."
+      ],
+      "breathing_instructions": "Atmen Sie normal.",
+      "safety_precautions": [
+        "Nicht in den Schmerz hineinpressen.",
+        "Vermeiden Sie übermäßiges Schulterzucken."
+      ],
+      "target_muscles": ["Deltamuskel_(Mitte)", "Obergrätenmuskel"],
+      "joint_focus": ["Schulter"],
+      "tempo_instructions": "Langsame und kontrollierte Bewegung.",
+      "pain_monitoring_instruction": "Notieren Sie den Punkt, an dem Schmerz oder Steifheit beginnt.",
+      "therapist_added_image_urls": [
+        "static/left_arm_abduction_start.png",
+        "static/left_arm_abduction_end.png"
+      ],
+      "therapist_added_video_urls": null,
+      "family_scene_adjustment_access": false
+    },
+    {
+      "id": "exercise_17",
+      "name": "Rechtes Bein (Bewertung)",
+      "results": null,
+      "category": "Beinabduktion_rechts",
+      "description": "Test zur Beurteilung des Bewegungsumfangs und der Kontrolle der Hüftabduktion rechts im Stehen.",
+      "exercise_type": "assessment_screen",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 3,
+      "duration_seconds_goal": null,
+      "sets": 1,
+      "rest_between_sets_seconds": null,
+      "type": "Bewegungsradius",
+      "equipment_needed": ["Wand_oder_Stuhl_für_Gleichgewicht"],
+      "position": "Stehend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "niedrig",
+      "starting_position_description": "Stellen Sie sich bei Bedarf in der Nähe einer Wand oder eines Stuhls zur Unterstützung auf. Stehen Sie aufrecht mit den Füßen hüftbreit auseinander.",
+      "execution_instructions": [
+        "Halten Sie Ihr rechtes Bein gestreckt.",
+        "Heben Sie Ihr rechtes Bein so weit wie angenehm zur Seite.",
+        "Halten Sie Ihren Oberkörper aufrecht und vermeiden Sie ein starkes Lehnen nach links.",
+        "Senken Sie Ihr Bein langsam in die Ausgangsposition zurück."
+      ],
+      "breathing_instructions": "Atmen Sie normal.",
+      "safety_precautions": [
+        "Verwenden Sie Unterstützung, wenn nötig, um das Gleichgewicht zu halten.",
+        "Bewegen Sie sich im schmerzfreien Bereich."
+      ],
+      "target_muscles": ["mittlerer_Gesäßmuskel", "kleiner_Gesäßmuskel"],
+      "joint_focus": ["Hüfte"],
+      "tempo_instructions": "Langsame und kontrollierte Bewegung.",
+      "pain_monitoring_instruction": "Notieren Sie jegliches Klicken, Hängenbleiben oder Schmerzen.",
+      "therapist_added_image_urls": [
+        "static/right_leg_abduction_start.png",
+        "static/right_leg_abduction_end.png"
+      ],
+      "therapist_added_video_urls": null,
+      "family_scene_adjustment_access": true
+    },
+    {
+      "id": "exercise_18",
+      "name": "Linke Ellbogenbeugung (Bewertung)",
+      "results": null,
+      "category": "Ellenbogenbeugung_links",
+      "description": "Beurteilen Sie den Bewegungsumfang und die Kontrolle der Ellbogenbeugung links.",
+      "exercise_type": "assessment_screen",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 3,
+      "duration_seconds_goal": null,
+      "sets": 1,
+      "rest_between_sets_seconds": null,
+      "type": "Bewegungsradius",
+      "equipment_needed": ["keine"],
+      "position": "Sitzend_oder_Stehend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "niedrig",
+      "starting_position_description": "Sitzen oder stehen Sie mit dem linken Arm gerade nach unten an der Seite, Handfläche nach vorne gerichtet (supiniert).",
+      "execution_instructions": [
+        "Beugen Sie langsam Ihren linken Ellbogen und bringen Sie Ihre Hand zum Schulter.",
+        "Gehen Sie so weit wie angenehm.",
+        "Strecken Sie Ihren Arm langsam wieder in die Ausgangsposition."
+      ],
+      "breathing_instructions": "Atmen Sie normal.",
+      "safety_precautions": [
+        "Erzwingen Sie die Bewegung nicht in Schmerz oder Steifheit."
+      ],
+      "target_muscles": ["zweiköpfiger_Armmuskel", "Armmuskel"],
+      "joint_focus": ["Ellbogen"],
+      "tempo_instructions": "Langsame und kontrollierte Bewegung.",
+      "pain_monitoring_instruction": "Notieren Sie den Punkt, an dem Schmerz oder Einschränkung auftritt.",
+      "therapist_added_image_urls": [
+        "static/left_elbow_flexion_start.png",
+        "static/left_elbow_flexion_end.png"
+      ],
+      "therapist_added_video_urls": null,
+      "family_scene_adjustment_access": false
+    }
+  ]
 }
