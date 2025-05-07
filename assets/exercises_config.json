@@ -49,9 +49,15 @@
     {
       "id": "exercise_002",
       "name": "Beckenkippung (Rückenlage)",
+
       "results": null,
       "category": "Rumpfstabilität",
       "description": "Aktivieren Sie tiefe Bauch- und untere Rückenmuskeln.",
+      "improves": [
+        "Sitzen über längeren Zeitraum",
+        "Vom Liegen zum_Sitzen_ echseln",
+        "Gleichgewicht im Sitzen"
+      ],
       "exercise_type": "guided_exercise",
       "goal_type": "repetitions_goal",
       "repetitions_goal": 15,

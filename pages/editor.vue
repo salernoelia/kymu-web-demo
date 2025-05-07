@@ -2,22 +2,17 @@
     <div class="editor h-full flex flex-col">
         <div class="overlay"></div>
         <h1 class="pb-4">Editor</h1>
-
-
-
     </div>
     <div class="flex flex-col sidebar gap-4">
         <h3>Einstellungen</h3>
 
-
-        <div class="flex flex-row gap-4">
-
+        <div class="flex flex-col gap-4">
             <div class="relative w-full max-w-sm items-center">
-
                 <Input
+                    v-model="searchQuery"
                     id="search"
                     type="text"
-                    placeholder="Search..."
+                    placeholder="Search exercises..."
                     class="pl-10"
                 />
                 <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
@@ -25,81 +20,152 @@
                 </span>
             </div>
 
-            <Select>
-                <SelectTrigger class="w-[180px]">
-                    <SelectValue placeholder="Hilfsmittel" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                        <SelectItem value="apple">
-                            Apple
-                        </SelectItem>
-                        <SelectItem value="banana">
-                            Banana
-                        </SelectItem>
-                        <SelectItem value="blueberry">
-                            Blueberry
-                        </SelectItem>
-                        <SelectItem value="grapes">
-                            Grapes
-                        </SelectItem>
-                        <SelectItem value="pineapple">
-                            Pineapple
-                        </SelectItem>
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
-            <Select>
-                <SelectTrigger class="w-[180px]">
-                    <SelectValue placeholder="Art" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                        <SelectItem value="apple">
-                            Apple
-                        </SelectItem>
-                        <SelectItem value="banana">
-                            Banana
-                        </SelectItem>
-                        <SelectItem value="blueberry">
-                            Blueberry
-                        </SelectItem>
-                        <SelectItem value="grapes">
-                            Grapes
-                        </SelectItem>
-                        <SelectItem value="pineapple">
-                            Pineapple
-                        </SelectItem>
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
-        </div>
+            <div class="flex flex-row gap-4">
+                <Select v-model="selectedType">
+                    <SelectTrigger class="w-[180px]">
+                        <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>Exercise Type</SelectLabel>
+                            <SelectItem value="all">Alle Typen</SelectItem>
+                            <SelectItem
+                                v-for="type in exerciseTypes"
+                                :key="type"
+                                :value="type"
+                            >
+                                {{ type }}
+                            </SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
 
-        <div class="catalogue grid grid-cols-3 gap-4 overflow-auto">
-            <div
-                v-for="ex in exercises.exercises"
-                :key="ex.id"
-                class="flex flex-col bg-white card"
-            >
+                <Select v-model="selectedCategory">
+                    <SelectTrigger class="w-[180px]">
+                        <SelectValue :placeholder="selectedCategory === 'all' ? 'Alle Kategorien' : selectedCategory" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>Kategorien</SelectLabel>
+                            <SelectItem value="all">Alle Kategorien</SelectItem>
+                            <SelectItem
+                                v-for="category in exerciseCategories"
+                                :key="category"
+                                :value="category"
+                            >
+                                {{ category }}
+                            </SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+            </div>
 
-                <img
-                    v-if="ex.therapist_added_image_urls && ex.therapist_added_image_urls.length"
-                    :src="ex.therapist_added_image_urls[0]"
-                    alt=""
-                >
-
-                {{ ex.name }}
+            <div class="text-sm text-muted-foreground">
+                {{ filteredExercises.length }} {{ filteredExercises.length === 1 ? 'exercise' : 'exercises' }} found
             </div>
         </div>
 
+        <div class="flex-1 min-h-0 overflow-hidden">
+            <div class="h-full overflow-y-auto px-1">
+                <div
+                    v-if="isLoading"
+                    class="grid grid-cols-3 gap-4"
+                >
+                    <div
+                        v-for="n in 6"
+                        :key="n"
+                        class="flex flex-col gap-4 animate-pulse"
+                    >
+                        <div class="aspect-video bg-muted rounded-md"></div>
+                        <div class="space-y-3">
+                            <div class="h-4 bg-muted rounded"></div>
+                            <div class="h-3 bg-muted rounded w-4/5"></div>
+                        </div>
+                    </div>
+                </div>
 
+                <div
+                    v-else-if="filteredExercises.length === 0"
+                    class="flex flex-col items-center justify-center py-12 text-center"
+                >
+                    <FileSearch class="w-12 h-12 text-muted-foreground mb-4" />
+                    <h3 class="font-medium mb-1">No exercises found</h3>
+                    <p class="text-sm text-muted-foreground">Try adjusting your search or filters</p>
+                </div>
+
+                <div
+                    v-else
+                    class="grid grid-cols-3 gap-4"
+                >
+                    <div
+                        v-for="ex in filteredExercises"
+                        :key="ex.id"
+                        class="flex flex-col bg-white card group hover:border-primary transition-colors cursor-pointer"
+                    >
+                        <div class="aspect-video relative overflow-hidden rounded-md mb-3">
+                            <img
+                                v-if="ex.therapist_added_image_urls && ex.therapist_added_image_urls.length"
+                                :src="ex.therapist_added_image_urls[0]"
+                                alt=""
+                                class="absolute inset-0 object-cover w-full h-full"
+                            >
+                            <div
+                                v-else
+                                class="absolute inset-0 bg-muted flex items-center justify-center"
+                            >
+                                <ImageIcon class="w-8 h-8 text-muted-foreground/50" />
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col flex-1 gap-2">
+                            <div class="flex justify-between items-start gap-2">
+                                <h4 class="font-medium leading-none">{{ ex.name }}</h4>
+                                <div class="flex gap-1">
+                                    <span
+                                        class="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20"
+                                    >
+                                        {{ ex.type }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-muted-foreground line-clamp-2">{{ ex.description }}</p>
+
+                            <div class="flex items-center gap-2 mt-auto pt-2">
+                                <div
+                                    v-if="ex.duration_seconds_goal"
+                                    class="flex items-center text-xs text-muted-foreground"
+                                >
+                                    <Clock class="w-3 h-3 mr-1" />
+                                    {{ Math.floor(ex.duration_seconds_goal / 60) }}min
+                                </div>
+                                <div
+                                    v-if="ex.repetitions_goal"
+                                    class="flex items-center text-xs text-muted-foreground"
+                                >
+                                    <Repeat class="w-3 h-3 mr-1" />
+                                    {{ ex.repetitions_goal }} reps
+                                </div>
+                                <div
+                                    v-if="ex.sets"
+                                    class="flex items-center text-xs text-muted-foreground"
+                                >
+                                    <Layers class="w-3 h-3 mr-1" />
+                                    {{ ex.sets }} sets
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
 import exercises from '~/assets/exercises_config.json'
 import { Input } from '@/components/ui/input'
-import { Search } from 'lucide-vue-next'
+import { Search, Clock, Repeat, Layers, Image as ImageIcon, FileSearch } from 'lucide-vue-next'
 import {
     Select,
     SelectContent,
@@ -109,14 +175,43 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
+import { ref, computed, onMounted } from 'vue'
 
+const searchQuery = ref('')
+const selectedType = ref('all')
+const selectedCategory = ref('all')
+const isLoading = ref(true)
 
-const open = ref(false)
+// Extract unique types and categories
+const exerciseTypes = computed(() => {
+    return [...new Set(exercises.exercises.map(ex => ex.type))]
+})
 
+const exerciseCategories = computed(() => {
+    return [...new Set(exercises.exercises.map(ex => ex.category))]
+})
 
+// Filter exercises based on search and filters
+const filteredExercises = computed(() => {
+    return exercises.exercises.filter(ex => {
+        const matchesSearch = searchQuery.value === '' ||
+            ex.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+            ex.description.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+            (ex.improves && ex.improves.toLowerCase().includes(searchQuery.value.toLowerCase()))
 
+        const matchesType = selectedType.value === 'all' || ex.type === selectedType.value
+        const matchesCategory = selectedCategory.value === 'all' || ex.category === selectedCategory.value
 
+        return matchesSearch && matchesType && matchesCategory
+    })
+})
 
+onMounted(() => {
+    // Simulate loading for better UX
+    setTimeout(() => {
+        isLoading.value = false
+    }, 500)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -132,11 +227,8 @@ const open = ref(false)
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    /* Dark overlay */
     backdrop-filter: blur(5px);
-    /* Blur effect */
     z-index: -1;
-    /* Place it behind the content */
 }
 
 .sidebar {
@@ -149,6 +241,8 @@ const open = ref(false)
     right: 0;
     top: 0;
     bottom: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .card {
