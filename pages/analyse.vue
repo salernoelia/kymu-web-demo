@@ -234,7 +234,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import TestContainer from '~/components/TestContainer.vue'
 
 const df = new DateFormatter('en-US', {
     dateStyle: 'medium',
@@ -279,9 +278,9 @@ const activeTimeFrame = ref('W')
 
 const datasetTypes = {
     ROM: { name: 'ROM', unit: '°', range: [0, 180] },
-    BALANCE: { name: 'Balance', unit: 'score', range: [0, 100] },
+    BALANCE: { name: 'Balance', unit: ' score', range: [0, 100] },
     STRENGTH: { name: 'Stärke', unit: 'kg', range: [0, 100] },
-    MOTOR: { name: 'Motorik', unit: 'score', range: [0, 10] }
+    MOTOR: { name: 'Motorik', unit: ' score', range: [0, 10] }
 }
 
 const bodyParts = {
