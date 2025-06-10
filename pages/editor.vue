@@ -124,7 +124,7 @@ const moveExercise = ({ fromUnit, toUnit, exercise, toPosition = -1 }) => {
 
 .kanban-board {
     display: flex;
-    overflow-x: auto;
+    overflow: auto;
     gap: 0.5rem;
     flex: 1;
     padding-bottom: 1rem;

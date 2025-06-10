@@ -115,11 +115,15 @@ onMounted(() => {
     min-width: 450px;
     max-width: 450px;
     background: #fff;
-    overflow-y: auto;
+    height: fit-content;
+    max-height: calc(100vh - 200px);
     border-radius: 12px;
     padding: 16px;
     margin-right: 16px;
     box-shadow: var(--dropshadow-main);
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .unit-header {
@@ -129,6 +133,7 @@ onMounted(() => {
     margin-bottom: 16px;
     padding-bottom: 12px;
     border-bottom: 2px solid #e9ecef;
+    flex-shrink: 0;
 }
 
 .unit-title {
@@ -149,8 +154,10 @@ onMounted(() => {
 }
 
 .unit-content {
-    min-height: 500px;
-
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+    min-height: 0;
 }
 
 .empty-state {

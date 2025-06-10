@@ -30,7 +30,6 @@ body {
   background-size: 150% 150%;
   animation: gradientAnimation 30s ease infinite;
   font-family: Poppins;
-  overflow: hidden;
 }
 
 .parent {
@@ -41,13 +40,13 @@ body {
   gap: 1.5rem;
   padding: 1.5rem 2rem;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .page-container {
   flex: 1;
   min-height: 0;
-  overflow: hidden;
+  height: 100%;
+  overflow-y: visible;
   position: relative;
 }
 
