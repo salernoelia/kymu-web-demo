@@ -183,7 +183,7 @@
                                     ]">
                                         <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                             Math.round(painPointsSummary.right.change)
-                                        }}%</p>
+                                            }}%</p>
                                     </div>
                                 </div>
                             </Container>
@@ -235,13 +235,20 @@ import {
     SelectValue,
 } from '@/components/ui/select'
 
+definePageMeta({
+    keepalive: true
+})
+
 const df = new DateFormatter('en-US', {
     dateStyle: 'medium',
 })
 
-const value = ref({
+const value = ref(process.client ? {
     start: new CalendarDate(2025, 5, 6),
     end: new CalendarDate(2025, 5, 20).add({ days: 20 }),
+} : {
+    start: null,
+    end: null
 });
 
 const start = today(getLocalTimeZone())
@@ -297,7 +304,12 @@ const activeDataset = ref('ROM')
 const activeBodyPart = ref('shoulders')
 const activeTest = ref('Flexion/Extension')
 
-const datasets = ref({})
+const datasets = ref({
+    ROM: {},
+    BALANCE: {},
+    STRENGTH: {},
+    MOTOR: {}
+})
 
 const generateDataForRange = (startDate, endDate, datasetType) => {
     const dates = []
@@ -307,7 +319,6 @@ const generateDataForRange = (startDate, endDate, datasetType) => {
     while (currentDate <= end) {
         const { range } = datasetTypes[datasetType]
         const value = Math.floor(Math.random() * (range[1] - range[0])) + range[0]
-        // Ensure pain degrees don't exceed the value
         const painDegrees = Math.random() > 0.7 ?
             Array.from({ length: Math.floor(Math.random() * 3) + 1 },
                 () => Math.floor(Math.random() * (value * 0.8))) : []
@@ -329,7 +340,6 @@ const calculateSummary = (data) => {
     const values = data.map(d => d.value)
     const average = values.reduce((a, b) => a + b, 0) / values.length
 
-    // Calculate change over the period
     const firstValue = values[0]
     const lastValue = values[values.length - 1]
     const change = ((lastValue - firstValue) / firstValue) * 100
@@ -345,17 +355,16 @@ const leftSideSummary = computed(() => {
 })
 
 const rightSideSummary = computed(() => {
-    // For demo purposes, creating slightly different values for right side
     const rightData = filteredData.value.map(d => ({
         ...d,
-        value: d.value * (Math.random() * 0.4 + 0.8) // 80-120% of left side
+        value: d.value * (Math.random() * 0.4 + 0.8)
     }))
     return calculateSummary(rightData)
 })
 
 const painPointsSummary = computed(() => {
     const leftPainCount = filteredData.value.reduce((count, d) => count + (d.painDegrees?.length || 0), 0)
-    const rightPainCount = Math.floor(leftPainCount * (Math.random() * 0.4 + 0.8)) // Similar variation
+    const rightPainCount = Math.floor(leftPainCount * (Math.random() * 0.4 + 0.8))
 
     // Calculate change in pain points compared to previous period
     const daysInPeriod = filteredData.value.length
@@ -374,7 +383,10 @@ const painPointsSummary = computed(() => {
     }
 })
 
+
 const initializeDatasets = () => {
+    if (!value.value.start || !value.value.end) return;
+
     const startDate = new Date(value.value.start.year, value.value.start.month - 1, value.value.start.day)
     const endDate = new Date(value.value.end.year, value.value.end.month - 1, value.value.end.day)
 
@@ -401,9 +413,7 @@ watch([() => value.value.start, () => value.value.end], () => {
     initializeDatasets()
 })
 
-onMounted(() => {
-    initializeDatasets()
-})
+
 
 const filteredData = computed(() => {
     return activeData.value.filter(item => {
@@ -419,6 +429,18 @@ const maxScale = computed(() => {
     return dataset.range[1]
 })
 
+onMounted(async () => {
+    await nextTick()
+    if (process.client && value.value.start && value.value.end) {
+        initializeDatasets()
+    }
+})
+
+watch(() => value.value, (newValue) => {
+    if (process.client && newValue.start && newValue.end) {
+        initializeDatasets()
+    }
+}, { immediate: true })
 </script>
 
 <style lang="scss" scoped></style>

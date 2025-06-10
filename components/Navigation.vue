@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="flex flex-row gap-4">
-            <RouterLink
+            <NuxtLink
                 v-for="route in routes"
                 :key="route.path"
                 :to="route.path"
@@ -32,7 +32,7 @@
                 <h4 class="nav-label">
                     {{ route.label }}
                 </h4>
-            </RouterLink>
+            </NuxtLink>
         </div>
         <div class="flex flex-row gap-4 items-center">
             <Icon

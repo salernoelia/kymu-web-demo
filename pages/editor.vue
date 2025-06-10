@@ -7,7 +7,7 @@
     </Transition>
 
     <div class="editor h-full flex flex-col">
-        <h1 class="pb-4">Editor</h1>
+        <h1 class="pb-4">Philipp Köbel</h1>
         <button
             @click="showSidebar = true"
             class="px-4 py-2 bg-primary text-white rounded"
