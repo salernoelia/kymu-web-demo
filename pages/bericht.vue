@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>gpsdfiüg</h1>
+        <h1>Phillipp Köbel</h1>
     </div>
 </template>
 

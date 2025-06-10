@@ -1,7 +1,7 @@
 <template>
     <div class="editor h-full flex flex-col">
         <div class="overlay"></div>
-        <h1 class="pb-4">Editor</h1>
+        <h1 class="pb-4">Phillipp Köbel</h1>
     </div>
     <div class="flex flex-col sidebar gap-4">
         <h3>Einstellungen</h3>
