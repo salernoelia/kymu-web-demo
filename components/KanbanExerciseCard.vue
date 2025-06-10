@@ -1,49 +1,56 @@
 <template>
     <div
-        class="exercise-card"
+        class="exercise-card flex flex-row gap-2 items-start"
         draggable="true"
         @dragstart="handleDragStart"
         @dragend="handleDragEnd"
     >
-        <div class="exercise-header">
-            <p class="exercise-title">{{ exercise.name }}</p>
-            <button
-                class="remove-button"
-                @click="$emit('remove', exercise)"
-                type="button"
-            >×</button>
+        <Icon
+            name="ic:baseline-drag-handle"
+            class="text-2xl"
+        />
+        <div class="flex flex-col w-full pt-0.5 pb-0.5">
+            <div class="exercise-header">
+                <h3 class="exercise-title">{{ exercise.name }}</h3>
+                <button
+                    class="remove-button"
+                    @click="$emit('remove', exercise)"
+                    type="button"
+                >×</button>
+            </div>
+
+            <p class="label-small">{{ exercise.description }}</p>
+
+            <!-- <div class="exercise-meta">
+                <span class="meta-category">{{ exercise.category }}</span>
+                <span class="meta-type">{{ exercise.type }}</span>
+            </div> -->
+
+            <!-- <div
+                class="exercise-stats"
+                v-if="hasStats"
+            >
+                <div
+                    v-if="exercise.sets"
+                    class="stat-item"
+                >
+                    <span>Sätze: {{ exercise.sets }}</span>
+                </div>
+                <div
+                    v-if="exercise.repetitions_goal"
+                    class="stat-item"
+                >
+                    <span>Wdh: {{ exercise.repetitions_goal }}</span>
+                </div>
+                <div
+                    v-if="exercise.duration_seconds_goal"
+                    class="stat-item"
+                >
+                    <span>{{ formatDuration(exercise.duration_seconds_goal) }}</span>
+                </div>
+            </div> -->
         </div>
 
-        <p class="label-small">{{ exercise.description }}</p>
-
-        <div class="exercise-meta">
-            <span class="meta-category">{{ exercise.category }}</span>
-            <span class="meta-type">{{ exercise.type }}</span>
-        </div>
-
-        <div
-            class="exercise-stats"
-            v-if="hasStats"
-        >
-            <div
-                v-if="exercise.sets"
-                class="stat-item"
-            >
-                <span>Sätze: {{ exercise.sets }}</span>
-            </div>
-            <div
-                v-if="exercise.repetitions_goal"
-                class="stat-item"
-            >
-                <span>Wdh: {{ exercise.repetitions_goal }}</span>
-            </div>
-            <div
-                v-if="exercise.duration_seconds_goal"
-                class="stat-item"
-            >
-                <span>{{ formatDuration(exercise.duration_seconds_goal) }}</span>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -115,9 +122,10 @@ const formatDuration = (seconds) => {
 }
 
 .exercise-title {
+    font-family: Poppins;
+    font-weight: 500;
     margin: 0;
     font-size: 14px;
-    font-weight: 600;
     line-height: 1.3;
     color: #212529;
 }

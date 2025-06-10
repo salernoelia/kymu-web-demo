@@ -15,6 +15,16 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
   ],
 
+  fonts: {
+    families: [
+      {
+        name: "Poppins",
+        provider: "google",
+        weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      },
+    ],
+  },
+
   shadcn: {
     componentDir: "./components/ui",
     prefix: "ui",

@@ -123,6 +123,7 @@ const routes = [
         border-color: var(--color-primaryLightActive);
         background-color: var(--color-primaryLight);
         opacity: 1;
+        color: var(--color-primaryNormal);
     }
 }
 

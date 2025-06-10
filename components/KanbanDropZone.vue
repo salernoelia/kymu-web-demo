@@ -46,7 +46,7 @@ const handleDrop = (event) => {
     background-color: var(--color-primaryLight);
     border: 2px dashed var(--color-primaryNormal);
     border-radius: 8px;
-    height: 40px;
+    min-height: 40px;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
