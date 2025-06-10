@@ -103,6 +103,15 @@
   --color-inactiveDarkHover: #4f4f4f;
   --color-inactiveDarkActive: #3b3b3b;
   --color-inactiveDarker: #2e2e2e;
+
+  --dropshadow-main: rgba(149, 157, 165, 0.1) 0px 0px 20px;
+}
+
+* {
+    font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-reg {
@@ -182,4 +191,36 @@
   width: 100%;
   height: 1px;
   background-color: var(--color-outline_grayNormal);
+}
+
+h1 {
+  font-size: 32pt;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  font-size: 24pt;
+}
+
+h3 {
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  font-size: 16pt;
+}
+
+
+
+h4 {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  font-size: 11pt;
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="parent p-4 h-screen flex flex-row gap-6 overflow-hidden">
-    <NavigationLeft />
+  <div class="parent pl-8 pr-8 pt-6 h-screen flex flex-col gap-6 overflow-hidden">
+    <Navigation />
     <div class="h-full w-full flex flex-col overflow-hidden">
       <NuxtPage class="flex-1 min-h-0" />
     </div>
@@ -44,44 +44,7 @@ body {
   font-family: Poppins;
 }
 
-h1 {
-  font-size: 32pt;
-  font-weight: 300;
-  margin: 0;
-  padding: 0;
-}
 
-h2 {
-  font-weight: 300;
-  margin: 0;
-  padding: 0;
-  font-size: 24pt;
-}
-
-h3 {
-  font-weight: 500;
-  margin: 0;
-  padding: 0;
-  font-size: 16pt;
-}
-
-h4 {
-  margin: 0;
-  padding: 0;
-  font-weight: 500;
-  margin: 0;
-  padding: 0;
-  font-size: 12pt;
-}
-
-h4 {
-  margin: 0;
-  padding: 0;
-  font-weight: 300;
-  margin: 0;
-  padding: 0;
-  font-size: 11pt;
-}
 
 .page-enter-active,
 .page-leave-active {
