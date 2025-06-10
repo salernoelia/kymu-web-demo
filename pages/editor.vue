@@ -1,221 +1,32 @@
 <template>
+    <Transition name="fade">
+        <div
+            class="overlay"
+            v-if="showSidebar"
+        />
+    </Transition>
+
     <div class="editor h-full flex flex-col">
-        <div class="overlay"></div>
         <h1 class="pb-4">Editor</h1>
+        <button
+            @click="showSidebar = true"
+            class="px-4 py-2 bg-primary text-white rounded"
+        >
+            Open Exercises
+        </button>
     </div>
-    <div class="flex flex-col sidebar gap-4">
-        <h3>Einstellungen</h3>
 
-        <div class="flex flex-col gap-4">
-            <div class="relative w-full max-w-sm items-center">
-                <Input
-                    v-model="searchQuery"
-                    id="search"
-                    type="text"
-                    placeholder="Search exercises..."
-                    class="pl-10"
-                />
-                <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
-                    <Search class="size-6 text-muted-foreground" />
-                </span>
-            </div>
-
-            <div class="flex flex-row gap-4">
-                <Select v-model="selectedType">
-                    <SelectTrigger class="w-[180px]">
-                        <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            <SelectLabel>Exercise Type</SelectLabel>
-                            <SelectItem value="all">Alle Typen</SelectItem>
-                            <SelectItem
-                                v-for="type in exerciseTypes"
-                                :key="type"
-                                :value="type"
-                            >
-                                {{ type }}
-                            </SelectItem>
-                        </SelectGroup>
-                    </SelectContent>
-                </Select>
-
-                <Select v-model="selectedCategory">
-                    <SelectTrigger class="w-[180px]">
-                        <SelectValue :placeholder="selectedCategory === 'all' ? 'Alle Kategorien' : selectedCategory" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            <SelectLabel>Kategorien</SelectLabel>
-                            <SelectItem value="all">Alle Kategorien</SelectItem>
-                            <SelectItem
-                                v-for="category in exerciseCategories"
-                                :key="category"
-                                :value="category"
-                            >
-                                {{ category }}
-                            </SelectItem>
-                        </SelectGroup>
-                    </SelectContent>
-                </Select>
-            </div>
-
-            <div class="text-sm text-muted-foreground">
-                {{ filteredExercises.length }} {{ filteredExercises.length === 1 ? 'exercise' : 'exercises' }} found
-            </div>
-        </div>
-
-        <div class="flex-1 min-h-0 overflow-hidden">
-            <div class="h-full overflow-y-auto px-1">
-                <div
-                    v-if="isLoading"
-                    class="grid grid-cols-3 gap-4"
-                >
-                    <div
-                        v-for="n in 6"
-                        :key="n"
-                        class="flex flex-col gap-4 animate-pulse"
-                    >
-                        <div class="aspect-video bg-muted rounded-md"></div>
-                        <div class="space-y-3">
-                            <div class="h-4 bg-muted rounded"></div>
-                            <div class="h-3 bg-muted rounded w-4/5"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    v-else-if="filteredExercises.length === 0"
-                    class="flex flex-col items-center justify-center py-12 text-center"
-                >
-                    <FileSearch class="w-12 h-12 text-muted-foreground mb-4" />
-                    <h3 class="font-medium mb-1">No exercises found</h3>
-                    <p class="text-sm text-muted-foreground">Try adjusting your search or filters</p>
-                </div>
-
-                <div
-                    v-else
-                    class="grid grid-cols-3 gap-4"
-                >
-                    <div
-                        v-for="ex in filteredExercises"
-                        :key="ex.id"
-                        class="flex flex-col bg-white card group hover:border-primary transition-colors cursor-pointer"
-                    >
-                        <div class="aspect-video relative overflow-hidden rounded-md mb-3">
-                            <img
-                                v-if="ex.therapist_added_image_urls && ex.therapist_added_image_urls.length"
-                                :src="ex.therapist_added_image_urls[0]"
-                                alt=""
-                                class="absolute inset-0 object-cover w-full h-full"
-                            >
-                            <div
-                                v-else
-                                class="absolute inset-0 bg-muted flex items-center justify-center"
-                            >
-                                <ImageIcon class="w-8 h-8 text-muted-foreground/50" />
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col flex-1 gap-2">
-                            <div class="flex justify-between items-start gap-2">
-                                <h4 class="font-medium leading-none">{{ ex.name }}</h4>
-                                <div class="flex gap-1">
-                                    <span
-                                        class="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20"
-                                    >
-                                        {{ ex.type }}
-                                    </span>
-                                </div>
-                            </div>
-
-                            <p class="text-sm text-muted-foreground line-clamp-2">{{ ex.description }}</p>
-
-                            <div class="flex items-center gap-2 mt-auto pt-2">
-                                <div
-                                    v-if="ex.duration_seconds_goal"
-                                    class="flex items-center text-xs text-muted-foreground"
-                                >
-                                    <Clock class="w-3 h-3 mr-1" />
-                                    {{ Math.floor(ex.duration_seconds_goal / 60) }}min
-                                </div>
-                                <div
-                                    v-if="ex.repetitions_goal"
-                                    class="flex items-center text-xs text-muted-foreground"
-                                >
-                                    <Repeat class="w-3 h-3 mr-1" />
-                                    {{ ex.repetitions_goal }} reps
-                                </div>
-                                <div
-                                    v-if="ex.sets"
-                                    class="flex items-center text-xs text-muted-foreground"
-                                >
-                                    <Layers class="w-3 h-3 mr-1" />
-                                    {{ ex.sets }} sets
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <Transition name="slide-fade">
+        <ExerciseSidebar
+            v-if="showSidebar"
+            @close="showSidebar = false"
+        />
+    </Transition>
 </template>
 
 <script setup>
-import exercises from '~/assets/exercises_config.json'
-import { Input } from '@/components/ui/input'
-import { Search, Clock, Repeat, Layers, Image as ImageIcon, FileSearch } from 'lucide-vue-next'
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
-import { ref, computed, onMounted } from 'vue'
 
-const searchQuery = ref('')
-const selectedType = ref('all')
-const selectedCategory = ref('all')
-const isLoading = ref(true)
-
-// Extract unique types and categories
-const exerciseTypes = computed(() => {
-    return [...new Set(exercises.exercises.map(ex => ex.type))]
-})
-
-const exerciseCategories = computed(() => {
-    return [...new Set(exercises.exercises.map(ex => ex.category))]
-})
-
-// Filter exercises based on search and filters
-const filteredExercises = computed(() => {
-    return exercises.exercises.filter(ex => {
-        const searchTerms = searchQuery.value.toLowerCase().trim()
-
-        const matchesSearch = searchQuery.value === '' ||
-            ex.name.toLowerCase().includes(searchTerms) ||
-            ex.description.toLowerCase().includes(searchTerms) ||
-            (Array.isArray(ex.improves) && ex.improves.some(improvement =>
-                improvement.toLowerCase().includes(searchTerms)
-            ))
-
-        const matchesType = selectedType.value === 'all' || ex.type === selectedType.value
-        const matchesCategory = selectedCategory.value === 'all' || ex.category === selectedCategory.value
-
-        return matchesSearch && matchesType && matchesCategory
-    })
-})
-
-onMounted(() => {
-    // Simulate loading for better UX
-    setTimeout(() => {
-        isLoading.value = false
-    }, 500)
-})
+const showSidebar = ref(false)
 </script>
 
 <style lang="scss" scoped>
@@ -224,34 +35,38 @@ onMounted(() => {
 }
 
 .overlay {
-    content: '';
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    z-index: -1;
-}
-
-.sidebar {
-    width: 70vw;
-    height: 100vh;
-    padding: 1.5rem 2rem;
-    border-radius: 1rem 0 0 1rem;
-    background-color: white;
-    position: fixed;
     right: 0;
-    top: 0;
     bottom: 0;
-    display: flex;
-    flex-direction: column;
+    z-index: 50;
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-.card {
-    border: 1px var(--color-outline_grayNormal) solid;
-    border-radius: 0.75rem;
-    padding: 0.75rem;
+
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.3s ease-in;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>
