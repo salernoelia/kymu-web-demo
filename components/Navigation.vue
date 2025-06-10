@@ -44,9 +44,10 @@
                 class="text-2xl text-[--color-inactiveNormal]"
             />
 
-            <div class="flex items-center justify-center bg-[--color-secondaryLight] p-2 rounded-xl ml-4">
-                <h4>MM</h4>
-            </div>
+            <AvatarRound
+                letters="MM"
+                variant="secondary"
+            />
         </div>
 
     </nav>

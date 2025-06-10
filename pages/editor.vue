@@ -8,21 +8,52 @@
         </Transition>
 
         <div class="editor h-full flex flex-col">
-            <div class="editor-header">
-                <div class="flex flex-row gap-4 items-center">
-                    <h1 class="pb-4">Phillipp Köbel</h1>
-
-                    <Tabs
+            <div class="flex gap-4 pb-4 items-center flex-shrink-0 justify-between">
+                <div class="flex flex-row gap-2 items-center">
+                    <h1 class="">Phillipp Köbel</h1>
+                    <div class="divider"></div>
+                    <TabsBorder
                         :tabs="tabs"
                         v-model:active="activeTab"
+                        class="h-8 min-w-[220px]"
                     />
+                    <Button
+                        variant="outline"
+                        class="h-8 flex items-center justify-start text-left font-normal"
+                        :class="!value ? 'text-muted-foreground' : ''"
+                    >
+                        <CalendarIcon class="mr-2 h-4 w-4" />
+                        <p>Feedback</p>
+                    </Button>
                 </div>
-                <button
-                    @click="showSidebar = true"
-                    class="px-4 py-2 bg-primary text-white rounded"
-                >
-                    Übungs-Bibliothek öffnen
-                </button>
+                <div class="flex flex-row gap-6 items-center">
+                    <div class="flex flex-row gap-2 items-center">
+                        <AvatarRound
+                            letters="MM"
+                            variant="secondary"
+                            size="small"
+                        />
+                        <AvatarRound
+                            letters="DS"
+                            variant="tertiary"
+                            size="small"
+                        />
+                        <Icon
+                            name="ic:add"
+                            class="text-[--color-inactiveNormal]"
+                        />
+                    </div>
+                    <div class="flex flex-row gap-2 items-center">
+                        <Icon
+                            name="ic:baseline-history"
+                            class="text-2xl text-[--color-inactiveDarker]"
+                        />
+                        <Icon
+                            name="ic:baseline-more-vert"
+                            class="text-2xl text-[--color-inactiveDarker]"
+                        />
+                    </div>
+                </div>
             </div>
 
             <div class="kanban-board">
@@ -50,6 +81,9 @@
 <script setup>
 import unitsConfig from '../assets/units_config.json'
 import exercisesConfig from '../assets/exercises_config.json'
+
+import { Button } from '@/components/ui/button'
+import { Calendar as CalendarIcon } from 'lucide-vue-next'
 
 const showSidebar = ref(false)
 
@@ -120,6 +154,7 @@ const moveExercise = ({ fromUnit, toUnit, exercise, toPosition = -1 }) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: fit-content;
 }
 
 .kanban-board {

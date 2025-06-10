@@ -35,13 +35,18 @@ defineEmits(['update:active']);
     border: 1px var(--color-outline_grayNormal) solid;
     overflow: hidden;
     flex-wrap: nowrap;
+    height: fit-content;
 }
 
 .tab-item {
     border-right: 1px var(--color-outline_grayNormal) solid;
-    width: auto; // change this line to let the content determine the width
+    width: auto;
     transition: all 0.2s ease-in-out;
     position: relative;
+    color: var(--color-inactiveNormal);
+
+    height: fit-content;
+    padding: 1rem;
 
     &::after {
         content: '';
@@ -63,7 +68,11 @@ defineEmits(['update:active']);
 
     &.active {
         background-color: white;
-        color: var(--color-outline_grayNormal);
+        color: #000;
     }
+}
+
+p {
+    line-height: 0;
 }
 </style>

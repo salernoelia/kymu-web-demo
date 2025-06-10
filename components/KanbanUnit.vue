@@ -1,8 +1,11 @@
 <template>
     <div class="kanban-unit">
         <div class="unit-header">
+            <Icon
+                class="text-3xl"
+                :name="unit.interface === 'tv' ? 'ic:baseline-tv' : 'ic:baseline-view-in-ar'"
+            />
             <h3 class="unit-title">{{ unit.unitName }}</h3>
-            <span class="exercise-count">{{ unit.exercises.length }} Übungen</span>
         </div>
 
         <div class="unit-content">
@@ -110,7 +113,7 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .kanban-unit {
     min-width: 450px;
     max-width: 450px;
@@ -128,21 +131,19 @@ onMounted(() => {
 
 .unit-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 0.7rem;
+    align-items: start;
     margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 8px;
+    padding-top: 8px;
     flex-shrink: 0;
+
+    h3 {
+        line-height: 1.1;
+    }
 }
 
-.unit-title {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: #495057;
-    line-height: 1.3;
-}
+
 
 .exercise-count {
     background: #6c757d;
