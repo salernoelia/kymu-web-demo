@@ -1,3 +1,3 @@
-# Kymu Usertesting
+# Kymu Web Interface Demo
 
-Simplified interface used for Concept Validation & User Testing of the [Kymu Application](https://github.com/salernoelia/kymu).
+Demo-application of the Kymu web-interface for therapists. Part of the [Kymu](https://github.com/salernoelia/kymu). project.
