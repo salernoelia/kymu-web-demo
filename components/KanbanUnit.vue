@@ -37,7 +37,7 @@
             />
 
             <div
-                v-if="unit.exercises.length === 0"
+                v-if="unit.exercises.length === 0 && !showDropZone"
                 class="empty-state"
             >
                 <p class="empty-text">Übungen hierher ziehen</p>
