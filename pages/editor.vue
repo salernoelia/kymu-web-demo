@@ -10,7 +10,7 @@
         <div class="editor h-full flex flex-col">
             <div class="editor-header">
                 <div class="flex flex-row gap-4 items-center">
-                    <h1 class="pb-4">Philipp Köbel</h1>
+                    <h1 class="pb-4">Phillipp Köbel</h1>
 
                     <Tabs
                         :tabs="tabs"

@@ -201,7 +201,7 @@
                                     ]">
                                         <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                             Math.round(painPointsSummary.right.change)
-                                        }}%</p>
+                                            }}%</p>
                                     </div>
                                 </div>
                             </Container>
@@ -392,7 +392,6 @@ const painPointsSummary = computed(() => {
     const leftPainCount = filteredData.value.reduce((count, d) => count + (d.painDegrees?.length || 0), 0)
     const rightPainCount = Math.floor(leftPainCount * (Math.random() * 0.4 + 0.8))
 
-    // Calculate change in pain points compared to previous period
     const daysInPeriod = filteredData.value.length
     const previousPeriodPainCount = Math.floor(leftPainCount * (Math.random() * 0.4 + 0.8))
     const rightPreviousPeriodPainCount = Math.floor(rightPainCount * (Math.random() * 0.4 + 0.8))
