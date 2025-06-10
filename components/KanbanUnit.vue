@@ -14,7 +14,7 @@
                 :key="getExerciseKey(exercise)"
             >
                 <KanbanDropZone
-                    v-if="showDropZone"
+                    v-if="shouldShowDropZone(index)"
                     :unit-name="unit.unitName"
                     :position="index"
                     @drop-exercise="handleDropAtPosition"
@@ -30,7 +30,7 @@
             </template>
 
             <KanbanDropZone
-                v-if="showDropZone"
+                v-if="shouldShowDropZone(unit.exercises.length)"
                 :unit-name="unit.unitName"
                 :position="unit.exercises.length"
                 @drop-exercise="handleDropAtPosition"
@@ -54,9 +54,28 @@ const props = defineProps({
 const emit = defineEmits(['add-exercise', 'remove-exercise', 'move-exercise'])
 
 const showDropZone = ref(false)
+const draggedItem = ref(null)
 
 const getExerciseKey = (exercise) => {
     return exercise.instanceId || exercise.id
+}
+
+const shouldShowDropZone = (position) => {
+    if (!showDropZone.value) return false
+
+    // If we're dragging from the same unit
+    if (draggedItem.value?.fromUnit === props.unit.unitName) {
+        const draggedIndex = props.unit.exercises.findIndex(ex =>
+            getExerciseKey(ex) === getExerciseKey(draggedItem.value.exercise)
+        )
+
+        // Don't show drop zones immediately before and after the dragged item
+        if (draggedIndex >= 0) {
+            return position !== draggedIndex && position !== draggedIndex + 1
+        }
+    }
+
+    return true
 }
 
 const handleDropAtPosition = ({ exercise, fromUnit, position }) => {
@@ -84,12 +103,17 @@ const removeExercise = (exercise) => {
     })
 }
 
-const handleDragStart = () => {
+const handleDragStart = (exercise) => {
     showDropZone.value = true
+    draggedItem.value = {
+        exercise,
+        fromUnit: props.unit.unitName
+    }
 }
 
 const handleDragEnd = () => {
     showDropZone.value = false
+    draggedItem.value = null
 }
 
 onMounted(() => {
@@ -99,6 +123,7 @@ onMounted(() => {
 
     const handleGlobalDragEnd = () => {
         showDropZone.value = false
+        draggedItem.value = null
     }
 
     document.addEventListener('dragover', handleGlobalDragOver)
@@ -112,6 +137,7 @@ onMounted(() => {
     })
 })
 </script>
+
 
 <style scoped lang="scss">
 .kanban-unit {
