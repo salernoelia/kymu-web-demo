@@ -183,7 +183,7 @@
                                     ]">
                                         <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                             Math.round(painPointsSummary.right.change)
-                                            }}%</p>
+                                        }}%</p>
                                     </div>
                                 </div>
                             </Container>
@@ -219,13 +219,6 @@ import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { RangeCalendar } from '@/components/ui/range-calendar'
 import {
-    CalendarDate,
-    DateFormatter,
-    getLocalTimeZone,
-    today
-} from '@internationalized/date'
-import { Calendar as CalendarIcon } from 'lucide-vue-next'
-import {
     Select,
     SelectContent,
     SelectGroup,
@@ -234,6 +227,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
+import {
+    CalendarDate,
+    DateFormatter,
+    getLocalTimeZone,
+    today
+} from '@internationalized/date'
+import { Calendar as CalendarIcon } from 'lucide-vue-next'
 
 definePageMeta({
     keepalive: true

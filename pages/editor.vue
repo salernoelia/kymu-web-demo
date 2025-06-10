@@ -25,6 +25,9 @@
 </template>
 
 <script setup>
+import exercises from '../assets/exercises_config.json'
+
+console.log(exercises)
 
 const showSidebar = ref(false)
 </script>
