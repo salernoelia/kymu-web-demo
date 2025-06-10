@@ -1,7 +1,25 @@
 <template>
     <div class="h-full flex flex-col">
-        <h1 class="pb-4">Analyse</h1>
+        <div class="flex gap-4 pb-4 items-center">
+            <h1 class="">Phillipp Köbel</h1>
+            <div class="divider"></div>
+            <div class="flex flex-row gap-2 items-center">
+                <TabsBorder
+                    :tabs="tabs"
+                    v-model:active="activeTab"
+                    class="h-8 min-w-[220px]"
+                />
+                <Button
+                    variant="outline"
+                    class="h-8 flex items-center justify-start text-left font-normal"
+                    :class="!value ? 'text-muted-foreground' : ''"
+                >
+                    <CalendarIcon class="mr-2 h-4 w-4" />
+                    <p>Feedback</p>
+                </Button>
+            </div>
 
+        </div>
         <div class="flex flex-col gap-4 flex-grow w-full">
             <div class="flex flex-row gap-6 opacity-50">
                 <h4>{{ formattedStart }} - {{ formattedEnd }}</h4>
@@ -73,7 +91,7 @@
                                 </SelectContent>
                             </Select>
                             <Select v-model="activeBodyPart">
-                                <SelectTrigger class="w-full]">
+                                <SelectTrigger class="w-full">
                                     <SelectValue :placeholder="bodyParts[activeBodyPart].name" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -183,7 +201,7 @@
                                     ]">
                                         <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                             Math.round(painPointsSummary.right.change)
-                                        }}%</p>
+                                            }}%</p>
                                     </div>
                                 </div>
                             </Container>
@@ -313,19 +331,27 @@ const datasets = ref({
 
 const generateDataForRange = (startDate, endDate, datasetType) => {
     const dates = []
+    const { range } = datasetTypes[datasetType]
+    const min = range[0]
+    const max = range[1]
+
     const currentDate = new Date(startDate)
     const end = new Date(endDate)
 
+    let value = min + (max - min) * (0.4 + Math.random() * 0.2)
+
     while (currentDate <= end) {
-        const { range } = datasetTypes[datasetType]
-        const value = Math.floor(Math.random() * (range[1] - range[0])) + range[0]
-        const painDegrees = Math.random() > 0.7 ?
-            Array.from({ length: Math.floor(Math.random() * 3) + 1 },
-                () => Math.floor(Math.random() * (value * 0.8))) : []
+        const change = (Math.random() - 0.4) * (max - min) * 0.09
+        value = Math.max(min, Math.min(max, value + change))
+
+        const painDegrees = Math.random() > 0.7
+            ? Array.from({ length: Math.floor(Math.random() * 3) + 1 },
+                () => Math.floor(Math.random() * (value * 0.8)))
+            : []
 
         dates.push({
             date: currentDate.toISOString().split('T')[0],
-            value,
+            value: Math.round(value * 10) / 10,
             painDegrees
         })
 

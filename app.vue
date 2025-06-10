@@ -28,7 +28,6 @@ body {
   word-break: break-word;
   background: linear-gradient(118deg, #f0f8ff 30%, #f5f5f5 60%, #f0f8ff 90%);
   background-size: 150% 150%;
-  height: 100vh;
   animation: gradientAnimation 30s ease infinite;
   font-family: Poppins;
   overflow: hidden;
