@@ -1,8 +1,8 @@
 <template>
-  <div class="parent pl-8 pr-8 pt-6 h-screen flex flex-col gap-6 overflow-hidden">
+  <div class="parent">
     <Navigation />
-    <div class="h-full w-full flex flex-col overflow-hidden">
-      <NuxtPage class="flex-1 min-h-0" />
+    <div class="page-container">
+      <NuxtPage />
     </div>
   </div>
 </template>
@@ -22,17 +22,6 @@
   }
 }
 
-.parent {
-  display: flex;
-  background-color: transparent;
-  position: absolute;
-  inset: 0;
-  justify-content: start;
-  align-items: start;
-  overflow: hidden;
-  height: 100vh;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -42,18 +31,39 @@ body {
   height: 100vh;
   animation: gradientAnimation 30s ease infinite;
   font-family: Poppins;
+  overflow: hidden;
 }
 
+.parent {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
+.page-container {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
 
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.4s;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
-  filter: blur(1rem);
 }
 </style>

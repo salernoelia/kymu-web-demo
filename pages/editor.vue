@@ -1,47 +1,50 @@
 <template>
-    <Transition name="fade">
-        <div
-            class="overlay"
-            v-if="showSidebar"
-        />
-    </Transition>
+    <div>
+        <Transition name="fade">
+            <div
+                class="overlay"
+                v-if="showSidebar"
+            />
+        </Transition>
 
-    <div class="editor h-full flex flex-col">
-        <div class="editor-header">
-            <div class="flex flex-row gap-4 items-center">
-                <h1 class="pb-4">Philipp Köbel</h1>
+        <div class="editor h-full flex flex-col">
+            <div class="editor-header">
+                <div class="flex flex-row gap-4 items-center">
+                    <h1 class="pb-4">Philipp Köbel</h1>
 
-                <Tabs
-                    :tabs="tabs"
-                    v-model:active="activeTab"
+                    <Tabs
+                        :tabs="tabs"
+                        v-model:active="activeTab"
+                    />
+                </div>
+                <button
+                    @click="showSidebar = true"
+                    class="px-4 py-2 bg-primary text-white rounded"
+                >
+                    Übungs-Bibliothek öffnen
+                </button>
+            </div>
+
+            <div class="kanban-board">
+                <KanbanUnit
+                    v-for="unit in units"
+                    :key="unit.unitName"
+                    :unit="unit"
+                    @add-exercise="addExerciseToUnit"
+                    @remove-exercise="removeExerciseFromUnit"
+                    @move-exercise="moveExercise"
                 />
             </div>
-            <button
-                @click="showSidebar = true"
-                class="px-4 py-2 bg-primary text-white rounded"
-            >
-                Übungs-Bibliothek öffnen
-            </button>
         </div>
 
-        <div class="kanban-board">
-            <KanbanUnit
-                v-for="unit in units"
-                :key="unit.unitName"
-                :unit="unit"
-                @add-exercise="addExerciseToUnit"
-                @remove-exercise="removeExerciseFromUnit"
-                @move-exercise="moveExercise"
+        <Transition name="slide-fade">
+            <ExerciseSidebar
+                v-if="showSidebar"
+                @close="showSidebar = false"
             />
-        </div>
+        </Transition>
     </div>
 
-    <Transition name="slide-fade">
-        <ExerciseSidebar
-            v-if="showSidebar"
-            @close="showSidebar = false"
-        />
-    </Transition>
 </template>
 
 <script setup>
