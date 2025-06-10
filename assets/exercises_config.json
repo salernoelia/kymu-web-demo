@@ -15,7 +15,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 20,
       "type": "Dehnung",
-      "equipment_needed": ["Schaumstoffrolle"],
+      "equipment_needed": [
+        "Schaumstoffrolle"
+      ],
       "position": "Rückenlage",
       "resistance_type": "Körpergewicht",
       "resistance_level": null,
@@ -36,20 +38,24 @@
         "Rautenmuskeln",
         "Kapuzenmuskel"
       ],
-      "joint_focus": ["Brustwirbelsäule", "Schultergürtel"],
+      "joint_focus": [
+        "Brustwirbelsäule",
+        "Schultergürtel"
+      ],
       "tempo_instructions": "Langsam halten.",
       "pain_monitoring_instruction": "Leichter Druck ist akzeptabel, aber kein signifikanter Schmerz.",
       "therapist_added_image_urls": [
         "/ComfyUI_00007_.png",
         "/ComfyUI_00011_.png"
       ],
-      "therapist_added_video_urls": ["video/thoracic_extension_demo.mp4"],
+      "therapist_added_video_urls": [
+        "video/thoracic_extension_demo.mp4"
+      ],
       "family_scene_adjustment_access": true
     },
     {
       "id": "exercise_002",
       "name": "Beckenkippung (Rückenlage)",
-
       "results": null,
       "category": "Rumpfstabilität",
       "description": "Aktivieren Sie tiefe Bauch- und untere Rückenmuskeln.",
@@ -65,7 +71,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 30,
       "type": "Kraft",
-      "equipment_needed": ["Matte"],
+      "equipment_needed": [
+        "Matte"
+      ],
       "position": "Rückenlage",
       "resistance_type": "Körpergewicht",
       "resistance_level": "niedrig",
@@ -87,14 +95,19 @@
         "Beckenboden",
         "Rückenstrecker_(Lendenwirbelsäule)"
       ],
-      "joint_focus": ["Becken", "Lendenwirbelsäule"],
+      "joint_focus": [
+        "Becken",
+        "Lendenwirbelsäule"
+      ],
       "tempo_instructions": "Langsam und kontrolliert.",
       "pain_monitoring_instruction": "Sollte schmerzfrei sein. Stoppen Sie bei Beschwerden.",
       "therapist_added_image_urls": [
         "/ComfyUI_00097_.png",
         "/ComfyUI_00113_.png"
       ],
-      "therapist_added_video_urls": ["video/pelvic_tilt_supine_demo.mp4"],
+      "therapist_added_video_urls": [
+        "video/pelvic_tilt_supine_demo.mp4"
+      ],
       "family_scene_adjustment_access": false
     },
     {
@@ -110,7 +123,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 60,
       "type": "Kraft",
-      "equipment_needed": ["Matte"],
+      "equipment_needed": [
+        "Matte"
+      ],
       "position": "Rückenlage",
       "resistance_type": "Körpergewicht",
       "resistance_level": "mittel",
@@ -132,14 +147,20 @@
         "Rückenstrecker",
         "Rumpf"
       ],
-      "joint_focus": ["Hüfte", "Knie", "Lendenwirbelsäule"],
+      "joint_focus": [
+        "Hüfte",
+        "Knie",
+        "Lendenwirbelsäule"
+      ],
       "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 2 Sekunden runter.",
       "pain_monitoring_instruction": "Stoppen Sie, wenn Schmerzen im unteren Rücken oder in den Knien auftreten.",
       "therapist_added_image_urls": [
         "/ComfyUI_00124_.png",
         "/ComfyUI_00179_.png"
       ],
-      "therapist_added_video_urls": ["video/bridge_demo.mp4"],
+      "therapist_added_video_urls": [
+        "video/bridge_demo.mp4"
+      ],
       "family_scene_adjustment_access": true
     },
     {
@@ -155,7 +176,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 45,
       "type": "Kraft",
-      "equipment_needed": ["Matte"],
+      "equipment_needed": [
+        "Matte"
+      ],
       "position": "Vierfüßlerstand",
       "resistance_type": "Körpergewicht",
       "resistance_level": "mittel",
@@ -179,14 +202,20 @@
         "Deltamuskeln",
         "Trizeps"
       ],
-      "joint_focus": ["Wirbelsäule", "Schulter", "Hüfte"],
+      "joint_focus": [
+        "Wirbelsäule",
+        "Schulter",
+        "Hüfte"
+      ],
       "tempo_instructions": "Langsam und kontrolliert.",
       "pain_monitoring_instruction": "Sollte schmerzfrei im Rücken und in den Gelenken sein.",
       "therapist_added_image_urls": [
         "/ComfyUI_00189_.png",
         "/ComfyUI_00195_.png"
       ],
-      "therapist_added_video_urls": ["video/bird_dog_demo.mp4"],
+      "therapist_added_video_urls": [
+        "video/bird_dog_demo.mp4"
+      ],
       "family_scene_adjustment_access": true
     },
     {
@@ -202,7 +231,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 30,
       "type": "Gleichgewicht",
-      "equipment_needed": ["stabile_Unterstützung_optional"],
+      "equipment_needed": [
+        "stabile_Unterstützung_optional"
+      ],
       "position": "Stehend",
       "resistance_type": "Körpergewicht",
       "resistance_level": null,
@@ -226,11 +257,19 @@
         "mittlerer_Gesäßmuskel",
         "Rumpf"
       ],
-      "joint_focus": ["Knöchel", "Knie", "Hüfte"],
+      "joint_focus": [
+        "Knöchel",
+        "Knie",
+        "Hüfte"
+      ],
       "tempo_instructions": "Stabil halten.",
       "pain_monitoring_instruction": "Stoppen Sie bei Gelenkschmerzen.",
-      "therapist_added_image_urls": ["/ComfyUI_00252_.png"],
-      "therapist_added_video_urls": ["video/single_leg_stance_demo.mp4"],
+      "therapist_added_image_urls": [
+        "/ComfyUI_00252_.png"
+      ],
+      "therapist_added_video_urls": [
+        "video/single_leg_stance_demo.mp4"
+      ],
       "family_scene_adjustment_access": true
     },
     {
@@ -246,7 +285,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 60,
       "type": "Kraft",
-      "equipment_needed": ["Wand"],
+      "equipment_needed": [
+        "Wand"
+      ],
       "position": "Stehend_gegen_Wand",
       "resistance_type": "Körpergewicht",
       "resistance_level": "mittel",
@@ -270,14 +311,20 @@
         "großer_Gesäßmuskel",
         "Waden"
       ],
-      "joint_focus": ["Knie", "Hüfte", "Knöchel"],
+      "joint_focus": [
+        "Knie",
+        "Hüfte",
+        "Knöchel"
+      ],
       "tempo_instructions": "Langsam abwärts, kontrolliert halten, langsam aufwärts.",
       "pain_monitoring_instruction": "Stoppen Sie bei stechenden Schmerzen, insbesondere in den Knien.",
       "therapist_added_image_urls": [
         "/ComfyUI_00352_.png",
         "/ComfyUI_00519_.png"
       ],
-      "therapist_added_video_urls": ["video/wall_squat_demo.mp4"],
+      "therapist_added_video_urls": [
+        "video/wall_squat_demo.mp4"
+      ],
       "family_scene_adjustment_access": false
     },
     {
@@ -293,7 +340,10 @@
       "sets": 3,
       "rest_between_sets_seconds": 60,
       "type": "Kraft",
-      "equipment_needed": ["Widerstandsband", "Stuhl_optional"],
+      "equipment_needed": [
+        "Widerstandsband",
+        "Stuhl_optional"
+      ],
       "position": "Sitzend_oder_Lang_sitzen",
       "resistance_type": "Widerstandsband",
       "resistance_level": "mittel",
@@ -315,14 +365,20 @@
         "breiter_Rückenmuskel",
         "Bizeps"
       ],
-      "joint_focus": ["Schulter", "Ellbogen", "Schulterblatt"],
+      "joint_focus": [
+        "Schulter",
+        "Ellbogen",
+        "Schulterblatt"
+      ],
       "tempo_instructions": "2 Sekunden ziehen, 1 Sekunde halten, 3 Sekunden nachgeben.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in Schulter oder Rücken.",
       "therapist_added_image_urls": [
         "/ComfyUI_00522_.png",
         "/ComfyUI_00523_.png"
       ],
-      "therapist_added_video_urls": ["video/seated_row_band_demo.mp4"],
+      "therapist_added_video_urls": [
+        "video/seated_row_band_demo.mp4"
+      ],
       "family_scene_adjustment_access": true
     },
     {
@@ -338,7 +394,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 45,
       "type": "Kraft",
-      "equipment_needed": ["stabile_Unterstützung"],
+      "equipment_needed": [
+        "stabile_Unterstützung"
+      ],
       "position": "Stehend",
       "resistance_type": "Körpergewicht",
       "resistance_level": "mittel",
@@ -354,15 +412,22 @@
         "Verwenden Sie Unterstützung, um den Gleichgewicht zu halten.",
         "Vermeiden Sie überstürzte Bewegungen."
       ],
-      "target_muscles": ["Wadenmuskel_(Gastrocnemius)", "Schollenmuskel"],
-      "joint_focus": ["Knöchel"],
+      "target_muscles": [
+        "Wadenmuskel_(Gastrocnemius)",
+        "Schollenmuskel"
+      ],
+      "joint_focus": [
+        "Knöchel"
+      ],
       "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 2 Sekunden runter.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen im Knöchel oder in der Wade.",
       "therapist_added_image_urls": [
         "/ComfyUI_00531_.png",
         "/ComfyUI_00541_.png"
       ],
-      "therapist_added_video_urls": ["video/calf_raise_demo.mp4"],
+      "therapist_added_video_urls": [
+        "video/calf_raise_demo.mp4"
+      ],
       "family_scene_adjustment_access": false
     },
     {
@@ -378,7 +443,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 30,
       "type": "Kraft",
-      "equipment_needed": ["Handtuchrolle_optional"],
+      "equipment_needed": [
+        "Handtuchrolle_optional"
+      ],
       "position": "Rückenlage_oder_Lang_sitzen",
       "resistance_type": "isometrisch",
       "resistance_level": "niedrig",
@@ -395,12 +462,20 @@
         "Vermeiden Sie das Anhalten des Atems.",
         "Konzentrieren Sie sich auf die Muskelkontraktion, nicht auf die Gelenkbewegung."
       ],
-      "target_muscles": ["Quadrizeps_(vastus_medialis)"],
-      "joint_focus": ["Knie"],
+      "target_muscles": [
+        "Quadrizeps_(vastus_medialis)"
+      ],
+      "joint_focus": [
+        "Knie"
+      ],
       "tempo_instructions": "5 Sekunden halten.",
       "pain_monitoring_instruction": "Sollte schmerzfrei sein.",
-      "therapist_added_image_urls": ["/ComfyUI_00550_.png"],
-      "therapist_added_video_urls": ["video/quad_set_demo.mp4"],
+      "therapist_added_image_urls": [
+        "/ComfyUI_00550_.png"
+      ],
+      "therapist_added_video_urls": [
+        "video/quad_set_demo.mp4"
+      ],
       "family_scene_adjustment_access": false
     },
     {
@@ -416,7 +491,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 20,
       "type": "Bewegungsradius",
-      "equipment_needed": ["keine"],
+      "equipment_needed": [
+        "keine"
+      ],
       "position": "Rückenlage_oder_Sitzend",
       "resistance_type": "Körpergewicht",
       "resistance_level": "sehr_niedrig",
@@ -436,11 +513,17 @@
         "Wadenmuskel_(Gastrocnemius)",
         "Schollenmuskel"
       ],
-      "joint_focus": ["Knöchel"],
+      "joint_focus": [
+        "Knöchel"
+      ],
       "tempo_instructions": "Langsam und gleichmäßig.",
       "pain_monitoring_instruction": "Sollte schmerzfrei sein.",
-      "therapist_added_image_urls": ["/ComfyUI_00561_.png"],
-      "therapist_added_video_urls": ["video/ankle_pumps_demo.mp4"],
+      "therapist_added_image_urls": [
+        "/ComfyUI_00561_.png"
+      ],
+      "therapist_added_video_urls": [
+        "video/ankle_pumps_demo.mp4"
+      ],
       "family_scene_adjustment_access": false
     },
     {
@@ -456,7 +539,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 30,
       "type": "Kraft",
-      "equipment_needed": ["keine"],
+      "equipment_needed": [
+        "keine"
+      ],
       "position": "Sitzend_oder_Stehend",
       "resistance_type": "Körpergewicht",
       "resistance_level": "niedrig",
@@ -473,12 +558,22 @@
         "Erzwingen Sie das Zusammendrücken nicht.",
         "Konzentrieren Sie sich auf Kontrolle, nicht auf Intensität."
       ],
-      "target_muscles": ["Rautenmuskeln", "Kapuzenmuskel_(Mitte_und_unten)"],
-      "joint_focus": ["Schulterblatt", "Schultergürtel"],
+      "target_muscles": [
+        "Rautenmuskeln",
+        "Kapuzenmuskel_(Mitte_und_unten)"
+      ],
+      "joint_focus": [
+        "Schulterblatt",
+        "Schultergürtel"
+      ],
       "tempo_instructions": "2 Sekunden zusammenziehen, 1 Sekunde halten, 2 Sekunden lösen.",
       "pain_monitoring_instruction": "Sollte schmerzfrei sein.",
-      "therapist_added_image_urls": ["/ComfyUI_00564_.png"],
-      "therapist_added_video_urls": ["video/shoulder_squeeze_demo.mp4"],
+      "therapist_added_image_urls": [
+        "/ComfyUI_00564_.png"
+      ],
+      "therapist_added_video_urls": [
+        "video/shoulder_squeeze_demo.mp4"
+      ],
       "family_scene_adjustment_access": true
     },
     {
@@ -494,7 +589,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 60,
       "type": "Kraft",
-      "equipment_needed": ["Matte"],
+      "equipment_needed": [
+        "Matte"
+      ],
       "position": "Seitenlage",
       "resistance_type": "Körpergewicht",
       "resistance_level": "mittel",
@@ -515,14 +612,18 @@
         "kleiner_Gesäßmuskel",
         "Spanner_der_Oberschenkelfaszie"
       ],
-      "joint_focus": ["Hüfte"],
+      "joint_focus": [
+        "Hüfte"
+      ],
       "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 3 Sekunden runter.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in der Hüfte oder Seite.",
       "therapist_added_image_urls": [
         "/ComfyUI_00568_.png",
         "/ComfyUI_00571_.png"
       ],
-      "therapist_added_video_urls": ["video/side_lying_abduction_demo.mp4"],
+      "therapist_added_video_urls": [
+        "video/side_lying_abduction_demo.mp4"
+      ],
       "family_scene_adjustment_access": true
     },
     {
@@ -538,7 +639,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 45,
       "type": "funktionell",
-      "equipment_needed": ["stabile_Unterstützung_optional"],
+      "equipment_needed": [
+        "stabile_Unterstützung_optional"
+      ],
       "position": "Stehend",
       "resistance_type": "Körpergewicht",
       "resistance_level": "niedrig_bis_mittel",
@@ -554,12 +657,24 @@
         "Nicht über das Komfortlevel hinaus absenken.",
         "Knie ausgerichtet halten."
       ],
-      "target_muscles": ["Quadrizeps", "Hamstrings", "großer_Gesäßmuskel"],
-      "joint_focus": ["Knie", "Hüfte", "Knöchel"],
+      "target_muscles": [
+        "Quadrizeps",
+        "Hamstrings",
+        "großer_Gesäßmuskel"
+      ],
+      "joint_focus": [
+        "Knie",
+        "Hüfte",
+        "Knöchel"
+      ],
       "tempo_instructions": "2 Sekunden runter, 1 Sekunde halten, 2 Sekunden hoch.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in den Knien oder Hüften.",
-      "therapist_added_image_urls": ["/ComfyUI_00572_.png"],
-      "therapist_added_video_urls": ["video/mini_squat_demo.mp4"],
+      "therapist_added_image_urls": [
+        "/ComfyUI_00572_.png"
+      ],
+      "therapist_added_video_urls": [
+        "video/mini_squat_demo.mp4"
+      ],
       "family_scene_adjustment_access": true
     },
     {
@@ -575,7 +690,10 @@
       "sets": 1,
       "rest_between_sets_seconds": null,
       "type": "Ausdauer",
-      "equipment_needed": ["bequeme_Schuhe", "sichere_Gehumgebung"],
+      "equipment_needed": [
+        "bequeme_Schuhe",
+        "sichere_Gehumgebung"
+      ],
       "position": "Gehend",
       "resistance_type": "Körpergewicht",
       "resistance_level": "variable_Geschwindigkeit/Steigung",
@@ -599,7 +717,11 @@
         "Gesäßmuskeln",
         "Rumpf"
       ],
-      "joint_focus": ["Knöchel", "Knie", "Hüfte"],
+      "joint_focus": [
+        "Knöchel",
+        "Knie",
+        "Hüfte"
+      ],
       "tempo_instructions": "Halten Sie ein gleichmäßiges Tempo bei.",
       "pain_monitoring_instruction": "Überwachen Sie zunehmende Gelenkschmerzen oder ungewöhnliche Müdigkeit.",
       "therapist_added_image_urls": null,
@@ -619,7 +741,9 @@
       "sets": 3,
       "rest_between_sets_seconds": 60,
       "type": "Kraft",
-      "equipment_needed": ["Matte"],
+      "equipment_needed": [
+        "Matte"
+      ],
       "position": "Rückenlage",
       "resistance_type": "Körpergewicht",
       "resistance_level": "mittel",
@@ -636,15 +760,23 @@
         "Halten Sie den unteren Rücken sanft gegen den Boden gedrückt.",
         "Heben Sie nur so hoch wie Sie kontrollieren können."
       ],
-      "target_muscles": ["Quadrizeps", "Hüft-Lenden-Muskel"],
-      "joint_focus": ["Hüfte", "Knie"],
+      "target_muscles": [
+        "Quadrizeps",
+        "Hüft-Lenden-Muskel"
+      ],
+      "joint_focus": [
+        "Hüfte",
+        "Knie"
+      ],
       "tempo_instructions": "2 Sekunden hoch, 1 Sekunde halten, 2 Sekunden runter.",
       "pain_monitoring_instruction": "Stoppen Sie bei Schmerzen in der Hüfte oder im unteren Rücken.",
       "therapist_added_image_urls": [
         "/ComfyUI_00007_.png",
         "/ComfyUI_00011_.png"
       ],
-      "therapist_added_video_urls": ["video/slr_supine_demo.mp4"],
+      "therapist_added_video_urls": [
+        "video/slr_supine_demo.mp4"
+      ],
       "family_scene_adjustment_access": true
     },
     {
@@ -660,7 +792,9 @@
       "sets": 1,
       "rest_between_sets_seconds": null,
       "type": "Bewegungsradius",
-      "equipment_needed": ["keine"],
+      "equipment_needed": [
+        "keine"
+      ],
       "position": "Stehend",
       "resistance_type": "Körpergewicht",
       "resistance_level": "niedrig",
@@ -676,8 +810,13 @@
         "Nicht in den Schmerz hineinpressen.",
         "Vermeiden Sie übermäßiges Schulterzucken."
       ],
-      "target_muscles": ["Deltamuskel_(Mitte)", "Obergrätenmuskel"],
-      "joint_focus": ["Schulter"],
+      "target_muscles": [
+        "Deltamuskel_(Mitte)",
+        "Obergrätenmuskel"
+      ],
+      "joint_focus": [
+        "Schulter"
+      ],
       "tempo_instructions": "Langsame und kontrollierte Bewegung.",
       "pain_monitoring_instruction": "Notieren Sie den Punkt, an dem Schmerz oder Steifheit beginnt.",
       "therapist_added_image_urls": [
@@ -700,7 +839,9 @@
       "sets": 1,
       "rest_between_sets_seconds": null,
       "type": "Bewegungsradius",
-      "equipment_needed": ["Wand_oder_Stuhl_für_Gleichgewicht"],
+      "equipment_needed": [
+        "Wand_oder_Stuhl_für_Gleichgewicht"
+      ],
       "position": "Stehend",
       "resistance_type": "Körpergewicht",
       "resistance_level": "niedrig",
@@ -716,8 +857,13 @@
         "Verwenden Sie Unterstützung, wenn nötig, um das Gleichgewicht zu halten.",
         "Bewegen Sie sich im schmerzfreien Bereich."
       ],
-      "target_muscles": ["mittlerer_Gesäßmuskel", "kleiner_Gesäßmuskel"],
-      "joint_focus": ["Hüfte"],
+      "target_muscles": [
+        "mittlerer_Gesäßmuskel",
+        "kleiner_Gesäßmuskel"
+      ],
+      "joint_focus": [
+        "Hüfte"
+      ],
       "tempo_instructions": "Langsame und kontrollierte Bewegung.",
       "pain_monitoring_instruction": "Notieren Sie jegliches Klicken, Hängenbleiben oder Schmerzen.",
       "therapist_added_image_urls": [
@@ -740,7 +886,9 @@
       "sets": 1,
       "rest_between_sets_seconds": null,
       "type": "Bewegungsradius",
-      "equipment_needed": ["keine"],
+      "equipment_needed": [
+        "keine"
+      ],
       "position": "Sitzend_oder_Stehend",
       "resistance_type": "Körpergewicht",
       "resistance_level": "niedrig",
@@ -754,8 +902,13 @@
       "safety_precautions": [
         "Erzwingen Sie die Bewegung nicht in Schmerz oder Steifheit."
       ],
-      "target_muscles": ["zweiköpfiger_Armmuskel", "Armmuskel"],
-      "joint_focus": ["Ellbogen"],
+      "target_muscles": [
+        "zweiköpfiger_Armmuskel",
+        "Armmuskel"
+      ],
+      "joint_focus": [
+        "Ellbogen"
+      ],
       "tempo_instructions": "Langsame und kontrollierte Bewegung.",
       "pain_monitoring_instruction": "Notieren Sie den Punkt, an dem Schmerz oder Einschränkung auftritt.",
       "therapist_added_image_urls": [

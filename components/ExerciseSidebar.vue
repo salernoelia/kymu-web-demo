@@ -6,7 +6,7 @@
         ></div>
         <div class="sidebar">
             <div class="flex justify-between items-center mb-4">
-                <h3>Einstellungen</h3>
+                <h3>Übungs-Bibliothek</h3>
                 <button
                     @click="$emit('close')"
                     class="text-2xl"
@@ -19,7 +19,7 @@
                         v-model="searchQuery"
                         id="search"
                         type="text"
-                        placeholder="Search exercises..."
+                        placeholder="Übungen suchen..."
                         class="pl-10"
                     />
                     <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
@@ -34,7 +34,7 @@
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
-                                <SelectLabel>Exercise Type</SelectLabel>
+                                <SelectLabel>Übungstyp</SelectLabel>
                                 <SelectItem value="all">Alle Typen</SelectItem>
                                 <SelectItem
                                     v-for="type in exerciseTypes"
@@ -70,8 +70,8 @@
                 </div>
 
                 <div class="text-sm text-muted-foreground">
-                    {{ filteredExercises.length }} {{ filteredExercises.length === 1 ? 'exercise' : 'exercises' }}
-                    found
+                    {{ filteredExercises.length }} {{ filteredExercises.length === 1 ? 'Übung' : 'Übungen' }}
+                    gefunden
                 </div>
             </div>
 
@@ -99,8 +99,8 @@
                         class="flex flex-col items-center justify-center py-12 text-center"
                     >
                         <FileSearch class="w-12 h-12 text-muted-foreground mb-4" />
-                        <h3 class="font-medium mb-1">No exercises found</h3>
-                        <p class="text-sm text-muted-foreground">Try adjusting your search or filters</p>
+                        <h3 class="font-medium mb-1">Keine Übungen gefunden</h3>
+                        <p class="text-sm text-muted-foreground">Versuchen Sie andere Suchbegriffe oder Filter</p>
                     </div>
 
                     <div
@@ -111,6 +111,8 @@
                             v-for="ex in filteredExercises"
                             :key="ex.id"
                             class="flex flex-col bg-white card group hover:border-primary transition-colors cursor-pointer"
+                            draggable="true"
+                            @dragstart="handleDragStart($event, ex)"
                         >
                             <div class="aspect-video relative overflow-hidden rounded-md mb-3">
                                 <img
@@ -154,14 +156,14 @@
                                         class="flex items-center text-xs text-muted-foreground"
                                     >
                                         <Repeat class="w-3 h-3 mr-1" />
-                                        {{ ex.repetitions_goal }} reps
+                                        {{ ex.repetitions_goal }} Wdh.
                                     </div>
                                     <div
                                         v-if="ex.sets"
                                         class="flex items-center text-xs text-muted-foreground"
                                     >
                                         <Layers class="w-3 h-3 mr-1" />
-                                        {{ ex.sets }} sets
+                                        {{ ex.sets }} Sätze
                                     </div>
                                 </div>
                             </div>
@@ -220,6 +222,16 @@ const filteredExercises = computed(() => {
         return matchesSearch && matchesType && matchesCategory
     })
 })
+
+const handleDragStart = (event, exercise) => {
+    const dragData = {
+        type: 'new-exercise',
+        exercise: exercise
+    }
+
+    event.dataTransfer.setData('application/json', JSON.stringify(dragData))
+    event.dataTransfer.effectAllowed = 'copy'
+}
 
 onMounted(() => {
     setTimeout(() => {

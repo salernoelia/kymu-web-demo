@@ -1,0 +1,51 @@
+{
+    "physioPlan": [
+        {
+            "unitName": "Rumpfstabilität & Haltungskontrolle",
+            "exercises": [
+                "exercise_002",
+                "exercise_011",
+                "exercise_004",
+                "exercise_003",
+                "exercise_001"
+            ]
+        },
+        {
+            "unitName": "Kraftaufbau Unterkörper",
+            "exercises": [
+                "exercise_009",
+                "exercise_013",
+                "exercise_015",
+                "exercise_006",
+                "exercise_008"
+            ]
+        },
+        {
+            "unitName": "Gleichgewicht & funktionelle Bewegung",
+            "exercises": [
+                "exercise_010",
+                "exercise_005",
+                "exercise_012",
+                "exercise_014"
+            ]
+        },
+        {
+            "unitName": "Schulter- & Oberkörperkräftigung",
+            "exercises": [
+                "exercise_011",
+                "exercise_007",
+                "exercise_16",
+                "exercise_18"
+            ]
+        },
+        {
+            "unitName": "Allgemeine Mobilisation & Stabilität",
+            "exercises": [
+                "exercise_001",
+                "exercise_002",
+                "exercise_012",
+                "exercise_017"
+            ]
+        }
+    ]
+}
