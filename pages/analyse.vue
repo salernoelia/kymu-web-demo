@@ -1,6 +1,6 @@
 <template>
-    <div class="h-full flex flex-col">
-        <div class="flex gap-4 pb-4 items-center">
+    <div class="h-full flex flex-col overflow-hidden pb-6">
+        <div class="flex gap-4 pb-4 items-center flex-shrink-0">
             <h1 class="">Phillipp Köbel</h1>
             <div class="divider"></div>
             <div class="flex flex-row gap-2 items-center">
@@ -18,18 +18,18 @@
                     <p>Feedback</p>
                 </Button>
             </div>
-
         </div>
-        <div class="flex flex-col gap-4 flex-grow w-full">
-            <div class="flex flex-row gap-6 opacity-50">
+
+        <div class="flex flex-col gap-4 flex-1 min-h-0">
+            <div class="flex flex-row gap-6 opacity-50 flex-shrink-0">
                 <h4>{{ formattedStart }} - {{ formattedEnd }}</h4>
                 <h4>Schmerzpunkte</h4>
             </div>
 
-            <div class="flex flex-row gap-4 flex-grow w-full">
+            <div class="flex flex-row gap-4 flex-1 min-h-0 w-full">
                 <!-- left -->
-                <div class="flex flex-col gap-4 h-full w-1/3">
-                    <Container class="h-full">
+                <div class="flex flex-col gap-4 w-1/3 min-h-0">
+                    <Container class="flex-1 min-h-0 overflow-auto">
                         <h3>Filter</h3>
                         <!-- <Tabs
                             :tabs="tabs"
@@ -132,7 +132,7 @@
 
 
                     </Container>
-                    <Container class="h-full">
+                    <Container class="flex-1 min-h-0 overflow-auto">
                         <div class="flex flex-row gap-4 justify-between mb-2">
                             <h3>Zusammenfassung</h3>
                             <UiButton variant="outline">
@@ -201,7 +201,7 @@
                                     ]">
                                         <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                             Math.round(painPointsSummary.right.change)
-                                            }}%</p>
+                                        }}%</p>
                                     </div>
                                 </div>
                             </Container>
@@ -210,7 +210,7 @@
                 </div>
 
                 <!-- right -->
-                <Container class="h-full">
+                <Container class="flex-1 min-h-0 overflow-auto">
                     <h3>Zeitstrahl</h3>
                     <p>Links</p>
                     <LineGraph

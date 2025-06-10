@@ -34,12 +34,11 @@ body {
 }
 
 .parent {
-  height: 100vh;
-  width: 100vw;
   display: flex;
+  height: 100vh;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem 0 2rem;
   box-sizing: border-box;
   overflow: hidden;
 }
