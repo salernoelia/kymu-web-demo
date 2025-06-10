@@ -41,10 +41,10 @@ const handleDrop = (event) => {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .drop-zone {
-    background-color: #e3f2fd;
-    border: 2px dashed #2196f3;
+    background-color: var(--color-primaryLight);
+    border: 2px dashed var(--color-primaryNormal);
     border-radius: 8px;
     height: 40px;
     margin-bottom: 8px;
@@ -52,17 +52,18 @@ const handleDrop = (event) => {
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    opacity: 0.8;
+    opacity: 0.5;
+
+    &:hover {
+        opacity: 1;
+        background-color: var(--color-primarLightActive);
+    }
 }
 
-.drop-zone:hover {
-    opacity: 1;
-    background-color: #bbdefb;
-}
 
 .drop-text {
     font-size: 12px;
-    color: #1976d2;
+    color: var(--color-primaryNormal);
     font-weight: 500;
     pointer-events: none;
 }

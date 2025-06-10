@@ -8,7 +8,14 @@
 
     <div class="editor h-full flex flex-col">
         <div class="editor-header">
-            <h1 class="pb-4">Philipp Köbel - Therapieplan</h1>
+            <div class="flex flex-row gap-4 items-center">
+                <h1 class="pb-4">Philipp Köbel</h1>
+
+                <Tabs
+                    :tabs="tabs"
+                    v-model:active="activeTab"
+                />
+            </div>
             <button
                 @click="showSidebar = true"
                 class="px-4 py-2 bg-primary text-white rounded"
@@ -42,6 +49,13 @@ import unitsConfig from '../assets/units_config.json'
 import exercisesConfig from '../assets/exercises_config.json'
 
 const showSidebar = ref(false)
+
+const tabs = ref([
+    { name: 'Messwert' },
+    { name: 'Archiviert' },
+])
+
+const activeTab = ref('Messwert')
 
 const units = ref(unitsConfig.physioPlan.map(unit => ({
     ...unit,
@@ -97,20 +111,18 @@ const moveExercise = ({ fromUnit, toUnit, exercise, toPosition = -1 }) => {
 <style lang="scss" scoped>
 .editor {
     position: relative;
-    padding: 1rem;
 }
 
 .editor-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
 }
 
 .kanban-board {
     display: flex;
     overflow-x: auto;
-    gap: 1rem;
+    gap: 0.5rem;
     flex: 1;
     padding-bottom: 1rem;
 }

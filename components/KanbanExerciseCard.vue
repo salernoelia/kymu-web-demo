@@ -6,7 +6,7 @@
         @dragend="handleDragEnd"
     >
         <div class="exercise-header">
-            <h4 class="exercise-title">{{ exercise.name }}</h4>
+            <p class="exercise-title">{{ exercise.name }}</p>
             <button
                 class="remove-button"
                 @click="$emit('remove', exercise)"
@@ -14,7 +14,7 @@
             >×</button>
         </div>
 
-        <p class="exercise-description">{{ exercise.description }}</p>
+        <p class="label-small">{{ exercise.description }}</p>
 
         <div class="exercise-meta">
             <span class="meta-category">{{ exercise.category }}</span>
@@ -91,7 +91,7 @@ const formatDuration = (seconds) => {
 <style scoped>
 .exercise-card {
     background: white;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--color-outline_grayNormal);
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 8px;

@@ -1,4 +1,3 @@
-// filepath: /Users/eliasalerno/GitHub/kymu-usertest/components/KanbanUnit.vue
 <template>
     <div class="kanban-unit">
         <div class="unit-header">
@@ -113,13 +112,14 @@ onMounted(() => {
 
 <style scoped>
 .kanban-unit {
-    min-width: 350px;
-    max-width: 400px;
-    background: #f8f9fa;
+    min-width: 450px;
+    max-width: 450px;
+    background: #fff;
+    overflow-y: auto;
     border-radius: 12px;
     padding: 16px;
     margin-right: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--dropshadow-main);
 }
 
 .unit-header {
@@ -150,6 +150,7 @@ onMounted(() => {
 
 .unit-content {
     min-height: 500px;
+
 }
 
 .empty-state {
