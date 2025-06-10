@@ -108,6 +108,7 @@ const routes = [
     color: inherit;
     padding: 0.5rem 0.8rem;
     border-radius: 1rem;
+    border: 1px transparent solid; // Always have a border
     transition: all 0.3s ease;
     overflow: hidden;
     height: fit-content;
@@ -118,7 +119,7 @@ const routes = [
     }
 
     &.router-link-active {
-        border: 1px var(--color-primaryLightActive) solid;
+        border-color: var(--color-primaryLightActive);
         background-color: var(--color-primaryLight);
         opacity: 1;
     }
