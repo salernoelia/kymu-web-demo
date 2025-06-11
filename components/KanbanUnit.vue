@@ -1,11 +1,20 @@
 <template>
     <div class="kanban-unit">
         <div class="unit-header">
-            <Icon
+            <!-- <Icon
                 class="text-3xl"
                 :name="unit.interface === 'tv' ? 'ic:baseline-tv' : 'ic:baseline-view-in-ar'"
-            />
+            /> -->
             <h3 class="unit-title">{{ unit.unitName }}</h3>
+            <div
+                class="flex flex-row p-2 gap-2 items-center justify-center rounded-xl flex-shrink-0"
+                :class="unit.interface === 'vr' ? 'green' : 'blue'"
+            >
+                <Icon :name="unit.interface === 'vr' ? 'ic:baseline-view-in-ar' : 'ic:baseline-tv'" />
+                <h4 class="flex-shrink-0">
+                    {{ unit.interface.toUpperCase() }}
+                </h4>
+            </div>
         </div>
 
         <div class="unit-content">
@@ -181,10 +190,12 @@ onMounted(() => {
 .unit-header {
     display: flex;
     gap: 0.7rem;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: start;
     margin-bottom: 16px;
     padding-bottom: 8px;
-    padding-top: 8px;
+    padding-top: 4px;
     flex-shrink: 0;
 
     h3 {
@@ -201,6 +212,14 @@ onMounted(() => {
     border-radius: 12px;
     font-size: 12px;
     font-weight: 500;
+}
+
+.green {
+    background-color: var(--color-successLightActive);
+}
+
+.blue {
+    background-color: var(--color-tertiaryLightActive);
 }
 
 .unit-content {

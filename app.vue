@@ -63,7 +63,7 @@ body {
 
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: absolute;
   top: 0;
   left: 0;
@@ -71,8 +71,19 @@ body {
   bottom: 0;
 }
 
-.page-enter-from,
+.page-enter-from {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
 .page-leave-to {
   opacity: 0;
+  transform: translateX(100%);
+}
+
+.page-enter-to,
+.page-leave-from {
+  opacity: 1;
+  transform: translateX(0);
 }
 </style>
