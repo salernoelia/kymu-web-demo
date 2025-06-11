@@ -90,6 +90,17 @@ const drawChart = () => {
         .y(d => y(d.value))
         .curve(d3.curveMonotoneX);
 
+    svg.append('rect')
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr('width', width)
+    .attr('height', height)
+    .attr('fill', '#FDFDFD')
+    .attr('stroke', 'var(--color-outline_grayNormal)') 
+    .attr('stroke-width', 1)
+    .attr('rx', 10) 
+    .attr('ry', 10);
+
     // Area generator for gradient
     const area = d3.area()
         .x(d => x(new Date(d.date)))
@@ -99,12 +110,16 @@ const drawChart = () => {
 
     // Add the X axis with formatted dates
     svg.append('g')
+        .style("opacity", 0.5)
         .attr('transform', `translate(0,${height})`)
-        .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%d/%m/%y')));
+        .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%d/%m/%y')).tickSize(0))
+        .call(g => g.selectAll('.domain').remove());
 
     // Add the Y axis
     svg.append('g')
-        .call(d3.axisLeft(y));
+        .style("opacity", 0.5)
+        .call(d3.axisLeft(y).tickSize(0))
+        .call(g => g.selectAll('.domain').remove());
 
     // Add the gradient area
     svg.append('path')

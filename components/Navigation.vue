@@ -108,7 +108,7 @@ const routes = [
     text-decoration: none;
     color: inherit;
     padding: 0.5rem 0.8rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     border: 1px transparent solid; // Always have a border
     transition: all 0.3s ease;
     overflow: hidden;
