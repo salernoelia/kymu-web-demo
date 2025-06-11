@@ -23,7 +23,7 @@
                 <KanbanExerciseCard
                     :exercise="exercise"
                     :unit-name="unit.unitName"
-                    @edit="editExercise"
+                    @edit-exercise="editExercise"
                     @remove="removeExercise"
                     @dragstart="handleDragStart"
                     @dragend="handleDragEnd"
@@ -114,7 +114,7 @@ const showSidebarExercises = () => {
 const editExercise = (exercise) => {
     emit('edit-exercise', {
         unitName: props.unit.unitName,
-        exerciseId: exercise.id,
+        exercise: exercise,
         instanceId: exercise.instanceId
     })
 }

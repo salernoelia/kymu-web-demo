@@ -6,7 +6,7 @@
         ></div>
         <div class="sidebar">
             <div class="flex justify-between items-center mb-4">
-                <h3>Übungs-Bibliothek</h3>
+                <h3>Übungsbibliothek</h3>
                 <button
                     @click="$emit('close')"
                     class="text-2xl"

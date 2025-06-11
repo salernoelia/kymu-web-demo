@@ -1,5 +1,8 @@
 <template>
-    <div :class="['c flex flex-col gap-2 p-4', outline]">
+    <div
+        :class="['c flex flex-col gap-2 p-4', outline]"
+        :style="type === 'white' ? 'background-color: #fff' : 'background-color: var(--color-outline_grayLight)'"
+    >
         <slot></slot>
     </div>
 </template>
@@ -8,6 +11,9 @@
 defineProps({
     outline: {
         default: 'gray'
+    },
+    type: {
+        default: 'white'
     }
 })
 </script>

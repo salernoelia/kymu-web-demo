@@ -118,7 +118,8 @@
                         unitName: sidebar.unitName,
                         exercise: data.selectedExercise
                     });
-                    sidebar.open = 'no';
+
+                    sidebar.open = 'edit';
                 }"
             />
         </Transition>
@@ -126,6 +127,7 @@
             <EditExerciseSidebar
                 v-if="sidebar.open === 'edit'"
                 @close="sidebar.open = 'no'"
+                :exercise="sidebar.exercise"
                 @select-exercise="(data) => {
                     addExerciseToUnit({
                         unitName: sidebar.unitName,
@@ -155,8 +157,9 @@ const { x
         ()
 
 const sidebar = ref({
-    open: 'no',
+    open: 'edit',
     unitName: '',
+    exercise: exercisesConfig.exercises.find(ex => ex.id === 'exercise_16')
 })
 const onKanban = ref(false)
 
@@ -193,7 +196,6 @@ const groupedUnits = computed(() => {
 })
 
 
-
 const getExerciseById = (exerciseId) => {
     return exercisesConfig.exercises.find(ex => ex.id === exerciseId)
 }
@@ -212,10 +214,26 @@ const addExerciseToUnit = ({ unitName, exercise, position = -1 }) => {
     }
 }
 
-
-const editExercise = ({ unitName, exerciseId }) => {
-    console.log({ unitName, exerciseId });
+const editExercise = ({ unitName, exercise, instanceId }) => {
+    console.log("editing", { unitName, exercise, instanceId });
+    const unit = units.value.find(u => u.unitName === unitName);
+    if (unit) {
+        sidebar.value.exercise = exercise;
+        sidebar.value.open = 'edit';
+        const index = unit.exercises.findIndex(ex =>
+            (instanceId && ex.instanceId === instanceId) || ex.id === exercise.id
+        );
+        if (index > -1) {
+            const existingInstanceId = unit.exercises[index].instanceId;
+            const updatedExercise = {
+                ...exercise,
+                instanceId: existingInstanceId || Date.now() + Math.random()
+            };
+            unit.exercises.splice(index, 1, updatedExercise);
+        }
+    }
 }
+
 
 const removeExerciseFromUnit = ({ unitName, exerciseId, instanceId }) => {
     console.log({ unitName, exerciseId, instanceId });

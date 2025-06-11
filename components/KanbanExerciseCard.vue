@@ -25,7 +25,7 @@
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                         <DropdownMenuItem>Duplizieren</DropdownMenuItem>
-                        <DropdownMenuItem @click="$emit('edit', exercise)">Bearbeiten</DropdownMenuItem>
+                        <DropdownMenuItem @click="$emit('edit-exercise', exercise)">Bearbeiten</DropdownMenuItem>
                         <DropdownMenuItem
                             class="text-[--color-dangerNormal]"
                             @click="$emit('remove', exercise)"
