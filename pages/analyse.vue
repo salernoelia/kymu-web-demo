@@ -80,7 +80,7 @@
                             <PopoverTrigger as-child>
                                 <Button
                                     variant="outline"
-                                    :class="'w-full justify-start text-left font-normal',
+                                    :class="'w-full justify-start text-left font-normal min-h-10',
                                         !value && 'text-muted-foreground'"
                                 >
                                     <CalendarIcon class="mr-2 h-4 w-4" />
@@ -163,11 +163,6 @@
                             </TestContainer>
                         </div>
 
-                        <div class="divider-v" />
-                        <h4>Balance Test </h4>
-
-                        <div class="divider-v" />
-                        <h4>Battery Assessment 01</h4>
 
 
 
@@ -218,7 +213,7 @@
                                                     'bg-gray-300 text-red-600'
                                         ]">
                                             <p>{{ rightSideSummary.change > 0 ? '+' : '' }}{{ rightSideSummary.change
-                                                }}%
+                                            }}%
                                             </p>
                                         </div>
                                     </div>
@@ -260,7 +255,7 @@
                                         ]">
                                             <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                                 Math.round(painPointsSummary.right.change)
-                                                }}%</p>
+                                            }}%</p>
                                         </div>
                                     </div>
                                 </SummaryContainer>
@@ -279,7 +274,7 @@
                                         <HeartPulse class="mr-2 h-4 w-4" />
                                         <div class="flex items-end gap-2">
                                             <h3>{{ randomBpm }}</h3>
-                                            <p>bpm</p>
+                                            <p style="font-size: 8;">bpm</p>
 
                                         </div>
                                     </div>
@@ -294,7 +289,7 @@
                                         <Droplet class="mr-2 h-4 w-4" />
                                         <div class="flex items-end gap-2">
                                             <h3>{{ randomSpO2 }}</h3>
-                                            <p>spO2</p>
+                                            <p style="font-size: 8;">spO2</p>
 
                                         </div>
                                     </div>
@@ -302,20 +297,7 @@
                                         class="text-sm font-medium mb-1 bg-gray-300 p-1 rounded-lg opacity-50 text-center">
                                         Normal</p>
                                 </SummaryContainer>
-                                <SummaryContainer class="flex-1 flex-col gap-1">
 
-                                    <div class="flex flex-row items-center ">
-                                        <Thermometer class="mr-2 h-4 w-4" />
-                                        <div class="flex items-end gap-2">
-                                            <h3>{{ randomTemperature }}°</h3>
-                                            <p>C</p>
-
-                                        </div>
-                                    </div>
-                                    <p
-                                        class="text-sm font-medium mb-1 bg-gray-300 p-1 rounded-lg opacity-50 text-center">
-                                        Normal</p>
-                                </SummaryContainer>
 
                             </div>
 
