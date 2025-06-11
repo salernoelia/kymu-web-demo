@@ -2,7 +2,7 @@
     <div class="h-full flex flex-col overflow-hidden pb-6">
         <div class="flex gap-4 pb-4 items-center flex-shrink-0">
             <div class="flex justify-between w-full">
-                                <div class="flex flex-row gap-2 items-center">
+                <div class="flex flex-row gap-6 items-center">
                     <h1 class="">Phillipp Köbel</h1>
                     <div class="divider"></div>
                     <div class="flex flex-row gap-2 items-center w-[220px]">
@@ -20,7 +20,7 @@
                         <SmileIcon class="mr-2 h-4 w-4" />
                         <p>Feedback</p>
                     </Button>
-                                    <Button
+                    <Button
                         variant="outline"
                         class="h-8 flex items-center justify-start text-left font-normal"
                         :class="!value ? 'text-muted-foreground' : ''"
@@ -28,7 +28,7 @@
                         <SparkleIcon class="mr-2 h-4 w-4" />
                         <p>KI Vorschläge</p>
                     </Button>
-                                    <Button
+                    <Button
                         variant="outline"
                         class="h-8 flex items-center justify-start text-left font-normal"
                         :class="!value ? 'text-muted-foreground' : ''"
@@ -39,22 +39,22 @@
 
                 </div>
                 <div class="flex flex-row gap-2 items-center">
-                                        <Button
+                    <Button
                         variant="outline"
                         class="h-8 flex items-center justify-start text-left font-normal"
                         :class="!value ? 'text-muted-foreground' : ''"
                     >
-                        
+
                         <p>Ansicht</p>
                         <ChevronDown class="mr-2 h-4 w-4" />
                     </Button>
                     <div class="flex flex-row gap-2 items-center">
-                
-                <TabsBorder
-                    :tabs="changeView"
-                    v-model:active="activeView"
-                    class="max-h-8 w-full"
-                />
+
+                        <TabsBorder
+                            :tabs="changeView"
+                            v-model:active="activeView"
+                            class="max-h-8 w-full"
+                        />
                     </div>
                 </div>
 
@@ -70,7 +70,7 @@
             <div class="flex flex-row gap-4 flex-1 min-h-0 w-full">
                 <!-- left -->
                 <div class="flex flex-col gap-4 w-1/3 min-h-0">
-                    <Container class="flex-1 min-h-0 overflow-auto">
+                    <Container class="flex-1 min-h-0 overflow-auto custom-scrollbar">
                         <h3>Filter</h3>
                         <!-- <Tabs
                             :tabs="tabs"
@@ -150,7 +150,7 @@
                             </Select>
                         </div>
 
-                        <div class="divider" />
+                        <div class="divider-v" />
                         <h4>{{ datasetTypes[activeDataset].name }} Tests</h4>
                         <div
                             v-for="test in bodyParts[activeBodyPart].tests"
@@ -164,17 +164,17 @@
                             </TestContainer>
                         </div>
 
-                        <div class="divider" />
+                        <div class="divider-v" />
                         <h4>Balance Test </h4>
 
-                        <div class="divider" />
+                        <div class="divider-v" />
                         <h4>Battery Assessment 01</h4>
 
 
 
                     </Container>
-                    <Container class="flex-1 min-h-0 overflow-auto 0">
-                        <div class="flex flex-row gap-4 justify-between mb-2">
+                    <Container class="flex-1 min-h-0 overflow-auto 0 custom-scrollbar">
+                        <div class="flex flex-row gap-4 justify-between mb-2 ">
                             <h3>Zusammenfassung</h3>
                             <UiButton variant="outline">
                                 Analyse
@@ -182,7 +182,10 @@
                         </div>
                         <p class="text-sm text-gray-600 mb-2">{{ datasetTypes[activeDataset].name }} Durchschnitt</p>
                         <div class="flex flex-row gap-2">
-                            <Container class="flex-1" outline="bggray">
+                            <Container
+                                class="flex-1"
+                                outline="bggray"
+                            >
                                 <p class="text-sm font-medium mb-1">Links</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ leftSideSummary.average }}{{ datasetTypes[activeDataset].unit }}</h3>
@@ -196,7 +199,10 @@
                                     </div>
                                 </div>
                             </Container>
-                            <Container class="flex-1" outline="bggray">
+                            <Container
+                                class="flex-1"
+                                outline="bggray"
+                            >
                                 <p class="text-sm font-medium mb-1">Rechts</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ rightSideSummary.average }}{{ datasetTypes[activeDataset].unit }}</h3>
@@ -214,7 +220,10 @@
                         </div>
                         <p class="text-sm text-gray-600 mt-4 mb-2">Schmerzpunkte</p>
                         <div class="flex flex-row gap-2">
-                            <Container class="flex-1" outline="bggray">
+                            <Container
+                                class="flex-1"
+                                outline="bggray"
+                            >
                                 <p class="text-sm font-medium mb-1">Links</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ painPointsSummary.left.count }}</h3>
@@ -230,7 +239,10 @@
                                     </div>
                                 </div>
                             </Container>
-                            <Container class="flex-1" outline="bggray">
+                            <Container
+                                class="flex-1"
+                                outline="bggray"
+                            >
                                 <p class="text-sm font-medium mb-1">Rechts</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ painPointsSummary.right.count }}</h3>
@@ -242,79 +254,93 @@
                                     ]">
                                         <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                             Math.round(painPointsSummary.right.change)
-                                            }}%</p>
+                                        }}%</p>
                                     </div>
                                 </div>
                             </Container>
                         </div>
                         <div class="flex gap-2 items-center align-center justify-start">
                             <p class="text-sm text-gray-600 mt-4 mb-2">Biometriedaten</p>
-                            <SparkleIcon class="mr-2 h-4 w-4" /> 
+                            <SparkleIcon class="mr-2 h-4 w-4" />
                         </div>
                         <div class="flex flex-row gap-2">
-                            <Container class="flex-1" outline="bggray">
-                                
+                            <Container
+                                class="flex-1"
+                                outline="bggray"
+                            >
+
                                 <div class="flex flex-row items-center ">
-                                    <SparkleIcon class="mr-2 h-4 w-4" /> 
+                                    <SparkleIcon class="mr-2 h-4 w-4" />
                                     <div class="flex items-end gap-2">
                                         <h2>{{ painPointsSummary.left.count }}</h2>
                                         <p>bpm</p>
 
                                     </div>
                                 </div>
-                                <p class="text-sm font-medium mb-1 bg-gray-300 p-2 rounded-lg opacity-50 text-center">Normal</p>
+                                <p class="text-sm font-medium mb-1 bg-gray-300 p-2 rounded-lg opacity-50 text-center">
+                                    Normal</p>
                             </Container>
-                                                        <Container class="flex-1" outline="bggray">
-                                
+                            <Container
+                                class="flex-1"
+                                outline="bggray"
+                            >
+
                                 <div class="flex flex-row items-center w-full">
-                                    <SparkleIcon class="mr-2 h-4 w-4" /> 
+                                    <SparkleIcon class="mr-2 h-4 w-4" />
                                     <div class="flex items-end gap-2">
                                         <h2>{{ painPointsSummary.left.count }}</h2>
                                         <p>spO2</p>
 
                                     </div>
                                 </div>
-                                <p class="text-sm font-medium mb-1 bg-gray-300 p-2 rounded-lg opacity-50 text-center">Normal</p>
+                                <p class="text-sm font-medium mb-1 bg-gray-300 p-2 rounded-lg opacity-50 text-center">
+                                    Normal</p>
                             </Container>
-                                                        <Container class="flex-1" outline="bggray">
-                                
+                            <Container
+                                class="flex-1"
+                                outline="bggray"
+                            >
+
                                 <div class="flex flex-row items-center ">
-                                    <SparkleIcon class="mr-2 h-4 w-4" /> 
+                                    <SparkleIcon class="mr-2 h-4 w-4" />
                                     <div class="flex items-end gap-2">
                                         <h2>{{ painPointsSummary.left.count }}</h2>
                                         <p>C</p>
 
                                     </div>
                                 </div>
-                                <p class="text-sm font-medium mb-1 bg-gray-300 p-2 rounded-lg opacity-50 text-center">Normal</p>
+                                <p class="text-sm font-medium mb-1 bg-gray-300 p-2 rounded-lg opacity-50 text-center">
+                                    Normal</p>
                             </Container>
-                            
+
                         </div>
                     </Container>
                 </div>
 
                 <!-- right -->
-                 <div class="flex flex-col gap-4 w-full">
-                     <Container class="flex-1 min-h-0 overflow-auto">
-                         <h3>Zeitstrahl</h3>
-                         <p>Links</p>
-                         <LineGraph
-                             :data="filteredData"
-                             :maxScale="maxScale"
-                             :unit="datasetTypes[activeDataset].unit"
-                         />
-                         <p>Rechts</p>
-                         <LineGraph
-                             :data="filteredData"
-                             :maxScale="maxScale"
-                             :unit="datasetTypes[activeDataset].unit"
-                         />
-                     </Container>
-                     <Container>
-     
-                     </Container>
+                <div class="flex flex-col gap-4 w-full">
+                    <Container class="flex-1 min-h-0 overflow-none">
+                        <h3>Zeitstrahl</h3>
+                        <p>Links</p>
+                        <LineGraph
+                            :data="filteredData"
+                            :maxScale="maxScale"
+                            :unit="datasetTypes[activeDataset].unit"
+                        />
+                        <p>Rechts</p>
+                        <LineGraph
+                            :data="filteredData"
+                            :maxScale="maxScale"
+                            :unit="datasetTypes[activeDataset].unit"
+                        />
+                    </Container>
 
-                 </div>
+                    <UnitBar
+                        v-if="units"
+                        :units="units"
+                    />
+
+                </div>
 
             </div>
         </div>
@@ -322,7 +348,8 @@
 </template>
 
 <script setup>
-
+import unitsConfig from '../assets/units_config.json'
+import exercisesConfig from '../assets/exercises_config.json'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { RangeCalendar } from '@/components/ui/range-calendar'
@@ -353,6 +380,12 @@ import { ChartArea as ChartArea } from 'lucide-vue-next'
 definePageMeta({
     keepalive: true
 })
+const units = ref(unitsConfig.physioPlan.map(unit => ({
+    ...unit,
+    exercises: unit.exercises.map(exerciseId =>
+        exercisesConfig.exercises.find(ex => ex.id === exerciseId)
+    ).filter(Boolean)
+})))
 
 const df = new DateFormatter('en-US', {
     dateStyle: 'medium',
@@ -379,14 +412,14 @@ const formattedEnd = computed(() => formatDate(value.value.end))
 
 const tabs = ref([
     { name: 'Aktiv' },
-    { name: 'Archiviert'}
+    { name: 'Archiviert' }
 ])
 
 const activeTab = ref(tabs.value[0].name)
 
 const changeView = ref([
-    { name: "Chart",icon: ChartLine},
-    { name: "Diagramm",icon: ChartArea}
+    { name: "Chart", icon: ChartLine },
+    { name: "Diagramm", icon: ChartArea }
 ])
 
 const activeView = ref(changeView.value[0].name)

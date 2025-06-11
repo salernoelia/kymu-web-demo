@@ -239,3 +239,53 @@ h4 {
   height: 80%;
   background-color: var(--color-outline_grayNormal);
 }
+
+.divider-v {
+  height: 1px;
+  width: 100%;
+  background-color: var(--color-outline_grayNormal);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-inactiveLightActive);
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-inactiveLightActive) transparent;
+}
+
+.custom-scrollbar-big::-webkit-scrollbar {
+  height: 8px;
+}
+
+.custom-scrollbar-big::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar-big::-webkit-scrollbar-thumb {
+  background: var(--color-inactiveLightActive);
+  border-radius: 4px;
+}
+
+.custom-scrollbar-big::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.custom-scrollbar-big {
+  scrollbar-width: auto;
+  scrollbar-color: var(--color-inactiveLightActive) transparent;
+}

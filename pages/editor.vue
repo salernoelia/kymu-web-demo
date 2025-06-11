@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="kanban-board">
+                <div class="kanban-board custom-scrollbar-big">
                     <KanbanUnit
                         v-for="unit in units"
                         :key="unit.unitName"
@@ -70,14 +70,12 @@
                 </div>
             </div>
 
-            <div class="flex flex-row bg-white rounded-xl w-full h-20 p-4 gap-4 dropshadow">
-                <UnitLabel
-                    v-for="unit in units"
-                    :key="unit.unitName"
-                    :name="unit.unitName"
-                    :interface="unit.interface"
-                />
-            </div>
+
+
+            <UnitBar
+                v-if="units"
+                :units="units"
+            />
         </div>
 
         <Transition name="slide-fade">
