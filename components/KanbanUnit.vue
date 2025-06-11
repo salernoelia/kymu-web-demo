@@ -123,7 +123,6 @@ const removeExercise = (exercise) => {
     emit('remove-exercise', {
         unitName: props.unit.unitName,
         exerciseId: exercise.id,
-        instanceId: exercise.instanceId
     })
 }
 

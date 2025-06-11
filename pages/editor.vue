@@ -3,7 +3,7 @@
         <Transition name="fade">
             <div
                 class="overlay"
-                v-if="sidebar.open"
+                v-if="sidebar.open !== 'no'"
             />
         </Transition>
 
@@ -82,7 +82,7 @@
                                 @remove-exercise="removeExerciseFromUnit"
                                 @move-exercise="moveExercise"
                                 @show-sidebar-exercises="(data) => {
-                                    sidebar.open = true;
+                                    sidebar.open = 'add';
                                     sidebar.unitName = data.unitName;
                                 }"
                             />
@@ -111,14 +111,27 @@
 
         <Transition name="slide-fade">
             <ExerciseSidebar
-                v-if="sidebar.open"
-                @close="sidebar.open = false"
+                v-if="sidebar.open === 'add'"
+                @close="sidebar.open = 'no'"
                 @select-exercise="(data) => {
                     addExerciseToUnit({
                         unitName: sidebar.unitName,
                         exercise: data.selectedExercise
                     });
-                    sidebar.open = false;
+                    sidebar.open = 'no';
+                }"
+            />
+        </Transition>
+        <Transition name="slide-fade">
+            <EditExerciseSidebar
+                v-if="sidebar.open === 'edit'"
+                @close="sidebar.open = 'no'"
+                @select-exercise="(data) => {
+                    addExerciseToUnit({
+                        unitName: sidebar.unitName,
+                        exercise: data.selectedExercise
+                    });
+                    sidebar.open = 'no';
                 }"
             />
         </Transition>
@@ -142,7 +155,7 @@ const { x
         ()
 
 const sidebar = ref({
-    open: false,
+    open: 'no',
     unitName: '',
 })
 const onKanban = ref(false)
