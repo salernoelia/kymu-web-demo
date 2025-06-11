@@ -30,5 +30,10 @@ defineProps({
         border: 1px var(--color-primaryNormal) solid;
         background-color: var(--color-primaryLight);
     }
+
+    .bggray {
+        border: 1px var(--color-outline_grayNormal) solid;
+        background-color: #F9F6F8;
+    }
 }
 </style>

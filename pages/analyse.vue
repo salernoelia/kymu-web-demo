@@ -44,15 +44,17 @@
                         class="h-8 flex items-center justify-start text-left font-normal"
                         :class="!value ? 'text-muted-foreground' : ''"
                     >
-                        <SmileIcon class="mr-2 h-4 w-4" />
+                        
                         <p>Ansicht</p>
+                        <ChevronDown class="mr-2 h-4 w-4" />
                     </Button>
-                    <div class="flex flex-row gap-2 items-center w-[220px]">
-<TabsBorder
-  :tabs="tabsIcons"
-  v-model:active="activeIconTab"
-  class="h-8 w-full"
-/>
+                    <div class="flex flex-row gap-2 items-center">
+                
+                <TabsBorder
+                    :tabs="changeView"
+                    v-model:active="activeView"
+                    class="max-h-8 w-full"
+                />
                     </div>
                 </div>
 
@@ -171,7 +173,7 @@
 
 
                     </Container>
-                    <Container class="flex-1 min-h-0 overflow-auto">
+                    <Container class="flex-1 min-h-0 overflow-auto 0">
                         <div class="flex flex-row gap-4 justify-between mb-2">
                             <h3>Zusammenfassung</h3>
                             <UiButton variant="outline">
@@ -180,7 +182,7 @@
                         </div>
                         <p class="text-sm text-gray-600 mb-2">{{ datasetTypes[activeDataset].name }} Durchschnitt</p>
                         <div class="flex flex-row gap-2">
-                            <Container class="flex-1">
+                            <Container class="flex-1" outline="bggray">
                                 <p class="text-sm font-medium mb-1">Links</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ leftSideSummary.average }}{{ datasetTypes[activeDataset].unit }}</h3>
@@ -188,13 +190,13 @@
                                         'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
                                         leftSideSummary.change > 0 ? 'bg-successLight text-successNormal' :
                                             leftSideSummary.change < 0 ? 'bg-dangerLight text-dangerNormal' :
-                                                'bg-gray-100'
+                                                'bg-gray-200'
                                     ]">
                                         <p>{{ leftSideSummary.change > 0 ? '+' : '' }}{{ leftSideSummary.change }}%</p>
                                     </div>
                                 </div>
                             </Container>
-                            <Container class="flex-1">
+                            <Container class="flex-1" outline="bggray">
                                 <p class="text-sm font-medium mb-1">Rechts</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ rightSideSummary.average }}{{ datasetTypes[activeDataset].unit }}</h3>
@@ -202,7 +204,7 @@
                                         'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
                                         rightSideSummary.change > 0 ? 'bg-successLight text-successNormal' :
                                             rightSideSummary.change < 0 ? 'bg-dangerLight text-dangerNormal' :
-                                                'bg-gray-100'
+                                                'bg-gray-300 text-red-600'
                                     ]">
                                         <p>{{ rightSideSummary.change > 0 ? '+' : '' }}{{ rightSideSummary.change }}%
                                         </p>
@@ -212,7 +214,7 @@
                         </div>
                         <p class="text-sm text-gray-600 mt-4 mb-2">Schmerzpunkte</p>
                         <div class="flex flex-row gap-2">
-                            <Container class="flex-1">
+                            <Container class="flex-1" outline="bggray">
                                 <p class="text-sm font-medium mb-1">Links</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ painPointsSummary.left.count }}</h3>
@@ -220,7 +222,7 @@
                                         'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
                                         painPointsSummary.left.change < 0 ? 'bg-successLight text-successNormal' :
                                             painPointsSummary.left.change > 0 ? 'bg-dangerLight text-dangerNormal' :
-                                                'bg-gray-100'
+                                                'bg-gray-200'
                                     ]">
                                         <p>{{ painPointsSummary.left.change > 0 ? '+' : '' }}{{
                                             Math.round(painPointsSummary.left.change) }}%
@@ -228,7 +230,7 @@
                                     </div>
                                 </div>
                             </Container>
-                            <Container class="flex-1">
+                            <Container class="flex-1" outline="bggray">
                                 <p class="text-sm font-medium mb-1">Rechts</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ painPointsSummary.right.count }}</h3>
@@ -236,7 +238,7 @@
                                         'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
                                         painPointsSummary.right.change < 0 ? 'bg-successLight text-successNormal' :
                                             painPointsSummary.right.change > 0 ? 'bg-dangerLight text-dangerNormal' :
-                                                'bg-gray-100'
+                                                'bg-gray-200'
                                     ]">
                                         <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                             Math.round(painPointsSummary.right.change)
@@ -245,25 +247,74 @@
                                 </div>
                             </Container>
                         </div>
+                        <div class="flex gap-2 items-center align-center justify-start">
+                            <p class="text-sm text-gray-600 mt-4 mb-2">Biometriedaten</p>
+                            <SparkleIcon class="mr-2 h-4 w-4" /> 
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <Container class="flex-1" outline="bggray">
+                                
+                                <div class="flex flex-row items-center ">
+                                    <SparkleIcon class="mr-2 h-4 w-4" /> 
+                                    <div class="flex items-end gap-2">
+                                        <h2>{{ painPointsSummary.left.count }}</h2>
+                                        <p>bpm</p>
+
+                                    </div>
+                                </div>
+                                <p class="text-sm font-medium mb-1 bg-gray-300 p-2 rounded-lg opacity-50 text-center">Normal</p>
+                            </Container>
+                                                        <Container class="flex-1" outline="bggray">
+                                
+                                <div class="flex flex-row items-center w-full">
+                                    <SparkleIcon class="mr-2 h-4 w-4" /> 
+                                    <div class="flex items-end gap-2">
+                                        <h2>{{ painPointsSummary.left.count }}</h2>
+                                        <p>spO2</p>
+
+                                    </div>
+                                </div>
+                                <p class="text-sm font-medium mb-1 bg-gray-300 p-2 rounded-lg opacity-50 text-center">Normal</p>
+                            </Container>
+                                                        <Container class="flex-1" outline="bggray">
+                                
+                                <div class="flex flex-row items-center ">
+                                    <SparkleIcon class="mr-2 h-4 w-4" /> 
+                                    <div class="flex items-end gap-2">
+                                        <h2>{{ painPointsSummary.left.count }}</h2>
+                                        <p>C</p>
+
+                                    </div>
+                                </div>
+                                <p class="text-sm font-medium mb-1 bg-gray-300 p-2 rounded-lg opacity-50 text-center">Normal</p>
+                            </Container>
+                            
+                        </div>
                     </Container>
                 </div>
 
                 <!-- right -->
-                <Container class="flex-1 min-h-0 overflow-auto">
-                    <h3>Zeitstrahl</h3>
-                    <p>Links</p>
-                    <LineGraph
-                        :data="filteredData"
-                        :maxScale="maxScale"
-                        :unit="datasetTypes[activeDataset].unit"
-                    />
-                    <p>Rechts</p>
-                    <LineGraph
-                        :data="filteredData"
-                        :maxScale="maxScale"
-                        :unit="datasetTypes[activeDataset].unit"
-                    />
-                </Container>
+                 <div class="flex flex-col gap-4 w-full">
+                     <Container class="flex-1 min-h-0 overflow-auto">
+                         <h3>Zeitstrahl</h3>
+                         <p>Links</p>
+                         <LineGraph
+                             :data="filteredData"
+                             :maxScale="maxScale"
+                             :unit="datasetTypes[activeDataset].unit"
+                         />
+                         <p>Rechts</p>
+                         <LineGraph
+                             :data="filteredData"
+                             :maxScale="maxScale"
+                             :unit="datasetTypes[activeDataset].unit"
+                         />
+                     </Container>
+                     <Container>
+     
+                     </Container>
+
+                 </div>
 
             </div>
         </div>
@@ -294,6 +345,10 @@ import { Calendar as CalendarIcon } from 'lucide-vue-next'
 import { Smile as SmileIcon } from 'lucide-vue-next'
 import { Sparkles as SparkleIcon } from 'lucide-vue-next'
 import { Pencil as PencilIcon } from 'lucide-vue-next'
+import { ChevronDown as ChevronDown } from 'lucide-vue-next'
+import { ChartLine as ChartLine } from 'lucide-vue-next'
+import { ChartArea as ChartArea } from 'lucide-vue-next'
+// import { 'chart-line' as ChartLineIcon } from 'lucide-vue-next'
 
 definePageMeta({
     keepalive: true
@@ -329,10 +384,12 @@ const tabs = ref([
 
 const activeTab = ref(tabs.value[0].name)
 
-const tabsIcons = ref([
-    { name: 'Aktiv', icon: SmileIcon },
-    { name: 'Archiviert', icon: SmileIcon }
+const changeView = ref([
+    { name: "Chart",icon: ChartLine},
+    { name: "Diagramm",icon: ChartArea}
 ])
+
+const activeView = ref(changeView.value[0].name)
 
 
 
