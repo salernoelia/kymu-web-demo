@@ -104,12 +104,18 @@
 
                     <div
                         v-else
-                        class="grid grid-cols-3 gap-4 ex-grid"
+                        :class="{
+                            'grid gap-4 ex-grid': true,
+                            'grid-cols-3': filteredExercises.length >= 6,
+                            'grid-cols-2': filteredExercises.length >= 3 && filteredExercises.length < 6,
+                            'grid-cols-2': filteredExercises.length < 3
+                        }"
                     >
                         <div
                             v-for="ex in filteredExercises"
                             :key="ex.id"
                             class="flex flex-col bg-white card group hover:border-primary transition-colors cursor-pointer"
+                            @click="$emit('select-exercise', { selectedExercise: ex })"
                         >
                             <div class="aspect-video relative overflow-hidden rounded-md mb-3">
                                 <img
@@ -265,7 +271,7 @@ onMounted(() => {
     border: 1px var(--color-outline_grayNormal) solid;
     border-radius: 0.75rem;
     padding: 0.75rem;
-    height: fit-content;
+    height: 350px;
 }
 
 .ex-grid {

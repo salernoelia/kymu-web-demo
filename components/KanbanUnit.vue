@@ -23,6 +23,7 @@
                 <KanbanExerciseCard
                     :exercise="exercise"
                     :unit-name="unit.unitName"
+                    @edit="editExercise"
                     @remove="removeExercise"
                     @dragstart="handleDragStart"
                     @dragend="handleDragEnd"
@@ -62,7 +63,7 @@ const props = defineProps({
     unit: Object
 })
 
-const emit = defineEmits(['add-exercise', 'remove-exercise', 'move-exercise', 'show-sidebar-exercises'])
+const emit = defineEmits(['add-exercise', 'remove-exercise', 'edit-exercise', 'move-exercise', 'show-sidebar-exercises'])
 
 const showDropZone = ref(false)
 const draggedItem = ref(null)
@@ -107,6 +108,14 @@ const handleDropAtPosition = ({ exercise, fromUnit, position }) => {
 const showSidebarExercises = () => {
     emit('show-sidebar-exercises', {
         unitName: props.unit.unitName
+    })
+}
+
+const editExercise = (exercise) => {
+    emit('edit-exercise', {
+        unitName: props.unit.unitName,
+        exerciseId: exercise.id,
+        instanceId: exercise.instanceId
     })
 }
 

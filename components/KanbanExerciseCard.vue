@@ -12,11 +12,26 @@
         <div class="flex flex-col w-full pt-0.5 pb-0.5">
             <div class="exercise-header">
                 <h3 class="exercise-title">{{ exercise.name }}</h3>
-                <button
+                <!-- <button
                     class="remove-button"
                     @click="$emit('remove', exercise)"
                     type="button"
-                >×</button>
+                >×</button> -->
+
+
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <Icon name="ic:baseline-more-vert" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuItem>Duplizieren</DropdownMenuItem>
+                        <DropdownMenuItem @click="$emit('edit', exercise)">Bearbeiten</DropdownMenuItem>
+                        <DropdownMenuItem
+                            class="text-[--color-dangerNormal]"
+                            @click="$emit('remove', exercise)"
+                        >Löschen</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
             </div>
 
             <p class="label-small">{{ exercise.description }}</p>
@@ -55,12 +70,21 @@
 </template>
 
 <script setup>
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+
 const props = defineProps({
     exercise: Object,
     unitName: String
 })
 
-const emit = defineEmits(['remove', 'dragstart', 'dragend'])
+const emit = defineEmits(['remove', 'edit', 'dragstart', 'dragend'])
 
 const hasStats = computed(() => {
     return props.exercise.sets ||

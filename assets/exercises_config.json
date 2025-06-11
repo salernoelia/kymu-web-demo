@@ -781,7 +781,7 @@
     },
     {
       "id": "exercise_16",
-      "name": "Linker Arm (Bewertung)",
+      "name": "Schulterabduktion Links",
       "results": null,
       "category": "Schulterabduktion_links",
       "description": "Ein Test zur Beurteilung des Bewegungsumfangs und der Kontrolle der Schulterabduktion links.",
@@ -820,8 +820,8 @@
       "tempo_instructions": "Langsame und kontrollierte Bewegung.",
       "pain_monitoring_instruction": "Notieren Sie den Punkt, an dem Schmerz oder Steifheit beginnt.",
       "therapist_added_image_urls": [
-        "/ComfyUI_00007_.png",
-        "/ComfyUI_00011_.png"
+        "/ComfyUI_00011_.png",
+        "/ComfyUI_00017_.png"
       ],
       "therapist_added_video_urls": null,
       "family_scene_adjustment_access": false
@@ -914,6 +914,53 @@
       "therapist_added_image_urls": [
         "/ComfyUI_00124_.png",
         "/ComfyUI_00179_.png"
+      ],
+      "therapist_added_video_urls": null,
+      "family_scene_adjustment_access": false
+    },
+    {
+      "id": "exercise_19",
+      "name": "Schulterabduktion Rechts",
+      "results": null,
+      "category": "Schulterabduktion_rechts",
+      "description": "Ein Test zur Beurteilung des Bewegungsumfangs und der Kontrolle der Schulterabduktion Rechts.",
+      "exercise_type": "assessment_screen",
+      "goal_type": "repetitions_goal",
+      "repetitions_goal": 3,
+      "duration_seconds_goal": null,
+      "sets": 1,
+      "rest_between_sets_seconds": null,
+      "type": "Bewegungsradius",
+      "equipment_needed": [
+        "keine"
+      ],
+      "position": "Stehend",
+      "resistance_type": "Körpergewicht",
+      "resistance_level": "niedrig",
+      "starting_position_description": "Stehen Sie aufrecht mit den Armen an den Seiten.",
+      "execution_instructions": [
+        "Halten Sie Ihren linken Arm gestreckt.",
+        "Heben Sie Ihren linken Arm aus der Seite, weg vom Körper, so hoch wie möglich ohne Schmerzen.",
+        "Halten Sie die Handfläche nach unten oder leicht nach vorne gerichtet.",
+        "Senken Sie Ihren Arm langsam wieder an die Seite."
+      ],
+      "breathing_instructions": "Atmen Sie normal.",
+      "safety_precautions": [
+        "Nicht in den Schmerz hineinpressen.",
+        "Vermeiden Sie übermäßiges Schulterzucken."
+      ],
+      "target_muscles": [
+        "Deltamuskel_(Mitte)",
+        "Obergrätenmuskel"
+      ],
+      "joint_focus": [
+        "Schulter"
+      ],
+      "tempo_instructions": "Langsame und kontrollierte Bewegung.",
+      "pain_monitoring_instruction": "Notieren Sie den Punkt, an dem Schmerz oder Steifheit beginnt.",
+      "therapist_added_image_urls": [
+        "/ComfyUI_00011_.png",
+        "/ComfyUI_00017_.png"
       ],
       "therapist_added_video_urls": null,
       "family_scene_adjustment_access": false

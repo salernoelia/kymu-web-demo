@@ -14,7 +14,7 @@
         >
             <div class="flex flex-col">
                 <div class="flex gap-4 pb-4 items-center flex-shrink-0 justify-between">
-                    <div class="flex flex-row gap-2 items-center">
+                    <div class="flex flex-row gap-3 items-center">
                         <h1 class="whitespace-nowrap">Phillipp Köbel</h1>
                         <div class="divider"></div>
                         <TabsBorder
@@ -78,6 +78,7 @@
                                 :unit="unit"
                                 class="dropshadow"
                                 @add-exercise="addExerciseToUnit"
+                                @edit-exercise="editExercise"
                                 @remove-exercise="removeExerciseFromUnit"
                                 @move-exercise="moveExercise"
                                 @show-sidebar-exercises="(data) => {
@@ -112,6 +113,13 @@
             <ExerciseSidebar
                 v-if="sidebar.open"
                 @close="sidebar.open = false"
+                @select-exercise="(data) => {
+                    addExerciseToUnit({
+                        unitName: sidebar.unitName,
+                        exercise: data.selectedExercise
+                    });
+                    sidebar.open = false;
+                }"
             />
         </Transition>
     </div>
@@ -122,7 +130,7 @@ import unitsConfig from '../assets/units_config.json'
 import exercisesConfig from '../assets/exercises_config.json'
 
 import { Button } from '@/components/ui/button'
-import { Calendar as CalendarIcon } from 'lucide-vue-next'
+import { Calendar as CalendarIcon, SidebarOpen } from 'lucide-vue-next'
 import {
     useMouse
 } from '@vueuse/core'
@@ -178,6 +186,7 @@ const getExerciseById = (exerciseId) => {
 }
 
 const addExerciseToUnit = ({ unitName, exercise, position = -1 }) => {
+    console.log("adding", unitName, exercise, position)
     const unit = units.value.find(u => u.unitName === unitName)
     if (unit) {
         const exerciseWithInstance = { ...exercise, instanceId: Date.now() + Math.random() }
@@ -190,7 +199,13 @@ const addExerciseToUnit = ({ unitName, exercise, position = -1 }) => {
     }
 }
 
+
+const editExercise = ({ unitName, exerciseId }) => {
+    console.log({ unitName, exerciseId });
+}
+
 const removeExerciseFromUnit = ({ unitName, exerciseId, instanceId }) => {
+    console.log({ unitName, exerciseId, instanceId });
     const unit = units.value.find(u => u.unitName === unitName)
     if (unit) {
         const index = unit.exercises.findIndex(ex =>

@@ -4,7 +4,6 @@
             <div class="flex justify-between w-full">
                 <div class="flex flex-row gap-6 items-center">
                     <h1 class="">Phillipp Köbel</h1>
-                    <div class="divider"></div>
                     <div class="flex flex-row gap-2 items-center w-[220px]">
                         <TabsBorder
                             :tabs="tabs"
@@ -176,20 +175,21 @@
                     <Container class="flex-1 min-h-0 overflow-auto 0 custom-scrollbar">
                         <div class="flex flex-row gap-4 justify-between mb-2 ">
                             <h3>Zusammenfassung</h3>
-                                                                <Button
-                        variant="outline"
-                        class="h-8 flex items-center justify-start text-left font-normal"
-                        :class="!value ? 'text-muted-foreground' : ''"
-                    >
-                        <SparkleIcon class="mr-2 h-4 w-4" />
-                        <p>Analyse</p>
-                    </Button>
+                            <Button
+                                variant="outline"
+                                class="h-8 flex items-center justify-start text-left font-normal"
+                                :class="!value ? 'text-muted-foreground' : ''"
+                            >
+                                <SparkleIcon class="mr-2 h-4 w-4" />
+                                <p>Analyse</p>
+                            </Button>
                         </div>
 
                         <div class="flex flex-col gap-0">
                             <div class="flex gap-2 items-center align-center justify-start">
-                                <p class="text-sm text-gray-600 mb-2">{{ datasetTypes[activeDataset].name }} Durchschnitt</p>
-                                <InfoIcon class="mr-2 h-4 w-4" /> 
+                                <p class="text-sm text-gray-600 mb-2">{{ datasetTypes[activeDataset].name }}
+                                    Durchschnitt</p>
+                                <InfoIcon class="mr-2 h-4 w-4" />
                             </div>
                             <div class="flex flex-row gap-2">
                                 <SummaryContainer class="flex-1">
@@ -202,7 +202,8 @@
                                                 leftSideSummary.change < 0 ? 'bg-dangerLight text-dangerNormal' :
                                                     'bg-gray-200'
                                         ]">
-                                            <p>{{ leftSideSummary.change > 0 ? '+' : '' }}{{ leftSideSummary.change }}%</p>
+                                            <p>{{ leftSideSummary.change > 0 ? '+' : '' }}{{ leftSideSummary.change }}%
+                                            </p>
                                         </div>
                                     </div>
                                 </SummaryContainer>
@@ -216,7 +217,8 @@
                                                 rightSideSummary.change < 0 ? 'bg-dangerLight text-dangerNormal' :
                                                     'bg-gray-300 text-red-600'
                                         ]">
-                                            <p>{{ rightSideSummary.change > 0 ? '+' : '' }}{{ rightSideSummary.change }}%
+                                            <p>{{ rightSideSummary.change > 0 ? '+' : '' }}{{ rightSideSummary.change
+                                                }}%
                                             </p>
                                         </div>
                                     </div>
@@ -227,12 +229,10 @@
                         <div class="flex flex-col gap-0">
                             <div class="flex gap-2 items-center align-center justify-start">
                                 <p class="text-sm text-gray-600 mt-4 mb-2">Schmerzpunkte</p>
-                                <InfoIcon class="mr-2 h-4 w-4" /> 
+                                <InfoIcon class="mr-2 h-4 w-4" />
                             </div>
                             <div class="flex flex-row gap-2">
-                                <SummaryContainer
-                                    class="flex-1"
-                                >
+                                <SummaryContainer class="flex-1">
                                     <p class="text-sm font-medium mb-1 opacity-50">Links</p>
                                     <div class="flex flex-row items-center justify-between">
                                         <h3>{{ painPointsSummary.left.count }}</h3>
@@ -248,9 +248,7 @@
                                         </div>
                                     </div>
                                 </SummaryContainer>
-                                <SummaryContainer
-                                    class="flex-1"
-                                >
+                                <SummaryContainer class="flex-1">
                                     <p class="text-sm font-medium mb-1 opacity-50">Rechts</p>
                                     <div class="flex flex-row items-center justify-between">
                                         <h3>{{ painPointsSummary.right.count }}</h3>
@@ -262,7 +260,7 @@
                                         ]">
                                             <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                                 Math.round(painPointsSummary.right.change)
-                                            }}%</p>
+                                                }}%</p>
                                         </div>
                                     </div>
                                 </SummaryContainer>
@@ -272,59 +270,54 @@
                         <div class="flex flex-col gap-0">
                             <div class="flex gap-2 items-center align-center justify-start">
                                 <p class="text-sm text-gray-600 mt-4 mb-2">Biometriedaten</p>
-                                <InfoIcon class="mr-2 h-4 w-4" /> 
+                                <InfoIcon class="mr-2 h-4 w-4" />
                             </div>
                             <div class="flex flex-row gap-2">
-                                <SummaryContainer
-                                    class="flex-1 flex-col gap-1"
-                                >
-    
+                                <SummaryContainer class="flex-1 flex-col gap-1">
+
                                     <div class="flex flex-row items-center ">
                                         <HeartPulse class="mr-2 h-4 w-4" />
                                         <div class="flex items-end gap-2">
                                             <h3>{{ randomBpm }}</h3>
                                             <p>bpm</p>
-    
+
                                         </div>
                                     </div>
-                                    <p class="text-sm font-medium mb-1 bg-gray-300 p-1 rounded-lg opacity-50 text-center">
+                                    <p
+                                        class="text-sm font-medium mb-1 bg-gray-300 p-1 rounded-lg opacity-50 text-center">
                                         Normal</p>
                                 </SummaryContainer>
-                            
-                                <SummaryContainer
-                                    class="flex-1 flex-col gap-1"
-                                    
-                                >
-    
+
+                                <SummaryContainer class="flex-1 flex-col gap-1">
+
                                     <div class="flex flex-row items-center w-full">
                                         <Droplet class="mr-2 h-4 w-4" />
                                         <div class="flex items-end gap-2">
                                             <h3>{{ randomSpO2 }}</h3>
                                             <p>spO2</p>
-    
+
                                         </div>
                                     </div>
-                                    <p class="text-sm font-medium mb-1 bg-gray-300 p-1 rounded-lg opacity-50 text-center">
+                                    <p
+                                        class="text-sm font-medium mb-1 bg-gray-300 p-1 rounded-lg opacity-50 text-center">
                                         Normal</p>
                                 </SummaryContainer>
-                                <SummaryContainer
-                                    class="flex-1 flex-col gap-1"
-                                  
-                                >
-    
+                                <SummaryContainer class="flex-1 flex-col gap-1">
+
                                     <div class="flex flex-row items-center ">
                                         <Thermometer class="mr-2 h-4 w-4" />
                                         <div class="flex items-end gap-2">
                                             <h3>{{ randomTemperature }}°</h3>
                                             <p>C</p>
-    
+
                                         </div>
                                     </div>
-                                    <p class="text-sm font-medium mb-1 bg-gray-300 p-1 rounded-lg opacity-50 text-center">
+                                    <p
+                                        class="text-sm font-medium mb-1 bg-gray-300 p-1 rounded-lg opacity-50 text-center">
                                         Normal</p>
                                 </SummaryContainer>
 
-                        </div>
+                            </div>
 
                         </div>
                     </Container>

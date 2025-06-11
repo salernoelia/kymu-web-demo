@@ -11,6 +11,15 @@
 </template>
 
 <script setup>
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+
 const props = defineProps({
     unitName: String,
     position: Number
