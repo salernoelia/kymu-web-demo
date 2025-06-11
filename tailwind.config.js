@@ -38,6 +38,10 @@ export default {
     		colors: {
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
+				successLight: '#EAEAEA',
+				successNormal: '#4BA264',
+				dangerLight: '#EAEAEA',
+				dangerNormal: '#E86575',
     			card: {
     				DEFAULT: 'hsl(var(--card))',
     				foreground: 'hsl(var(--card-foreground))'

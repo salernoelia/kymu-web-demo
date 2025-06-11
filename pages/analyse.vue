@@ -176,21 +176,26 @@
                     <Container class="flex-1 min-h-0 overflow-auto 0 custom-scrollbar">
                         <div class="flex flex-row gap-4 justify-between mb-2 ">
                             <h3>Zusammenfassung</h3>
-                            <UiButton variant="outline">
-                                Analyse
-                            </UiButton>
+                                                                <Button
+                        variant="outline"
+                        class="h-8 flex items-center justify-start text-left font-normal"
+                        :class="!value ? 'text-muted-foreground' : ''"
+                    >
+                        <SparkleIcon class="mr-2 h-4 w-4" />
+                        <p>Analyse</p>
+                    </Button>
                         </div>
-                        <p class="text-sm text-gray-600 mb-2">{{ datasetTypes[activeDataset].name }} Durchschnitt</p>
+                        <div class="flex gap-2 items-center align-center justify-start">
+                            <p class="text-sm text-gray-600 mb-2">{{ datasetTypes[activeDataset].name }} Durchschnitt</p>
+                            <InfoIcon class="mr-2 h-4 w-4" /> 
+                        </div>
                         <div class="flex flex-row gap-2">
-                            <Container
-                                class="flex-1"
-                                outline="bggray"
-                            >
-                                <p class="text-sm font-medium mb-1">Links</p>
+                            <Container class="flex-1" outline="bggray">
+                                <p class="text-sm font-medium mb-1 opacity-50">Links</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ leftSideSummary.average }}{{ datasetTypes[activeDataset].unit }}</h3>
                                     <div :class="[
-                                        'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
+                                        'flex flex-row items-center px-3 py-1 rounded-lg text-sm font-medium',
                                         leftSideSummary.change > 0 ? 'bg-successLight text-successNormal' :
                                             leftSideSummary.change < 0 ? 'bg-dangerLight text-dangerNormal' :
                                                 'bg-gray-200'
@@ -199,15 +204,12 @@
                                     </div>
                                 </div>
                             </Container>
-                            <Container
-                                class="flex-1"
-                                outline="bggray"
-                            >
-                                <p class="text-sm font-medium mb-1">Rechts</p>
+                            <Container class="flex-1" outline="bggray">
+                                <p class="text-sm font-medium mb-1 opacity-50">Rechts</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ rightSideSummary.average }}{{ datasetTypes[activeDataset].unit }}</h3>
                                     <div :class="[
-                                        'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
+                                        'flex flex-row items-center px-3 py-1 rounded-lg text-sm font-medium',
                                         rightSideSummary.change > 0 ? 'bg-successLight text-successNormal' :
                                             rightSideSummary.change < 0 ? 'bg-dangerLight text-dangerNormal' :
                                                 'bg-gray-300 text-red-600'
@@ -218,17 +220,20 @@
                                 </div>
                             </Container>
                         </div>
-                        <p class="text-sm text-gray-600 mt-4 mb-2">Schmerzpunkte</p>
+                        <div class="flex gap-2 items-center align-center justify-start">
+                            <p class="text-sm text-gray-600 mt-4 mb-2">Schmerzpunkte</p>
+                            <InfoIcon class="mr-2 h-4 w-4" /> 
+                        </div>
                         <div class="flex flex-row gap-2">
                             <Container
                                 class="flex-1"
                                 outline="bggray"
                             >
-                                <p class="text-sm font-medium mb-1">Links</p>
+                                <p class="text-sm font-medium mb-1 opacity-50">Links</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ painPointsSummary.left.count }}</h3>
                                     <div :class="[
-                                        'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
+                                        'flex flex-row items-center px-3 py-1 rounded-lg text-sm font-medium',
                                         painPointsSummary.left.change < 0 ? 'bg-successLight text-successNormal' :
                                             painPointsSummary.left.change > 0 ? 'bg-dangerLight text-dangerNormal' :
                                                 'bg-gray-200'
@@ -243,11 +248,11 @@
                                 class="flex-1"
                                 outline="bggray"
                             >
-                                <p class="text-sm font-medium mb-1">Rechts</p>
+                                <p class="text-sm font-medium mb-1 opacity-50">Rechts</p>
                                 <div class="flex flex-row items-center justify-between">
                                     <h3>{{ painPointsSummary.right.count }}</h3>
                                     <div :class="[
-                                        'flex flex-row items-center px-3 py-1 rounded-full text-sm font-medium',
+                                        'flex flex-row items-center px-3 py-1 rounded-lg text-sm font-medium',
                                         painPointsSummary.right.change < 0 ? 'bg-successLight text-successNormal' :
                                             painPointsSummary.right.change > 0 ? 'bg-dangerLight text-dangerNormal' :
                                                 'bg-gray-200'
@@ -261,7 +266,7 @@
                         </div>
                         <div class="flex gap-2 items-center align-center justify-start">
                             <p class="text-sm text-gray-600 mt-4 mb-2">Biometriedaten</p>
-                            <SparkleIcon class="mr-2 h-4 w-4" />
+                            <InfoIcon class="mr-2 h-4 w-4" /> 
                         </div>
                         <div class="flex flex-row gap-2">
                             <Container
@@ -272,7 +277,7 @@
                                 <div class="flex flex-row items-center ">
                                     <SparkleIcon class="mr-2 h-4 w-4" />
                                     <div class="flex items-end gap-2">
-                                        <h2>{{ painPointsSummary.left.count }}</h2>
+                                        <h3>{{ painPointsSummary.left.count }}</h3>
                                         <p>bpm</p>
 
                                     </div>
@@ -288,7 +293,7 @@
                                 <div class="flex flex-row items-center w-full">
                                     <SparkleIcon class="mr-2 h-4 w-4" />
                                     <div class="flex items-end gap-2">
-                                        <h2>{{ painPointsSummary.left.count }}</h2>
+                                        <h3>{{ painPointsSummary.left.count }}</h3>
                                         <p>spO2</p>
 
                                     </div>
@@ -304,7 +309,7 @@
                                 <div class="flex flex-row items-center ">
                                     <SparkleIcon class="mr-2 h-4 w-4" />
                                     <div class="flex items-end gap-2">
-                                        <h2>{{ painPointsSummary.left.count }}</h2>
+                                        <h3>{{ painPointsSummary.left.count }}°</h3>
                                         <p>C</p>
 
                                     </div>
@@ -375,7 +380,7 @@ import { Pencil as PencilIcon } from 'lucide-vue-next'
 import { ChevronDown as ChevronDown } from 'lucide-vue-next'
 import { ChartLine as ChartLine } from 'lucide-vue-next'
 import { ChartArea as ChartArea } from 'lucide-vue-next'
-// import { 'chart-line' as ChartLineIcon } from 'lucide-vue-next'
+import { Info as InfoIcon } from 'lucide-vue-next'
 
 definePageMeta({
     keepalive: true
