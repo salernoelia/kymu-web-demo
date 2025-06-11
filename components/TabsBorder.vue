@@ -10,7 +10,11 @@
       ]"
       @click="$emit('update:active', tab.name)"
     >
-      <component v-if="tab.icon" :is="tab.icon" class="w-4 h-4 flex items-center" />
+      <component
+        v-if="tab.icon"
+        :is="tab.icon"
+        class="w-4 h-4 flex items-center"
+      />
       <p v-else>{{ tab.name }}</p>
     </button>
   </div>
@@ -39,6 +43,7 @@ defineEmits(['update:active']);
   border: 1px var(--color-outline_grayNormal) solid;
   overflow: hidden;
   flex-wrap: nowrap;
+  cursor: none;
   height: fit-content;
 }
 
@@ -49,6 +54,7 @@ defineEmits(['update:active']);
   position: relative;
   color: var(--color-inactiveNormal);
   height: fit-content;
+  cursor: none;
 
   &::after {
     content: '';

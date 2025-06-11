@@ -289,3 +289,10 @@ h4 {
   scrollbar-width: auto;
   scrollbar-color: var(--color-inactiveLightActive) transparent;
 }
+
+.cursor {
+  position: absolute;
+  width: 1.6rem;
+  left: 0;
+  top: 0;
+}

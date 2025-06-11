@@ -102,7 +102,7 @@ const formatDuration = (seconds) => {
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 8px;
-    cursor: grab;
+    cursor: none;
     transition: box-shadow 0.2s ease;
 }
 
@@ -111,7 +111,7 @@ const formatDuration = (seconds) => {
 }
 
 .exercise-card:active {
-    cursor: grabbing;
+    cursor: none;
 }
 
 .exercise-header {
@@ -134,7 +134,6 @@ const formatDuration = (seconds) => {
     background: none;
     border: none;
     color: #dc3545;
-    cursor: pointer;
     font-size: 18px;
     padding: 0;
     width: 20px;
@@ -201,7 +200,6 @@ const formatDuration = (seconds) => {
     background: none;
     border: none;
     color: #dc3545;
-    cursor: pointer;
     font-size: 1.25rem;
     padding: 0;
     width: 24px;

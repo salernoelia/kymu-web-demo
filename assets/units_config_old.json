@@ -1,10 +1,19 @@
 {
     "physioPlan": [
         {
+            "unitName": "Rumpfstabilität & Haltungskontrolle",
+            "interface": "tv",
+            "exercises": [
+                "exercise_002",
+                "exercise_011",
+                "exercise_004",
+                "exercise_003",
+                "exercise_001"
+            ]
+        },
+        {
             "unitName": "Schulter- & Oberkörperkräftigung",
             "interface": "tv",
-            "therapist": "Mathias Melz (Sie)",
-            "therapist_type": "Physiotherapeut/-in",
             "exercises": [
                 "exercise_011",
                 "exercise_007",
@@ -15,8 +24,6 @@
         {
             "unitName": "Allgemeine Mobilisation & Stabilität",
             "interface": "tv",
-            "therapist": "Mathias Melz (Sie)",
-            "therapist_type": "Physiotherapeut/-in",
             "exercises": [
                 "exercise_001",
                 "exercise_002",
@@ -25,10 +32,19 @@
             ]
         },
         {
+            "unitName": "Kraftaufbau Unterkörper",
+            "interface": "vr",
+            "exercises": [
+                "exercise_009",
+                "exercise_013",
+                "exercise_015",
+                "exercise_006",
+                "exercise_008"
+            ]
+        },
+        {
             "unitName": "Gleichgewicht & funktionelle Bewegung",
             "interface": "vr",
-            "therapist": "Daria Saager",
-            "therapist_type": "Ergotherapeut/-in",
             "exercises": [
                 "exercise_010",
                 "exercise_005",

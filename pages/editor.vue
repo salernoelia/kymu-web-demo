@@ -7,7 +7,11 @@
             />
         </Transition>
 
-        <div class="editor h-full flex flex-col">
+        <div
+            class="editor h-full flex flex-col"
+            @mouseenter="onKanban = true"
+            @mouseleave="onKanban = false"
+        >
             <div class="flex flex-col">
                 <div class="flex gap-4 pb-4 items-center flex-shrink-0 justify-between">
                     <div class="flex flex-row gap-2 items-center">
@@ -71,6 +75,19 @@
             </div>
 
 
+            <div
+                class="cursor_blue cursor pointer-events-none"
+                :style="{
+                    transform: `translate(${x - 35}px, ${y - 131}px)`,
+                    position: 'fixed',
+                    zIndex: 9999
+                }"
+                v-if="onKanban"
+            >
+                <img src="../public/cursor_blue.svg" />
+            </div>
+
+
 
             <UnitBar
                 v-if="units"
@@ -94,8 +111,18 @@ import exercisesConfig from '../assets/exercises_config.json'
 
 import { Button } from '@/components/ui/button'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
+import {
+    useMouse
+} from '@vueuse/core'
+
+const { x
+    , y
+    , sourceType
+} = useMouse
+        ()
 
 const showSidebar = ref(false)
+const onKanban = ref(false)
 
 const tabs = ref([
     { name: 'Messwert' },
@@ -160,6 +187,7 @@ const moveExercise = ({ fromUnit, toUnit, exercise, toPosition = -1 }) => {
     height: 100%;
     position: relative;
     justify-content: space-between;
+    cursor: none;
 }
 
 .editor-header {
