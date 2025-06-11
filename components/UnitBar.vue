@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-row bg-white rounded-xl h-20 p-4 gap-4 dropshadow overflow-x-auto overflow-y-hidden custom-scrollbar">
+        class="flex flex-row bg-white rounded-xl h-20 p-4 gap-4 dropshadow overflow-x-auto overflow-y-hidden custom-scrollbar border-[--color-outline_grayNormal] border dropshadow">
         <UnitLabel
             v-for="unit in units"
             :key="unit.unitName"

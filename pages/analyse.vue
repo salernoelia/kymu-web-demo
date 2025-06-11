@@ -4,43 +4,23 @@
             <div class="flex justify-between w-full">
                 <div class="flex flex-row gap-6 items-center">
                     <h1 class="">Phillipp Köbel</h1>
-                    <div class="flex flex-row gap-2 items-center w-[220px]">
-                        <TabsBorder
-                            :tabs="tabs"
-                            v-model:active="activeTab"
-                            class="h-8 w-full"
-                        />
-                    </div>
-                    <Button
-                        variant="outline"
-                        class="h-8 flex items-center justify-start text-left font-normal"
-                        :class="!value ? 'text-muted-foreground' : ''"
-                    >
-                        <SmileIcon class="mr-2 h-4 w-4" />
-                        <p>Feedback</p>
-                    </Button>
-                    <Button
-                        variant="outline"
-                        class="h-8 flex items-center justify-start text-left font-normal"
-                        :class="!value ? 'text-muted-foreground' : ''"
-                    >
-                        <SparkleIcon class="mr-2 h-4 w-4" />
-                        <p>KI Vorschläge</p>
-                    </Button>
-                    <Button
-                        variant="outline"
-                        class="h-8 flex items-center justify-start text-left font-normal"
-                        :class="!value ? 'text-muted-foreground' : ''"
-                    >
-                        <PencilIcon class="mr-2 h-4 w-4" />
-                        <p>Markieren</p>
-                    </Button>
+
+
+
 
                 </div>
                 <div class="flex flex-row gap-2 items-center">
                     <Button
                         variant="outline"
-                        class="h-8 flex items-center justify-start text-left font-normal"
+                        class="h-8 flex items-center justify-start text-left font-normal border border-[--color-outline_grayNormal]"
+                        :class="!value ? 'text-muted-foreground' : ''"
+                    >
+                        <PencilIcon class="mr-2 h-4 w-4" />
+                        <p>Markieren</p>
+                    </Button>
+                    <Button
+                        variant="outline"
+                        class="h-8 flex items-center justify-start text-left font-normal border border-[--color-outline_grayNormal]"
                         :class="!value ? 'text-muted-foreground' : ''"
                     >
 
@@ -61,10 +41,7 @@
         </div>
 
         <div class="flex flex-col gap-4 flex-1 min-h-0">
-            <div class="flex flex-row gap-6 opacity-50 flex-shrink-0">
-                <h4>{{ formattedStart }} - {{ formattedEnd }}</h4>
-                <h4>Schmerzpunkte</h4>
-            </div>
+
 
             <div class="flex flex-row gap-4 flex-1 min-h-0 w-full">
                 <!-- left -->
@@ -153,11 +130,7 @@
 
 
 
-
-                    </Container>
-
-                    <Container>
-
+                        <div class="divider-v"></div>
 
                         <h3>Datensets</h3>
 
@@ -328,6 +301,8 @@
                         </div>
 
                         <div class="flex flex-col gap-2 flex-1 min-h-0">
+
+
                             <div class="flex-1 min-h-0 flex flex-col">
                                 <div class="flex-1 min-h-0">
                                     <LineGraph
@@ -336,6 +311,18 @@
                                         :unit="datasetTypes[activeDataset].unit"
                                     />
                                 </div>
+                                <div
+                                    v-if="activeSide === 'Beide'"
+                                    class="flex-1 min-h-0"
+                                >
+                                    <LineGraph
+                                        :data="filteredRightData"
+                                        :maxScale="maxScale"
+                                        :unit="datasetTypes[activeDataset].unit"
+                                    />
+                                </div>
+
+
                             </div>
 
                         </div>
@@ -474,7 +461,7 @@ const datasets = ref({
     MOTOR: {}
 })
 
-const generateDataForRange = (startDate, endDate, datasetType) => {
+const generateDataForRange = (startDate, endDate, datasetType, side = 'left') => {
     const dates = []
     const { range } = datasetTypes[datasetType]
     const min = range[0]
@@ -484,6 +471,9 @@ const generateDataForRange = (startDate, endDate, datasetType) => {
     const end = new Date(endDate)
 
     let value = min + (max - min) * (0.4 + Math.random() * 0.2)
+    if (side === 'right') {
+        value *= (0.85 + Math.random() * 0.3)
+    }
 
     while (currentDate <= end) {
         const change = (Math.random() - 0.4) * (max - min) * 0.09
@@ -523,14 +513,6 @@ const calculateSummary = (data) => {
 
 const leftSideSummary = computed(() => {
     return calculateSummary(filteredData.value)
-})
-
-const rightSideSummary = computed(() => {
-    const rightData = filteredData.value.map(d => ({
-        ...d,
-        value: d.value * (Math.random() * 0.4 + 0.8)
-    }))
-    return calculateSummary(rightData)
 })
 
 const randomBpm = computed(() => {
@@ -579,14 +561,34 @@ const initializeDatasets = () => {
                 datasets.value[type][part] = {}
             }
             bodyParts[part].tests.forEach(test => {
-                datasets.value[type][part][test] = generateDataForRange(startDate, endDate, type)
+                // Generate both left and right datasets
+                datasets.value[type][part][test] = {
+                    left: generateDataForRange(startDate, endDate, type, 'left'),
+                    right: generateDataForRange(startDate, endDate, type, 'right')
+                }
             })
         })
     })
 }
-
 const activeData = computed(() => {
-    return datasets.value[activeDataset.value]?.[activeBodyPart.value]?.[activeTest.value] || []
+    const data = datasets.value[activeDataset.value]?.[activeBodyPart.value]?.[activeTest.value]
+    if (!data) return []
+
+    if (activeSide.value === 'Links') return data.left || []
+    if (activeSide.value === 'Rechts') return data.right || []
+    if (activeSide.value === 'Beide') {
+        // Combine both datasets for "Beide" view
+        return data.left?.map((leftItem, index) => ({
+            ...leftItem,
+            rightValue: data.right?.[index]?.value || 0
+        })) || []
+    }
+    return []
+})
+
+const rightSideSummary = computed(() => {
+    const rightData = datasets.value[activeDataset.value]?.[activeBodyPart.value]?.[activeTest.value]?.right || []
+    return calculateSummary(rightData)
 })
 
 watch([() => value.value.start, () => value.value.end], () => {
@@ -607,6 +609,16 @@ const filteredData = computed(() => {
 const maxScale = computed(() => {
     const dataset = datasetTypes[activeDataset.value]
     return dataset.range[1]
+})
+
+const filteredRightData = computed(() => {
+    const rightData = datasets.value[activeDataset.value]?.[activeBodyPart.value]?.[activeTest.value]?.right || []
+    return rightData.filter(item => {
+        const itemDate = new Date(item.date)
+        const startDate = new Date(value.value.start.year, value.value.start.month - 1, value.value.start.day)
+        const endDate = new Date(value.value.end.year, value.value.end.month - 1, value.value.end.day)
+        return itemDate >= startDate && itemDate <= endDate
+    })
 })
 
 onMounted(async () => {

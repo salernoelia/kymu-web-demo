@@ -90,7 +90,18 @@
                                     sidebar.unitName = data.unitName;
                                 }"
                             />
-                            <div class="divider-full mr-8"></div>
+                            <div
+                                class="flex gap-2 w-fit h-fit whitespace-nowrap items-center text-[--color-inactiveNormal] mr-4">
+                                <Icon name="ic:add" />
+                                <h4>
+                                    Hinzufügen
+                                </h4>
+                            </div>
+
+                            <div
+                                v-if="index < 1"
+                                class="divider-full mr-8"
+                            ></div>
                         </div>
                     </div>
 

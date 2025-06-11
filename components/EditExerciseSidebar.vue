@@ -160,7 +160,7 @@
                 >Zurück</Button>
                 <Button
                     class="bg-[--color-primaryNormal] z-20"
-                    @click="$emit('update-exercise', editedExercise)"
+                    @click="$emit('close')"
                 >Erstellen</Button>
             </div>
         </div>

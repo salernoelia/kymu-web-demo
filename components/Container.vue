@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="['c flex flex-col gap-2 p-4', outline]"
+        :class="['c flex flex-col gap-2 p-4 dropshadow', outline]"
         :style="type === 'white' ? 'background-color: #fff' : 'background-color: var(--color-outline_grayLight)'"
     >
         <slot></slot>

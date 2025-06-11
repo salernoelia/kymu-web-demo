@@ -53,7 +53,9 @@ defineEmits(['update:active']);
   transition: all 0.2s ease-in-out;
   position: relative;
   color: var(--color-inactiveNormal);
+  opacity: 0.8;
   height: fit-content;
+  background-color: white;
 
   &::after {
     content: '';
@@ -76,6 +78,7 @@ defineEmits(['update:active']);
   &.active {
     background-color: white;
     color: #000;
+    opacity: 1;
   }
 }
 
