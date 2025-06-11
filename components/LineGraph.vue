@@ -13,6 +13,11 @@
 <script setup>
 import * as d3 from 'd3';
 
+const { x
+    , y
+    , sourceType
+} = useMouse
+
 const props = defineProps({
     data: {
         type: Array,
@@ -55,9 +60,24 @@ const drawChart = () => {
         .append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
+    // Create dot pattern for background
+    const defs = svg.append('defs');
+
+    const pattern = defs.append('pattern')
+        .attr('id', 'dot-pattern')
+        .attr('patternUnits', 'userSpaceOnUse')
+        .attr('width', 10)
+        .attr('height', 10);
+
+    pattern.append('circle')
+        .attr('cx', 5)
+        .attr('cy', 5)
+        .attr('r', 0.8)
+        .attr('fill', '#C0C0C0')
+        .attr('opacity', 0.8);
+
     // Create gradient
-    const gradient = svg.append('defs')
-        .append('linearGradient')
+    const gradient = defs.append('linearGradient')
         .attr('id', 'area-gradient')
         .attr('gradientUnits', 'userSpaceOnUse')
         .attr('x1', 0)
@@ -84,29 +104,30 @@ const drawChart = () => {
         .domain([0, props.maxScale])
         .range([height, 0]);
 
-    // Line generator
+    // Line generator with linear curve for diagonal connections
     const line = d3.line()
         .x(d => x(new Date(d.date)))
         .y(d => y(d.value))
-        .curve(d3.curveMonotoneX);
+        .curve(d3.curveLinear);
 
+    // Background with dot pattern
     svg.append('rect')
         .attr('x', 0)
         .attr('y', 0)
         .attr('width', width)
         .attr('height', height)
-        .attr('fill', '#FDFDFD')
+        .attr('fill', 'url(#dot-pattern)')
         .attr('stroke', 'var(--color-outline_grayNormal)')
         .attr('stroke-width', 1)
         .attr('rx', 10)
         .attr('ry', 10);
 
-    // Area generator for gradient
+    // Area generator for gradient with linear curve
     const area = d3.area()
         .x(d => x(new Date(d.date)))
         .y0(height)
         .y1(d => y(d.value))
-        .curve(d3.curveMonotoneX);
+        .curve(d3.curveLinear);
 
     // Add the X axis with formatted dates
     svg.append('g')
@@ -120,6 +141,21 @@ const drawChart = () => {
         .style("opacity", 0.5)
         .call(d3.axisLeft(y).tickSize(0))
         .call(g => g.selectAll('.domain').remove());
+
+    const today = new Date();
+    const todayX = x(today);
+
+    if (todayX >= 0 && todayX <= width) {
+        svg.append('line')
+            .attr('x1', todayX)  // Same x position
+            .attr('y1', 0)       // Top of chart
+            .attr('x2', todayX)  // Same x position
+            .attr('y2', height)  // Bottom of chart
+            .attr('stroke', 'var(--color-secondaryNormal)')
+            .attr('stroke-width', 2)
+            .attr('stroke-dasharray', '3,3')
+            .style('opacity', 0.7);
+    }
 
     // Add the gradient area
     svg.append('path')
@@ -135,6 +171,23 @@ const drawChart = () => {
         .attr('stroke-width', 2)
         .attr('d', line);
 
+    // Add orange line through the last data point
+    if (props.data.length > 0) {
+        const lastDataPoint = props.data[props.data.length - 1];
+        const lastX = x(new Date(lastDataPoint.date));
+        const lastY = y(lastDataPoint.value);
+
+        svg.append('line')
+            .attr('x1', 0)
+            .attr('y1', lastY)
+            .attr('x2', width)
+            .attr('y2', lastY)
+            .attr('stroke', 'var(--color-tertiaryNormal)')
+            .attr('stroke-width', 2)
+            .attr('stroke-dasharray', '5,5')
+            .style('opacity', 0.8);
+    }
+
     // Add pain degree points
     props.data.forEach(d => {
         if (d.painDegrees && d.painDegrees.length > 0) {
@@ -145,7 +198,7 @@ const drawChart = () => {
                     .attr('r', 4)
                     .style('fill', 'var(--color-dangerNormal)')
                     .style('stroke', 'none')
-                    .style('opacity', 0.8);
+                    .style('opacity', 1);
             });
         }
     });
@@ -164,8 +217,9 @@ const drawChart = () => {
         .attr('y1', 0)
         .attr('y2', height)
         .style('opacity', 0)
-        .style('stroke', 'var(--color-outline_grayNormal)')
+        .style('stroke', 'var(--color-secondaryNormal)')
         .style('stroke-width', '1px')
+
 
     // Add invisible overlay for mouse tracking
     const overlay = svg.append('rect')
@@ -199,9 +253,11 @@ const drawChart = () => {
 
             tooltip
                 .style('opacity', 1)
-                .html(`Datum: ${new Date(d.date).toLocaleDateString()}<br/>Wert: ${d.value}${props.unit ? ` ${props.unit}` : ''}${painDegreesText}`)
-                .style('left', (event.pageX - 160) + 'px')
-                .style('top', (event.pageY - 28) + 'px');
+                .html(`<div style="background: white; border: 1px solid var(--color-outline_grayNormal); border-radius: 1rem; padding: 1rem;">Datum: ${new Date(d.date).toLocaleDateString()}<br/>Wert: ${d.value}${props.unit ? ` ${props.unit}` : ''}${painDegreesText}</div>`)
+                .style('left', (event.pageX - 20) + 'px')
+                .style('transform', `translate(${event.pageX - 20}px, ${event.pageY - 120}px)`)
+                .style('top', '0px')
+                .style('left', '0px');
         }
     })
         .on('mouseleave', () => {

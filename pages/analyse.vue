@@ -69,7 +69,7 @@
             <div class="flex flex-row gap-4 flex-1 min-h-0 w-full">
                 <!-- left -->
                 <div class="flex flex-col gap-4 w-1/3 min-h-0">
-                    <Container class="flex-1 min-h-0 overflow-auto custom-scrollbar">
+                    <Container class=" gap-3 min-h-0 overflow-auto custom-scrollbar">
                         <h3>Filter</h3>
                         <!-- <Tabs
                             :tabs="tabs"
@@ -86,8 +86,10 @@
                                     <CalendarIcon class="mr-2 h-4 w-4" />
                                     <template v-if="value.start">
                                         <template v-if="value.end">
-                                            {{ df.format(value.start.toDate(getLocalTimeZone())) }} - {{
-                                                df.format(value.end.toDate(getLocalTimeZone())) }}
+                                            <h4>
+                                                {{ df.format(value.start.toDate(getLocalTimeZone())) }} - {{
+                                                    df.format(value.end.toDate(getLocalTimeZone())) }}
+                                            </h4>
                                         </template>
 
                                         <template v-else>
@@ -149,8 +151,16 @@
                             </Select>
                         </div>
 
-                        <div class="divider-v" />
-                        <h4>{{ datasetTypes[activeDataset].name }} Tests</h4>
+
+
+
+                    </Container>
+
+                    <Container>
+
+
+                        <h3>Datensets</h3>
+
                         <div
                             v-for="test in bodyParts[activeBodyPart].tests"
                             :key="test"
@@ -164,11 +174,9 @@
                         </div>
 
 
-
-
                     </Container>
                     <Container class="flex-1 min-h-0 overflow-auto 0 custom-scrollbar">
-                        <div class="flex flex-row gap-4 justify-between mb-2 ">
+                        <div class="flex flex-row gap-2 justify-between mb-2 ">
                             <h3>Zusammenfassung</h3>
                             <Button
                                 variant="outline"
@@ -213,7 +221,7 @@
                                                     'bg-gray-300 text-red-600'
                                         ]">
                                             <p>{{ rightSideSummary.change > 0 ? '+' : '' }}{{ rightSideSummary.change
-                                            }}%
+                                                }}%
                                             </p>
                                         </div>
                                     </div>
@@ -223,7 +231,7 @@
 
                         <div class="flex flex-col gap-0">
                             <div class="flex gap-2 items-center align-center justify-start">
-                                <p class="text-sm text-gray-600 mt-4 mb-2">Schmerzpunkte</p>
+                                <p class="text-sm text-gray-600  mb-2">Schmerzpunkte</p>
                                 <InfoIcon class="mr-2 h-4 w-4" />
                             </div>
                             <div class="flex flex-row gap-2">
@@ -255,7 +263,7 @@
                                         ]">
                                             <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                                 Math.round(painPointsSummary.right.change)
-                                            }}%</p>
+                                                }}%</p>
                                         </div>
                                     </div>
                                 </SummaryContainer>
@@ -264,7 +272,7 @@
 
                         <div class="flex flex-col gap-0">
                             <div class="flex gap-2 items-center align-center justify-start">
-                                <p class="text-sm text-gray-600 mt-4 mb-2">Biometriedaten</p>
+                                <p class="text-sm text-gray-600 mb-2">Biometriedaten</p>
                                 <InfoIcon class="mr-2 h-4 w-4" />
                             </div>
                             <div class="flex flex-row gap-2">
@@ -320,16 +328,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="flex-1 min-h-0 flex flex-col">
-                                <p class="flex-shrink-0">Rechts</p>
-                                <div class="flex-1 min-h-0">
-                                    <LineGraph
-                                        :data="filteredData"
-                                        :maxScale="maxScale"
-                                        :unit="datasetTypes[activeDataset].unit"
-                                    />
-                                </div>
-                            </div>
+
                         </div>
                     </Container>
 
