@@ -221,7 +221,7 @@
                                                     'bg-gray-300 text-red-600'
                                         ]">
                                             <p>{{ rightSideSummary.change > 0 ? '+' : '' }}{{ rightSideSummary.change
-                                                }}%
+                                            }}%
                                             </p>
                                         </div>
                                     </div>
@@ -263,7 +263,7 @@
                                         ]">
                                             <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                                 Math.round(painPointsSummary.right.change)
-                                                }}%</p>
+                                            }}%</p>
                                         </div>
                                     </div>
                                 </SummaryContainer>
@@ -316,10 +316,18 @@
                 <!-- right -->
                 <div class="flex flex-col gap-4 w-full">
                     <Container class="flex-1 min-h-0 overflow-hidden flex flex-col">
-                        <h3 class="flex-shrink-0">Zeitstrahl</h3>
+                        <div class="flex justify-between items-center">
+                            <h3 class="flex-shrink-0">Zeitstrahl</h3>
+                            <TabsBorder
+                                :tabs="[{ name: 'Links' },
+                                { name: 'Rechts' }]"
+                                v-model:active="activeSide"
+                                class="h-8 max-w-[320px]"
+                            />
+                        </div>
+
                         <div class="flex flex-col gap-2 flex-1 min-h-0">
                             <div class="flex-1 min-h-0 flex flex-col">
-                                <p class="flex-shrink-0">Links</p>
                                 <div class="flex-1 min-h-0">
                                     <LineGraph
                                         :data="filteredData"
@@ -415,6 +423,7 @@ const tabs = ref([
 ])
 
 const activeTab = ref(tabs.value[0].name)
+const activeSide = ref('Links')
 
 const changeView = ref([
     { name: "Chart", icon: ChartLine },
