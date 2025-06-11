@@ -40,7 +40,7 @@
                 v-if="unit.exercises.length === 0 && !showDropZone"
                 class="empty-state"
             >
-                <p class="empty-text">Übungen hierher ziehen</p>
+                <p class="empty-text">Unit ist leer.</p>
             </div>
         </div>
     </div>
@@ -145,7 +145,7 @@ onMounted(() => {
     max-width: 450px;
     background: #fff;
     height: fit-content;
-    max-height: calc(100vh - 200px - 9rem);
+    max-height: calc(100vh - 200px - 12rem);
     border-radius: 12px;
     padding: 16px;
     margin-right: 16px;

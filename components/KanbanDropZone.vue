@@ -7,7 +7,6 @@
         @dragenter.prevent="handleDragEnter"
         @dragleave.prevent="handleDragLeave"
     >
-        <span class="drop-text">Hier ablegen</span>
     </div>
 </template>
 
@@ -83,6 +82,7 @@ const handleDragLeave = (event) => {
         opacity: 1;
         background-color: var(--color-primaryLightActive);
         border-color: var(--color-primaryDark);
+        animation: dropZoneHover 0.3s ease forwards;
     }
 }
 
@@ -94,9 +94,23 @@ const handleDragLeave = (event) => {
     }
 
     to {
-        height: 40px;
-        min-height: 40px;
+        height: 15px;
+        min-height: 15px;
         opacity: 0.7;
+    }
+}
+
+@keyframes dropZoneHover {
+    from {
+        height: 15px;
+        min-height: 15px;
+        opacity: 0.7;
+    }
+
+    to {
+        height: 30px;
+        min-height: 30px;
+        opacity: 1;
     }
 }
 

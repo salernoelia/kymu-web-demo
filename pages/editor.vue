@@ -11,7 +11,7 @@
             <div class="flex flex-col">
                 <div class="flex gap-4 pb-4 items-center flex-shrink-0 justify-between">
                     <div class="flex flex-row gap-2 items-center">
-                        <h1 class="">Phillipp Köbel</h1>
+                        <h1 class="whitespace-nowrap">Phillipp Köbel</h1>
                         <div class="divider"></div>
                         <TabsBorder
                             :tabs="tabs"
