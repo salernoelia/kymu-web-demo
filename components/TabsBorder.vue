@@ -1,9 +1,9 @@
 <template>
-    <div class="tabs-container flex flex-row rounded-lg">
+    <div class="tabs-container flex flex-row rounded-lg w-full">
         <button
-            v-for="tab in tabs"
+            v-for="(tab, idx) in tabs"
             :key="tab.name"
-            class="tab-item flex flex-row items-center justify-center p-2"
+            class="tab-item flex-1 flex flex-row items-center justify-center p-2 h-8 px-3 text-sm font-medium rounded-l-md"
             :class="{ 'active': activeTab === tab.name }"
             @click="$emit('update:active', tab.name)"
         >

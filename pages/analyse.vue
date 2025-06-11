@@ -1,22 +1,61 @@
 <template>
     <div class="h-full flex flex-col overflow-hidden pb-6">
         <div class="flex gap-4 pb-4 items-center flex-shrink-0">
-            <h1 class="">Phillipp Köbel</h1>
-            <div class="divider"></div>
-            <div class="flex flex-row gap-2 items-center">
-                <TabsBorder
-                    :tabs="tabs"
-                    v-model:active="activeTab"
-                    class="h-8 min-w-[220px]"
-                />
-                <Button
-                    variant="outline"
-                    class="h-8 flex items-center justify-start text-left font-normal"
-                    :class="!value ? 'text-muted-foreground' : ''"
-                >
-                    <CalendarIcon class="mr-2 h-4 w-4" />
-                    <p>Feedback</p>
-                </Button>
+            <div class="flex justify-between w-full">
+                                <div class="flex flex-row gap-2 items-center">
+                    <h1 class="">Phillipp Köbel</h1>
+                    <div class="divider"></div>
+                    <div class="flex flex-row gap-2 items-center w-[220px]">
+                        <TabsBorder
+                            :tabs="tabs"
+                            v-model:active="activeTab"
+                            class="h-8 w-full"
+                        />
+                    </div>
+                    <Button
+                        variant="outline"
+                        class="h-8 flex items-center justify-start text-left font-normal"
+                        :class="!value ? 'text-muted-foreground' : ''"
+                    >
+                        <SmileIcon class="mr-2 h-4 w-4" />
+                        <p>Feedback</p>
+                    </Button>
+                                    <Button
+                        variant="outline"
+                        class="h-8 flex items-center justify-start text-left font-normal"
+                        :class="!value ? 'text-muted-foreground' : ''"
+                    >
+                        <SparkleIcon class="mr-2 h-4 w-4" />
+                        <p>KI Vorschläge</p>
+                    </Button>
+                                    <Button
+                        variant="outline"
+                        class="h-8 flex items-center justify-start text-left font-normal"
+                        :class="!value ? 'text-muted-foreground' : ''"
+                    >
+                        <PencilIcon class="mr-2 h-4 w-4" />
+                        <p>Markieren</p>
+                    </Button>
+
+                </div>
+                <div class="flex flex-row gap-2 items-center">
+                                        <Button
+                        variant="outline"
+                        class="h-8 flex items-center justify-start text-left font-normal"
+                        :class="!value ? 'text-muted-foreground' : ''"
+                    >
+                        <SmileIcon class="mr-2 h-4 w-4" />
+                        <p>Ansicht</p>
+                    </Button>
+                    <div class="flex flex-row gap-2 items-center w-[220px]">
+<TabsBorder
+  :tabs="tabsIcons"
+  v-model:active="activeIconTab"
+  class="h-8 w-full"
+/>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -252,6 +291,9 @@ import {
     today
 } from '@internationalized/date'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
+import { Smile as SmileIcon } from 'lucide-vue-next'
+import { Sparkles as SparkleIcon } from 'lucide-vue-next'
+import { Pencil as PencilIcon } from 'lucide-vue-next'
 
 definePageMeta({
     keepalive: true
@@ -281,12 +323,16 @@ const formattedEnd = computed(() => formatDate(value.value.end))
 
 
 const tabs = ref([
-    { name: 'Messwert' },
-    { name: 'Zeitraum' },
-    { name: 'Ansicht' },
+    { name: 'Aktiv' },
+    { name: 'Archiviert'}
 ])
 
-const activeTab = ref('Messwert')
+const activeTab = ref(tabs.value[0].name)
+
+const tabsIcons = ref([
+    { name: 'Aktiv', icon: SmileIcon },
+    { name: 'Archiviert', icon: SmileIcon }
+])
 
 
 
