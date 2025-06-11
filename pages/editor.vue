@@ -66,8 +66,12 @@
                         :key="therapistGroup.therapist"
                         class="therapist-section"
                     >
-                        <div class="therapist-header flex flex-row gap-4">
-                            <AvatarRound :letters="therapistGroup.therapist == 'Mathias Melz (Sie)' ? 'MM' : 'DS'" />
+                        <div class="therapist-header flex flex-row gap-4 items-center">
+                            <AvatarRound
+                                size="small"
+                                :letters="therapistGroup.therapist == 'Mathias Melz (Sie)' ? 'MM' : 'DS'"
+                                :variant="therapistGroup.therapist == 'Mathias Melz (Sie)' ? 'secondary' : 'tertiary'"
+                            />
                             <h3 class="therapist-name">{{ therapistGroup.therapist }}</h3>
                             <p class="therapist-type">{{ therapistGroup.therapist_type }}</p>
                         </div>
@@ -157,7 +161,7 @@ const { x
         ()
 
 const sidebar = ref({
-    open: 'edit',
+    open: 'no',
     unitName: '',
     exercise: exercisesConfig.exercises.find(ex => ex.id === 'exercise_16')
 })

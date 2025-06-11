@@ -17,46 +17,45 @@
                 class="w-full"
             />
 
-
-            <div class="flex-1 min-h-0 overflow-hidden mt-4">
-                <div class="h-full overflow-y-auto px-1 flex flex-row gap-4">
+            <div class="flex-1 min-h-0 overflow-y-auto mt-4">
+                <div class="px-1 flex flex-col lg:flex-row gap-4">
                     <Container type="gray">
                         <h3>Vorlage {{ exercise.name }}</h3>
                         <div class="flex flex-col gap-2">
                             <h4 class="mt-4">Name</h4>
                             <Input
-                                type="email"
+                                type="text"
                                 class="bg-white rounded-xl border-[--color-outline_grayNormal]"
                                 :placeholder="exercise.name"
+                                v-model="exerciseName"
                             />
                             <h4 class="mt-4">Beschreibung</h4>
                             <Textarea
-                                type="email"
                                 class="bg-white rounded-xl border-[--color-outline_grayNormal] "
                                 :placeholder="exercise.description"
+                                v-model="exerciseDescription"
                             />
                         </div>
-
                     </Container>
-
 
                     <Container
                         type="gray"
-                        class=" justify-between"
+                        class="justify-between"
                     >
                         <div class="flex flex-row gap-4 items-center justify-between">
                             <h4>Unitzuordnung</h4>
-
-                            <Select v-model="selectedType">
+                            <Select v-model="selectedExerciseType">
                                 <SelectTrigger class="w-[200px] bg-white">
-                                    <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
+                                    <SelectValue
+                                        :placeholder="selectedExerciseType === 'all' ? 'Alle Typen' : selectedExerciseType"
+                                    />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectLabel>Übungstyp</SelectLabel>
                                         <SelectItem value="all">Alle Typen</SelectItem>
                                         <SelectItem
-                                            v-f1or="type in exerciseTypes"
+                                            v-for="type in exerciseTypes"
                                             :key="type"
                                             :value="type"
                                         >
@@ -67,106 +66,100 @@
                             </Select>
                         </div>
 
-                        <div class="divider-v">
+                        <div class="divider-v"></div>
 
-                        </div>
                         <div class="flex flex-row gap-4 items-center justify-between">
                             <h4>Erklärvideo</h4>
-                            <Select v-model="selectedType">
+                            <Select v-model="selectedVideoUrl">
                                 <SelectTrigger class="w-[200px] bg-white">
-                                    <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
+                                    <SelectValue placeholder="Video auswählen" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        <SelectLabel>Übungstyp</SelectLabel>
-                                        <SelectItem value="all">Alle Typen</SelectItem>
+                                        <SelectLabel>Verfügbare Videos</SelectLabel>
                                         <SelectItem
-                                            v-f1or="type in exerciseTypes"
-                                            :key="type"
-                                            :value="type"
+                                            v-for="video in availableVideos"
+                                            :key="video.value"
+                                            :value="video.value"
                                         >
-                                            {{ type }}
+                                            {{ video.label }}
                                         </SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
                         </div>
-                        <div class="divider-v">
-                        </div>
+
+                        <div class="divider-v"></div>
+
                         <div class="flex flex-row gap-4 items-center justify-between">
                             <h4>Ausführungen</h4>
-
-                            <Select v-model="selectedType">
+                            <Select v-model="currentSets">
                                 <SelectTrigger class="w-[200px] bg-white">
-                                    <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
+                                    <SelectValue placeholder="Anzahl Sätze" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        <SelectLabel>Übungstyp</SelectLabel>
-                                        <SelectItem value="all">Alle Typen</SelectItem>
+                                        <SelectLabel>Sätze</SelectLabel>
                                         <SelectItem
-                                            v-f1or="type in exerciseTypes"
-                                            :key="type"
-                                            :value="type"
+                                            v-for="setCount in availableSets"
+                                            :key="setCount"
+                                            :value="setCount"
                                         >
-                                            {{ type }}
+                                            {{ setCount }} Sätze
                                         </SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
                         </div>
-                        <div class="divider-v">
-                        </div>
+
+                        <div class="divider-v"></div>
+
                         <div class="flex flex-row gap-4 items-center justify-between">
                             <h4>Pause zw. Ausführungen</h4>
-
-                            <Select v-model="selectedType">
-                                <SelectTrigger class="min-w-[200px] w-280 bg-white">
-                                    <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
+                            <Select v-model="currentRestSeconds">
+                                <SelectTrigger class="min-w-[200px] w-auto bg-white">
+                                    <!-- Adjusted width to auto for longer text -->
+                                    <SelectValue placeholder="Pause auswählen" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        <SelectLabel>Übungstyp</SelectLabel>
-                                        <SelectItem value="all">Alle Typen</SelectItem>
+                                        <SelectLabel>Pausenzeit</SelectLabel>
                                         <SelectItem
-                                            v-f1or="type in exerciseTypes"
-                                            :key="type"
-                                            :value="type"
+                                            v-for="timeOpt in availableRestTimes"
+                                            :key="timeOpt.value"
+                                            :value="timeOpt.value"
                                         >
-                                            {{ type }}
+                                            {{ timeOpt.label }}
                                         </SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
                         </div>
-                        <div class="divider-v">
-                        </div>
+
+                        <div class="divider-v"></div>
+
                         <div class="flex flex-row gap-4 items-center justify-between">
                             <h4>Kann übersprungen werden</h4>
-                            <Switch />
+                            <Switch v-model:checked="canBeSkipped" />
+                        </div>
 
-                        </div>
-                        <div class="divider-v">
-                        </div>
+                        <div class="divider-v"></div>
+
                         <div class="flex flex-row gap-4 items-center justify-between">
                             <h4>Als Vorlage speichern</h4>
-                            <Switch />
-
+                            <Switch v-model:checked="saveAsTemplate" />
                         </div>
-                        <div class="divider-v">
-                        </div>
-
+                        <div class="divider-v"></div>
                     </Container>
-
-
-
-
                 </div>
-                <div class="flex justify-between">
-                    <Button>Zurück</Button>
-                    <Button>Erstellen</Button>
-                </div>
-
+            </div>
+            <!-- Buttons moved outside the scrollable area, as a direct child of .sidebar -->
+            <div class="flex justify-between mt-auto pt-4 px-1">
+                <Button
+                    @click="emit('close')"
+                    class="bg-white text-black border-[--color-outline_grayNormal] border shadow-none"
+                >Zurück</Button>
+                <Button class="bg-[--color-primaryNormal]">Erstellen</Button>
             </div>
         </div>
     </div>
@@ -178,7 +171,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from './ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
-import { Search, Clock, Repeat, Layers, Image as ImageIcon, FileSearch } from 'lucide-vue-next'
 import {
     Select,
     SelectContent,
@@ -193,43 +185,69 @@ import { ref, computed, onMounted } from 'vue'
 
 
 defineEmits(['close', 'select-exercise'])
-defineProps({
+
+const props = defineProps({
     exercise: {
-        default: exercises.exercises.find(ex => ex.id === 'exercise_16')
+        type: Object,
+        default: () => exercises.exercises.find(ex => ex.id === 'exercise_16')
     }
 });
+
+const exerciseName = ref('');
+const exerciseDescription = ref('');
+
+const selectedExerciseType = ref('all');
+const exerciseTypes = computed(() => {
+    return [...new Set(exercises.exercises.map(ex => ex.type))];
+});
+
+const selectedVideoUrl = ref('');
+const availableVideos = computed(() => {
+    const videoUrls = props.exercise?.therapist_added_video_urls || [];
+    if (videoUrls.length === 0) {
+        return [{ value: 'no-video', label: 'Kein Video verfügbar' }];
+    }
+    return videoUrls.map(url => ({ value: url, label: url.split('/').pop() || url }));
+});
+const currentSets = ref(1);
+const availableSets = computed(() => Array.from({ length: 10 }, (_, i) => i + 1));
+
+const currentRestSeconds = ref(0);
+const availableRestTimes = computed(() => [
+    { value: 0, label: 'Keine Pause' },
+    { value: 15, label: '15 Sekunden' },
+    { value: 30, label: '30 Sekunden' },
+    { value: 45, label: '45 Sekunden' },
+    { value: 60, label: '60 Sekunden' },
+    { value: 90, label: '90 Sekunden' },
+    { value: 120, label: '2 Minuten' }
+]);
+
+const canBeSkipped = ref(false);
+const saveAsTemplate = ref(false);
+
+watch(() => props.exercise, (newExercise) => {
+    if (newExercise) {
+        exerciseName.value = newExercise.name || '';
+        exerciseDescription.value = newExercise.description || '';
+        selectedExerciseType.value = newExercise.type || 'all';
+
+        const videoUrls = newExercise.therapist_added_video_urls || [];
+        selectedVideoUrl.value = videoUrls.length > 0 ? videoUrls[0] : '';
+
+        currentSets.value = newExercise.sets || 1;
+        currentRestSeconds.value = newExercise.rest_between_sets_seconds === null ? 0 : (newExercise.rest_between_sets_seconds || 0);
+
+        canBeSkipped.value = newExercise.can_be_skipped || false;
+        saveAsTemplate.value = newExercise.save_as_template || false;
+    }
+}, { immediate: true, deep: true });
+
 
 const searchQuery = ref('')
 const selectedType = ref('all')
 const selectedCategory = ref('all')
 const isLoading = ref(true)
-
-const exerciseTypes = computed(() => {
-    return [...new Set(exercises.exercises.map(ex => ex.type))]
-})
-
-const exerciseCategories = computed(() => {
-    return [...new Set(exercises.exercises.map(ex => ex.category))]
-})
-
-const filteredExercises = computed(() => {
-    return exercises.exercises.filter(ex => {
-        const searchTerms = searchQuery.value.toLowerCase().trim()
-
-        const matchesSearch = searchQuery.value === '' ||
-            ex.name.toLowerCase().includes(searchTerms) ||
-            ex.description.toLowerCase().includes(searchTerms) ||
-            (Array.isArray(ex.improves) && ex.improves.some(improvement =>
-                improvement.toLowerCase().includes(searchTerms)
-            ))
-
-        const matchesType = selectedType.value === 'all' || ex.type === selectedType.value
-        const matchesCategory = selectedCategory.value === 'all' || ex.category === selectedCategory.value
-
-        return matchesSearch && matchesType && matchesCategory
-    })
-})
-
 
 
 onMounted(() => {
@@ -258,7 +276,7 @@ onMounted(() => {
 }
 
 .sidebar {
-    width: 70vw;
+    width: 60vw;
     height: 100vh;
     padding: 1.5rem 2rem;
     border-radius: 0.5rem 0 0 0.5rem;
@@ -276,14 +294,5 @@ onMounted(() => {
     border-radius: 0.75rem;
     padding: 0.75rem;
     height: 350px;
-}
-
-.ex-grid {
-    border: 1px solid var(--color-outline_grayNormal);
-    background-color: #F9F7FA;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    overflow-y: auto;
-    height: 100%;
 }
 </style>
