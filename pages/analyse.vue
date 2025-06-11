@@ -221,7 +221,7 @@
                                                     'bg-gray-300 text-red-600'
                                         ]">
                                             <p>{{ rightSideSummary.change > 0 ? '+' : '' }}{{ rightSideSummary.change
-                                            }}%
+                                                }}%
                                             </p>
                                         </div>
                                     </div>
@@ -263,7 +263,7 @@
                                         ]">
                                             <p>{{ painPointsSummary.right.change > 0 ? '+' : '' }}{{
                                                 Math.round(painPointsSummary.right.change)
-                                            }}%</p>
+                                                }}%</p>
                                         </div>
                                     </div>
                                 </SummaryContainer>
@@ -320,7 +320,8 @@
                             <h3 class="flex-shrink-0">Zeitstrahl</h3>
                             <TabsBorder
                                 :tabs="[{ name: 'Links' },
-                                { name: 'Rechts' }]"
+                                { name: 'Rechts' }, { name: 'Beide' }
+                                ]"
                                 v-model:active="activeSide"
                                 class="h-8 max-w-[320px]"
                             />

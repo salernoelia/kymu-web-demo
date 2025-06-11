@@ -47,10 +47,8 @@ let resizeObserver = null;
 const drawChart = () => {
     if (!chartContainer.value || !chart.value) return;
 
-    // Clear previous chart
     d3.select(chart.value).selectAll('*').remove();
 
-    const margin = { top: 20, right: 40, bottom: 30, left: 40 }; // Increased right margin
     const width = chartContainer.value.clientWidth - margin.left - margin.right;
     const height = chartContainer.value.clientHeight - margin.top - margin.bottom;
 
@@ -60,7 +58,6 @@ const drawChart = () => {
         .append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    // Create dot pattern for background
     const defs = svg.append('defs');
 
     const pattern = defs.append('pattern')
@@ -76,7 +73,6 @@ const drawChart = () => {
         .attr('fill', '#C0C0C0')
         .attr('opacity', 0.8);
 
-    // Create gradient
     const gradient = defs.append('linearGradient')
         .attr('id', 'area-gradient')
         .attr('gradientUnits', 'userSpaceOnUse')
@@ -95,18 +91,16 @@ const drawChart = () => {
         .attr('stop-color', 'var(--color-primaryLight)')
         .attr('stop-opacity', 0.8);
 
-    // Scales
-    const plateauWidth = 20; // 15px plateau width
+    const plateauWidth = 20;
 
     const x = d3.scaleTime()
         .domain(d3.extent(props.data, d => new Date(d.date)))
-        .range([plateauWidth / 2, width - plateauWidth / 2]); // Add padding for plateaus
+        .range([0, width - plateauWidth / 2]);
 
     const y = d3.scaleLinear()
         .domain([0, props.maxScale])
         .range([height, 0]);
 
-    // Create data points with plateaus
     const createPlateauData = (data) => {
         const plateauData = [];
 
@@ -115,12 +109,9 @@ const drawChart = () => {
             const yPos = y(d.value);
 
             if (i === 0) {
-                // First point - just the point itself
                 plateauData.push({ x: xPos, y: yPos, date: d.date, value: d.value });
             } else {
-                // Add plateau start (previous point's plateau end)
                 plateauData.push({ x: xPos - plateauWidth / 2, y: yPos, date: d.date, value: d.value });
-                // Add plateau end
                 plateauData.push({ x: xPos + plateauWidth / 2, y: yPos, date: d.date, value: d.value });
             }
         });
@@ -130,13 +121,11 @@ const drawChart = () => {
 
     const plateauData = createPlateauData(props.data);
 
-    // Line generator for plateau path
     const line = d3.line()
         .x(d => d.x)
         .y(d => d.y)
         .curve(d3.curveLinear);
 
-    // Create custom path for plateaus and connections
     const createCustomPath = () => {
         let pathData = '';
 
@@ -145,17 +134,13 @@ const drawChart = () => {
             const yPos = y(d.value);
 
             if (i === 0) {
-                // Move to first point
                 pathData += `M ${xPos} ${yPos}`;
             } else {
                 const prevXPos = x(new Date(props.data[i - 1].date));
                 const prevYPos = y(props.data[i - 1].value);
 
-                // Draw plateau from previous point
                 pathData += ` L ${prevXPos + plateauWidth / 2} ${prevYPos}`;
-                // Connect to current point plateau start
                 pathData += ` L ${xPos - plateauWidth / 2} ${yPos}`;
-                // Draw current point plateau
                 pathData += ` L ${xPos + plateauWidth / 2} ${yPos}`;
             }
         });
@@ -164,7 +149,6 @@ const drawChart = () => {
     };
 
 
-    // Background with dot pattern
     svg.append('rect')
         .attr('x', 0)
         .attr('y', 0)
@@ -176,21 +160,18 @@ const drawChart = () => {
         .attr('rx', 10)
         .attr('ry', 10);
 
-    // Area generator for gradient with linear curve
     const area = d3.area()
         .x(d => x(new Date(d.date)))
         .y0(height)
         .y1(d => y(d.value))
         .curve(d3.curveLinear);
 
-    // Add the X axis with formatted dates
     svg.append('g')
         .style("opacity", 0.5)
         .attr('transform', `translate(0,${height})`)
         .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%d/%m/%y')).tickSize(0))
         .call(g => g.selectAll('.domain').remove());
 
-    // Add the Y axis
     svg.append('g')
         .style("opacity", 0.5)
         .call(d3.axisLeft(y).tickSize(0))
@@ -219,21 +200,17 @@ const drawChart = () => {
             const yPos = y(d.value);
 
             if (i === 0) {
-                // Start from bottom
                 areaData += `M ${xPos} ${height}`;
                 areaData += ` L ${xPos} ${yPos}`;
             } else {
                 const prevXPos = x(new Date(props.data[i - 1].date));
                 const prevYPos = y(props.data[i - 1].value);
 
-                // Continue plateau from previous point
                 areaData += ` L ${prevXPos + plateauWidth / 2} ${prevYPos}`;
-                // Connect to current point
                 areaData += ` L ${xPos - plateauWidth / 2} ${yPos}`;
                 areaData += ` L ${xPos + plateauWidth / 2} ${yPos}`;
             }
 
-            // If last point, close the area
             if (i === props.data.length - 1) {
                 areaData += ` L ${xPos + plateauWidth / 2} ${height}`;
                 areaData += ` Z`;
@@ -243,19 +220,16 @@ const drawChart = () => {
         return areaData;
     };
 
-    // Add the gradient area
     svg.append('path')
         .attr('d', createCustomArea())
         .attr('fill', 'url(#area-gradient)');
 
-    // Add the line path with plateaus
     svg.append('path')
         .attr('d', createCustomPath())
         .attr('fill', 'none')
         .attr('stroke', 'var(--color-primaryNormal)')
         .attr('stroke-width', 2);
 
-    // Add orange line through the last data point
     if (props.data.length > 0) {
         const lastDataPoint = props.data[props.data.length - 1];
         const lastX = x(new Date(lastDataPoint.date));
@@ -272,7 +246,6 @@ const drawChart = () => {
             .style('opacity', 0.8);
     }
 
-    // Add pain degree points
     props.data.forEach(d => {
         if (d.painDegrees && d.painDegrees.length > 0) {
             d.painDegrees.forEach(pain => {
@@ -287,7 +260,6 @@ const drawChart = () => {
         }
     });
 
-    // Add hover effects
     const tooltip = d3.select(chartContainer.value)
         .append('div')
         .attr('class', 'tooltip')
@@ -295,7 +267,6 @@ const drawChart = () => {
         .style('position', 'absolute')
         .style('pointer-events', 'none');
 
-    // Add vertical cursor line
     const cursorLine = svg.append('line')
         .attr('class', 'cursor-line')
         .attr('y1', 0)
@@ -305,7 +276,6 @@ const drawChart = () => {
         .style('stroke-width', '1px')
 
 
-    // Add invisible overlay for mouse tracking
     const overlay = svg.append('rect')
         .attr('class', 'overlay')
         .attr('width', width)
@@ -316,13 +286,11 @@ const drawChart = () => {
     overlay.on('mousemove', function (event) {
         const mouseX = d3.pointer(event)[0];
 
-        // Update cursor line
         cursorLine
             .attr('x1', mouseX)
             .attr('x2', mouseX)
             .style('opacity', 1);
 
-        // Find closest data point
         const bisect = d3.bisector(d => new Date(d.date)).left;
         const x0 = x.invert(mouseX);
         const i = bisect(props.data, x0, 1);
@@ -350,7 +318,6 @@ const drawChart = () => {
         });
 };
 
-// Handle resize with debouncing
 let resizeTimeout;
 const handleResize = () => {
     clearTimeout(resizeTimeout);
@@ -378,7 +345,6 @@ onUnmounted(() => {
     clearTimeout(resizeTimeout);
 });
 
-// Watch for data changes
 watch(() => props.data, () => {
     drawChart();
 }, { deep: true });
