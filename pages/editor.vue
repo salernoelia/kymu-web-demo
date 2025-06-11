@@ -90,8 +90,10 @@
                                     sidebar.unitName = data.unitName;
                                 }"
                             />
+                            <div class="divider-full mr-8"></div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -131,6 +133,7 @@
             <EditExerciseSidebar
                 v-if="sidebar.open === 'edit'"
                 @close="sidebar.open = 'no'"
+                @update-exercise="editExercise"
                 :exercise="sidebar.exercise"
                 @select-exercise="(data) => {
                     addExerciseToUnit({

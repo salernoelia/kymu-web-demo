@@ -1,7 +1,7 @@
 <template>
     <div
         ref="chartContainer"
-        class="w-full h-full min-h-[300px] overflow-hidden"
+        class="w-full h-full overflow-hidden"
     >
         <svg
             ref="chart"
@@ -91,15 +91,15 @@ const drawChart = () => {
         .curve(d3.curveMonotoneX);
 
     svg.append('rect')
-    .attr('x', 0)
-    .attr('y', 0)
-    .attr('width', width)
-    .attr('height', height)
-    .attr('fill', '#FDFDFD')
-    .attr('stroke', 'var(--color-outline_grayNormal)') 
-    .attr('stroke-width', 1)
-    .attr('rx', 10) 
-    .attr('ry', 10);
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', width)
+        .attr('height', height)
+        .attr('fill', '#FDFDFD')
+        .attr('stroke', 'var(--color-outline_grayNormal)')
+        .attr('stroke-width', 1)
+        .attr('rx', 10)
+        .attr('ry', 10);
 
     // Area generator for gradient
     const area = d3.area()
@@ -194,12 +194,12 @@ const drawChart = () => {
 
         if (d) {
             const painDegreesText = d.painDegrees && d.painDegrees.length > 0
-                ? `<br/>Pain Degrees: ${d.painDegrees.join(', ')}`
+                ? `<br/>Schmerzpunkte (Grad): ${d.painDegrees.join('°, ')}°`
                 : '';
 
             tooltip
                 .style('opacity', 1)
-                .html(`Date: ${new Date(d.date).toLocaleDateString()}<br/>Value: ${d.value}${props.unit ? ` ${props.unit}` : ''}${painDegreesText}`)
+                .html(`Datum: ${new Date(d.date).toLocaleDateString()}<br/>Wert: ${d.value}${props.unit ? ` ${props.unit}` : ''}${painDegreesText}`)
                 .style('left', (event.pageX - 160) + 'px')
                 .style('top', (event.pageY - 28) + 'px');
         }

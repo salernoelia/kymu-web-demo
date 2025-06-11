@@ -129,10 +129,12 @@ const formatDuration = (seconds) => {
     padding: 12px;
     cursor: none;
     transition: box-shadow 0.2s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 .exercise-card:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primaryNormal);
 }
 
 .exercise-card:active {

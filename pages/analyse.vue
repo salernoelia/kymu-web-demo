@@ -325,27 +325,36 @@
 
                 <!-- right -->
                 <div class="flex flex-col gap-4 w-full">
-                    <Container class="flex-1 min-h-0 overflow-none">
-                        <h3>Zeitstrahl</h3>
-                        <p>Links</p>
-                        <LineGraph
-                            :data="filteredData"
-                            :maxScale="maxScale"
-                            :unit="datasetTypes[activeDataset].unit"
-                        />
-                        <p>Rechts</p>
-                        <LineGraph
-                            :data="filteredData"
-                            :maxScale="maxScale"
-                            :unit="datasetTypes[activeDataset].unit"
-                        />
+                    <Container class="flex-1 min-h-0 overflow-hidden flex flex-col">
+                        <h3 class="flex-shrink-0">Zeitstrahl</h3>
+                        <div class="flex flex-col gap-2 flex-1 min-h-0">
+                            <div class="flex-1 min-h-0 flex flex-col">
+                                <p class="flex-shrink-0">Links</p>
+                                <div class="flex-1 min-h-0">
+                                    <LineGraph
+                                        :data="filteredData"
+                                        :maxScale="maxScale"
+                                        :unit="datasetTypes[activeDataset].unit"
+                                    />
+                                </div>
+                            </div>
+                            <div class="flex-1 min-h-0 flex flex-col">
+                                <p class="flex-shrink-0">Rechts</p>
+                                <div class="flex-1 min-h-0">
+                                    <LineGraph
+                                        :data="filteredData"
+                                        :maxScale="maxScale"
+                                        :unit="datasetTypes[activeDataset].unit"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </Container>
 
                     <UnitBar
                         v-if="units"
                         :units="units"
                     />
-
                 </div>
 
             </div>

@@ -107,8 +107,7 @@
                         :class="{
                             'grid gap-4 ex-grid': true,
                             'grid-cols-3': filteredExercises.length >= 6,
-                            'grid-cols-2': filteredExercises.length >= 3 && filteredExercises.length < 6,
-                            'grid-cols-2': filteredExercises.length < 3
+                            'grid-cols-2': filteredExercises.length < 6
                         }"
                     >
                         <div

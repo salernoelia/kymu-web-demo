@@ -31,7 +31,7 @@
                             />
                             <h4 class="mt-4">Beschreibung</h4>
                             <Textarea
-                                class="bg-white rounded-xl border-[--color-outline_grayNormal] "
+                                class="bg-white h-200 rounded-xl border-[--color-outline_grayNormal] "
                                 :placeholder="exercise.description"
                                 v-model="exerciseDescription"
                             />
@@ -149,17 +149,19 @@
                             <h4>Als Vorlage speichern</h4>
                             <Switch v-model:checked="saveAsTemplate" />
                         </div>
-                        <div class="divider-v"></div>
                     </Container>
                 </div>
             </div>
             <!-- Buttons moved outside the scrollable area, as a direct child of .sidebar -->
             <div class="flex justify-between mt-auto pt-4 px-1">
                 <Button
-                    @click="emit('close')"
+                    @click="$emit('close')"
                     class="bg-white text-black border-[--color-outline_grayNormal] border shadow-none"
                 >Zurück</Button>
-                <Button class="bg-[--color-primaryNormal]">Erstellen</Button>
+                <Button
+                    class="bg-[--color-primaryNormal] z-20"
+                    @click="$emit('update-exercise', editedExercise)"
+                >Erstellen</Button>
             </div>
         </div>
     </div>
@@ -180,11 +182,20 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { ref, computed, onMounted } from 'vue'
 
+const editedExercise = computed(() => ({
+    ...props.exercise,
+    name: exerciseName.value || props.exercise.name,
+    description: exerciseDescription.value || props.exercise.description,
+    type: selectedExerciseType.value !== 'all' ? selectedExerciseType.value : props.exercise.type,
+    therapist_added_video_urls: selectedVideoUrl.value ? [selectedVideoUrl.value] : (props.exercise.therapist_added_video_urls || []),
+    sets: currentSets.value,
+    rest_between_sets_seconds: currentRestSeconds.value === 0 ? null : currentRestSeconds.value,
+    can_be_skipped: canBeSkipped.value,
+    save_as_template: saveAsTemplate.value
+}));
 
-
-defineEmits(['close', 'select-exercise'])
+defineEmits(['close', 'select-exercise', 'update-exercise'])
 
 const props = defineProps({
     exercise: {

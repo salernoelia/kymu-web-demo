@@ -13,15 +13,13 @@
             ]
         },
         {
-            "unitName": "Allgemeine Mobilisation & Stabilität",
+            "unitName": "Demo Unit",
             "interface": "tv",
             "therapist": "Mathias Melz (Sie)",
             "therapist_type": "Physiotherapeut/-in",
             "exercises": [
                 "exercise_001",
-                "exercise_002",
-                "exercise_012",
-                "exercise_017"
+                "exercise_18"
             ]
         },
         {

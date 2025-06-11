@@ -4,10 +4,10 @@
   "exercises": [
     {
       "id": "exercise_001",
-      "name": "Dehnung der Brustwirbelsäule",
+      "name": "Füttere den Panda",
       "results": null,
       "category": "Beweglichkeit_der_Wirbelsäule",
-      "description": "Verbessern Sie die Flexibilität im oberen Rücken.",
+      "description": "Verbessern Sie die Flexibilität im oberen Rücken und den Armen.",
       "exercise_type": "guided_exercise",
       "goal_type": "duration_seconds_goal",
       "repetitions_goal": null,
@@ -781,7 +781,7 @@
     },
     {
       "id": "exercise_16",
-      "name": "Schulterabduktion Links",
+      "name": "Armbeugung Links",
       "results": null,
       "category": "Schulterabduktion_links",
       "description": "Ein Test zur Beurteilung des Bewegungsumfangs und der Kontrolle der Schulterabduktion links.",
@@ -828,7 +828,7 @@
     },
     {
       "id": "exercise_17",
-      "name": "Rechtes Bein (Bewertung)",
+      "name": "Rechtes Bein ",
       "results": null,
       "category": "Beinabduktion_rechts",
       "description": "Test zur Beurteilung des Bewegungsumfangs und der Kontrolle der Hüftabduktion rechts im Stehen.",
@@ -875,7 +875,7 @@
     },
     {
       "id": "exercise_18",
-      "name": "Linke Ellbogenbeugung (Bewertung)",
+      "name": "Linke Ellbogenbeugung",
       "results": null,
       "category": "Ellenbogenbeugung_links",
       "description": "Beurteilen Sie den Bewegungsumfang und die Kontrolle der Ellbogenbeugung links.",
@@ -920,7 +920,7 @@
     },
     {
       "id": "exercise_19",
-      "name": "Schulterabduktion Rechts",
+      "name": "Armbeugung Rechts",
       "results": null,
       "category": "Schulterabduktion_rechts",
       "description": "Ein Test zur Beurteilung des Bewegungsumfangs und der Kontrolle der Schulterabduktion Rechts.",
