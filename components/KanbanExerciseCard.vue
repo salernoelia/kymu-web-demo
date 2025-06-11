@@ -3,6 +3,7 @@
         class="exercise-card flex flex-row gap-2 items-start"
         draggable="true"
         @dragstart="handleDragStart"
+        @click="$emit('edit-exercise', exercise)"
         @dragend="handleDragEnd"
     >
         <Icon
@@ -84,7 +85,8 @@ const props = defineProps({
     unitName: String
 })
 
-const emit = defineEmits(['remove', 'edit', 'dragstart', 'dragend'])
+const emit = defineEmits(['remove', 'edit-exercise', 'dragstart', 'dragend'])
+
 
 const hasStats = computed(() => {
     return props.exercise.sets ||

@@ -257,7 +257,7 @@ onMounted(() => {
     width: 70vw;
     height: 100vh;
     padding: 1.5rem 2rem;
-    border-radius: 1rem 0 0 1rem;
+    border-radius: 0.5rem 0 0 0.5rem;
     background-color: white;
     position: absolute;
     right: 0;

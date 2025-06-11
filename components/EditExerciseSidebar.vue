@@ -21,16 +21,34 @@
             <div class="flex-1 min-h-0 overflow-hidden mt-4">
                 <div class="h-full overflow-y-auto px-1 flex flex-row gap-4">
                     <Container type="gray">
-                        <h3>{{ exercise.name }}</h3>
+                        <h3>Vorlage {{ exercise.name }}</h3>
+                        <div class="flex flex-col gap-2">
+                            <h4 class="mt-4">Name</h4>
+                            <Input
+                                type="email"
+                                class="bg-white rounded-xl border-[--color-outline_grayNormal]"
+                                :placeholder="exercise.name"
+                            />
+                            <h4 class="mt-4">Beschreibung</h4>
+                            <Textarea
+                                type="email"
+                                class="bg-white rounded-xl border-[--color-outline_grayNormal] "
+                                :placeholder="exercise.description"
+                            />
+                        </div>
+
                     </Container>
 
 
-                    <Container type="gray">
-                        <div class="flex flex-row gap-4">
-
+                    <Container
+                        type="gray"
+                        class=" justify-between"
+                    >
+                        <div class="flex flex-row gap-4 items-center justify-between">
+                            <h4>Unitzuordnung</h4>
 
                             <Select v-model="selectedType">
-                                <SelectTrigger class="w-[180px] bg-white">
+                                <SelectTrigger class="w-[200px] bg-white">
                                     <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -38,7 +56,7 @@
                                         <SelectLabel>Übungstyp</SelectLabel>
                                         <SelectItem value="all">Alle Typen</SelectItem>
                                         <SelectItem
-                                            v-for="type in exerciseTypes"
+                                            v-f1or="type in exerciseTypes"
                                             :key="type"
                                             :value="type"
                                         >
@@ -47,27 +65,95 @@
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
+                        </div>
 
-                            <Select v-model="selectedCategory">
-                                <SelectTrigger class="w-[180px] bg-white">
-                                    <SelectValue
-                                        :placeholder="selectedCategory === 'all' ? 'Alle Kategorien' : selectedCategory"
-                                    />
+                        <div class="divider-v">
+
+                        </div>
+                        <div class="flex flex-row gap-4 items-center justify-between">
+                            <h4>Erklärvideo</h4>
+                            <Select v-model="selectedType">
+                                <SelectTrigger class="w-[200px] bg-white">
+                                    <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        <SelectLabel>Kategorien</SelectLabel>
-                                        <SelectItem value="all">Alle Kategorien</SelectItem>
+                                        <SelectLabel>Übungstyp</SelectLabel>
+                                        <SelectItem value="all">Alle Typen</SelectItem>
                                         <SelectItem
-                                            v-for="category in exerciseCategories"
-                                            :key="category"
-                                            :value="category"
+                                            v-f1or="type in exerciseTypes"
+                                            :key="type"
+                                            :value="type"
                                         >
-                                            {{ category.replace(/_/g, ' ') }}
+                                            {{ type }}
                                         </SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
+                        </div>
+                        <div class="divider-v">
+                        </div>
+                        <div class="flex flex-row gap-4 items-center justify-between">
+                            <h4>Ausführungen</h4>
+
+                            <Select v-model="selectedType">
+                                <SelectTrigger class="w-[200px] bg-white">
+                                    <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Übungstyp</SelectLabel>
+                                        <SelectItem value="all">Alle Typen</SelectItem>
+                                        <SelectItem
+                                            v-f1or="type in exerciseTypes"
+                                            :key="type"
+                                            :value="type"
+                                        >
+                                            {{ type }}
+                                        </SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div class="divider-v">
+                        </div>
+                        <div class="flex flex-row gap-4 items-center justify-between">
+                            <h4>Pause zw. Ausführungen</h4>
+
+                            <Select v-model="selectedType">
+                                <SelectTrigger class="min-w-[200px] w-280 bg-white">
+                                    <SelectValue :placeholder="selectedType === 'all' ? 'Alle Typen' : selectedType" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Übungstyp</SelectLabel>
+                                        <SelectItem value="all">Alle Typen</SelectItem>
+                                        <SelectItem
+                                            v-f1or="type in exerciseTypes"
+                                            :key="type"
+                                            :value="type"
+                                        >
+                                            {{ type }}
+                                        </SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div class="divider-v">
+                        </div>
+                        <div class="flex flex-row gap-4 items-center justify-between">
+                            <h4>Kann übersprungen werden</h4>
+                            <Switch />
+
+                        </div>
+                        <div class="divider-v">
+                        </div>
+                        <div class="flex flex-row gap-4 items-center justify-between">
+                            <h4>Als Vorlage speichern</h4>
+                            <Switch />
+
+                        </div>
+                        <div class="divider-v">
                         </div>
 
                     </Container>
@@ -76,6 +162,11 @@
 
 
                 </div>
+                <div class="flex justify-between">
+                    <Button>Zurück</Button>
+                    <Button>Erstellen</Button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -84,6 +175,9 @@
 <script setup>
 import exercises from '~/assets/exercises_config.json'
 import { Input } from '@/components/ui/input'
+import { Button } from './ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { Switch } from '@/components/ui/switch'
 import { Search, Clock, Repeat, Layers, Image as ImageIcon, FileSearch } from 'lucide-vue-next'
 import {
     Select,
@@ -167,7 +261,7 @@ onMounted(() => {
     width: 70vw;
     height: 100vh;
     padding: 1.5rem 2rem;
-    border-radius: 1rem 0 0 1rem;
+    border-radius: 0.5rem 0 0 0.5rem;
     background-color: white;
     position: absolute;
     right: 0;
