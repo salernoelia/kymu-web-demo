@@ -62,7 +62,7 @@
                                     :key="category"
                                     :value="category"
                                 >
-                                    {{ category }}
+                                    {{ category.replace(/_/g, ' ') }}
                                 </SelectItem>
                             </SelectGroup>
                         </SelectContent>
@@ -93,7 +93,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div
                         v-else-if="filteredExercises.length === 0"
                         class="flex flex-col items-center justify-center py-12 text-center"
@@ -105,14 +104,12 @@
 
                     <div
                         v-else
-                        class="grid grid-cols-3 gap-4"
+                        class="grid grid-cols-3 gap-4 ex-grid"
                     >
                         <div
                             v-for="ex in filteredExercises"
                             :key="ex.id"
                             class="flex flex-col bg-white card group hover:border-primary transition-colors cursor-pointer"
-                            draggable="true"
-                            @dragstart="handleDragStart($event, ex)"
                         >
                             <div class="aspect-video relative overflow-hidden rounded-md mb-3">
                                 <img
@@ -190,7 +187,7 @@ import {
 } from '@/components/ui/select'
 import { ref, computed, onMounted } from 'vue'
 
-defineEmits(['close'])
+defineEmits(['close', 'select-exercise'])
 
 const searchQuery = ref('')
 const selectedType = ref('all')
@@ -223,15 +220,7 @@ const filteredExercises = computed(() => {
     })
 })
 
-const handleDragStart = (event, exercise) => {
-    const dragData = {
-        type: 'new-exercise',
-        exercise: exercise
-    }
 
-    event.dataTransfer.setData('application/json', JSON.stringify(dragData))
-    event.dataTransfer.effectAllowed = 'copy'
-}
 
 onMounted(() => {
     setTimeout(() => {
@@ -276,5 +265,15 @@ onMounted(() => {
     border: 1px var(--color-outline_grayNormal) solid;
     border-radius: 0.75rem;
     padding: 0.75rem;
+    height: fit-content;
+}
+
+.ex-grid {
+    border: 1px solid var(--color-outline_grayNormal);
+    background-color: #F9F7FA;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    overflow-y: auto;
+    height: 100%;
 }
 </style>

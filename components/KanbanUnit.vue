@@ -42,6 +42,17 @@
             >
                 <p class="empty-text">Unit ist leer.</p>
             </div>
+
+            <div
+                @click="showSidebarExercises"
+                class="flex items-center gap-2 text-[--color-inactiveNormal] pl-4"
+            >
+                <Icon name="ic:add" />
+                <h4>
+                    Hinzufügen
+                </h4>
+            </div>
+
         </div>
     </div>
 </template>
@@ -51,7 +62,7 @@ const props = defineProps({
     unit: Object
 })
 
-const emit = defineEmits(['add-exercise', 'remove-exercise', 'move-exercise'])
+const emit = defineEmits(['add-exercise', 'remove-exercise', 'move-exercise', 'show-sidebar-exercises'])
 
 const showDropZone = ref(false)
 const draggedItem = ref(null)
@@ -63,13 +74,11 @@ const getExerciseKey = (exercise) => {
 const shouldShowDropZone = (position) => {
     if (!showDropZone.value) return false
 
-    // If we're dragging from the same unit
     if (draggedItem.value?.fromUnit === props.unit.unitName) {
         const draggedIndex = props.unit.exercises.findIndex(ex =>
             getExerciseKey(ex) === getExerciseKey(draggedItem.value.exercise)
         )
 
-        // Don't show drop zones immediately before and after the dragged item
         if (draggedIndex >= 0) {
             return position !== draggedIndex && position !== draggedIndex + 1
         }
@@ -93,6 +102,12 @@ const handleDropAtPosition = ({ exercise, fromUnit, position }) => {
             position
         })
     }
+}
+
+const showSidebarExercises = () => {
+    emit('show-sidebar-exercises', {
+        unitName: props.unit.unitName
+    })
 }
 
 const removeExercise = (exercise) => {

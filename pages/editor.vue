@@ -3,7 +3,7 @@
         <Transition name="fade">
             <div
                 class="overlay"
-                v-if="showSidebar"
+                v-if="sidebar.open"
             />
         </Transition>
 
@@ -25,7 +25,6 @@
                         <Button
                             variant="outline"
                             class="h-8 flex items-center justify-start text-left font-normal"
-                            :class="!value ? 'text-muted-foreground' : ''"
                         >
                             <CalendarIcon class="mr-2 h-4 w-4" />
                             <p>Feedback</p>
@@ -81,6 +80,10 @@
                                 @add-exercise="addExerciseToUnit"
                                 @remove-exercise="removeExerciseFromUnit"
                                 @move-exercise="moveExercise"
+                                @show-sidebar-exercises="(data) => {
+                                    sidebar.open = true;
+                                    sidebar.unitName = data.unitName;
+                                }"
                             />
                         </div>
                     </div>
@@ -107,8 +110,8 @@
 
         <Transition name="slide-fade">
             <ExerciseSidebar
-                v-if="showSidebar"
-                @close="showSidebar = false"
+                v-if="sidebar.open"
+                @close="sidebar.open = false"
             />
         </Transition>
     </div>
@@ -130,7 +133,10 @@ const { x
 } = useMouse
         ()
 
-const showSidebar = ref(false)
+const sidebar = ref({
+    open: false,
+    unitName: '',
+})
 const onKanban = ref(false)
 
 const tabs = ref([

@@ -43,7 +43,7 @@ defineEmits(['update:active']);
   border: 1px var(--color-outline_grayNormal) solid;
   overflow: hidden;
   flex-wrap: nowrap;
-  cursor: none;
+
   height: fit-content;
 }
 
@@ -54,7 +54,6 @@ defineEmits(['update:active']);
   position: relative;
   color: var(--color-inactiveNormal);
   height: fit-content;
-  cursor: none;
 
   &::after {
     content: '';

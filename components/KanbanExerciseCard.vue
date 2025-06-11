@@ -101,7 +101,6 @@ const formatDuration = (seconds) => {
     border: 1px solid var(--color-outline_grayNormal);
     border-radius: 8px;
     padding: 12px;
-    margin-bottom: 8px;
     cursor: none;
     transition: box-shadow 0.2s ease;
 }
@@ -118,7 +117,6 @@ const formatDuration = (seconds) => {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 8px;
 }
 
 .exercise-title {
