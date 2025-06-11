@@ -62,23 +62,35 @@
                 </div>
 
                 <div class="kanban-board custom-scrollbar-big">
-                    <KanbanUnit
-                        v-for="unit in units"
-                        :key="unit.unitName"
-                        :unit="unit"
-                        class="dropshadow"
-                        @add-exercise="addExerciseToUnit"
-                        @remove-exercise="removeExerciseFromUnit"
-                        @move-exercise="moveExercise"
-                    />
+                    <div
+                        v-for="(therapistGroup, index) in groupedUnits"
+                        :key="therapistGroup.therapist"
+                        class="therapist-section"
+                    >
+                        <div class="therapist-header flex flex-row gap-4">
+                            <AvatarRound :letters="therapistGroup.therapist == 'Mathias Melz (Sie)' ? 'MM' : 'DS'" />
+                            <h3 class="therapist-name">{{ therapistGroup.therapist }}</h3>
+                            <p class="therapist-type">{{ therapistGroup.therapist_type }}</p>
+                        </div>
+                        <div class="therapist-units">
+                            <KanbanUnit
+                                v-for="unit in therapistGroup.units"
+                                :key="unit.unitName"
+                                :unit="unit"
+                                class="dropshadow"
+                                @add-exercise="addExerciseToUnit"
+                                @remove-exercise="removeExerciseFromUnit"
+                                @move-exercise="moveExercise"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
-
 
             <div
                 class="cursor_blue cursor pointer-events-none"
                 :style="{
-                    transform: `translate(${x - 35}px, ${y - 131}px)`,
+                    transform: `translate(${x}px, ${y}px)`,
                     position: 'fixed',
                     zIndex: 9999
                 }"
@@ -86,8 +98,6 @@
             >
                 <img src="../public/cursor_blue.svg" />
             </div>
-
-
 
             <UnitBar
                 v-if="units"
@@ -102,7 +112,6 @@
             />
         </Transition>
     </div>
-
 </template>
 
 <script setup>
@@ -137,6 +146,26 @@ const units = ref(unitsConfig.physioPlan.map(unit => ({
         exercisesConfig.exercises.find(ex => ex.id === exerciseId)
     ).filter(Boolean)
 })))
+
+const groupedUnits = computed(() => {
+    const grouped = {}
+
+    units.value.forEach(unit => {
+        const therapistKey = unit.therapist
+        if (!grouped[therapistKey]) {
+            grouped[therapistKey] = {
+                therapist: unit.therapist,
+                therapist_type: unit.therapist_type,
+                units: []
+            }
+        }
+        grouped[therapistKey].units.push(unit)
+    })
+
+    return Object.values(grouped)
+})
+
+
 
 const getExerciseById = (exerciseId) => {
     return exercisesConfig.exercises.find(ex => ex.id === exerciseId)
@@ -199,10 +228,49 @@ const moveExercise = ({ fromUnit, toUnit, exercise, toPosition = -1 }) => {
 
 .kanban-board {
     display: flex;
+    flex-direction: row;
     overflow: auto;
-    gap: 0.5rem;
+    gap: 0;
     flex: 1;
     padding-bottom: 1rem;
+}
+
+.therapist-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.therapist-header {
+    padding: 1rem 0 0.5rem 0;
+    margin-bottom: 1rem;
+}
+
+.therapist-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-text-primary, #1a1a1a);
+}
+
+.therapist-type {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #6b7280);
+    margin: 0.25rem 0 0 0;
+}
+
+.therapist-units {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.therapist-divider {
+    height: 1px;
+    background-color: var(--color-border, #e2e8f0);
+    margin: 1.5rem 0;
+    width: 100%;
 }
 
 .overlay {
