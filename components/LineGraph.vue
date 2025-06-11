@@ -50,7 +50,7 @@ const drawChart = () => {
     // Clear previous chart
     d3.select(chart.value).selectAll('*').remove();
 
-    const margin = { top: 20, right: 20, bottom: 30, left: 40 };
+    const margin = { top: 20, right: 40, bottom: 30, left: 40 }; // Increased right margin
     const width = chartContainer.value.clientWidth - margin.left - margin.right;
     const height = chartContainer.value.clientHeight - margin.top - margin.bottom;
 
@@ -96,19 +96,73 @@ const drawChart = () => {
         .attr('stop-opacity', 0.8);
 
     // Scales
+    const plateauWidth = 20; // 15px plateau width
+
     const x = d3.scaleTime()
         .domain(d3.extent(props.data, d => new Date(d.date)))
-        .range([0, width]);
+        .range([plateauWidth / 2, width - plateauWidth / 2]); // Add padding for plateaus
 
     const y = d3.scaleLinear()
         .domain([0, props.maxScale])
         .range([height, 0]);
 
-    // Line generator with linear curve for diagonal connections
+    // Create data points with plateaus
+    const createPlateauData = (data) => {
+        const plateauData = [];
+
+        data.forEach((d, i) => {
+            const xPos = x(new Date(d.date));
+            const yPos = y(d.value);
+
+            if (i === 0) {
+                // First point - just the point itself
+                plateauData.push({ x: xPos, y: yPos, date: d.date, value: d.value });
+            } else {
+                // Add plateau start (previous point's plateau end)
+                plateauData.push({ x: xPos - plateauWidth / 2, y: yPos, date: d.date, value: d.value });
+                // Add plateau end
+                plateauData.push({ x: xPos + plateauWidth / 2, y: yPos, date: d.date, value: d.value });
+            }
+        });
+
+        return plateauData;
+    };
+
+    const plateauData = createPlateauData(props.data);
+
+    // Line generator for plateau path
     const line = d3.line()
-        .x(d => x(new Date(d.date)))
-        .y(d => y(d.value))
+        .x(d => d.x)
+        .y(d => d.y)
         .curve(d3.curveLinear);
+
+    // Create custom path for plateaus and connections
+    const createCustomPath = () => {
+        let pathData = '';
+
+        props.data.forEach((d, i) => {
+            const xPos = x(new Date(d.date));
+            const yPos = y(d.value);
+
+            if (i === 0) {
+                // Move to first point
+                pathData += `M ${xPos} ${yPos}`;
+            } else {
+                const prevXPos = x(new Date(props.data[i - 1].date));
+                const prevYPos = y(props.data[i - 1].value);
+
+                // Draw plateau from previous point
+                pathData += ` L ${prevXPos + plateauWidth / 2} ${prevYPos}`;
+                // Connect to current point plateau start
+                pathData += ` L ${xPos - plateauWidth / 2} ${yPos}`;
+                // Draw current point plateau
+                pathData += ` L ${xPos + plateauWidth / 2} ${yPos}`;
+            }
+        });
+
+        return pathData;
+    };
+
 
     // Background with dot pattern
     svg.append('rect')
@@ -147,29 +201,59 @@ const drawChart = () => {
 
     if (todayX >= 0 && todayX <= width) {
         svg.append('line')
-            .attr('x1', todayX)  // Same x position
-            .attr('y1', 0)       // Top of chart
-            .attr('x2', todayX)  // Same x position
-            .attr('y2', height)  // Bottom of chart
+            .attr('x1', todayX)
+            .attr('y1', 0)
+            .attr('x2', todayX)
+            .attr('y2', height)
             .attr('stroke', 'var(--color-secondaryNormal)')
             .attr('stroke-width', 2)
             .attr('stroke-dasharray', '3,3')
             .style('opacity', 0.7);
     }
 
+    const createCustomArea = () => {
+        let areaData = '';
+
+        props.data.forEach((d, i) => {
+            const xPos = x(new Date(d.date));
+            const yPos = y(d.value);
+
+            if (i === 0) {
+                // Start from bottom
+                areaData += `M ${xPos} ${height}`;
+                areaData += ` L ${xPos} ${yPos}`;
+            } else {
+                const prevXPos = x(new Date(props.data[i - 1].date));
+                const prevYPos = y(props.data[i - 1].value);
+
+                // Continue plateau from previous point
+                areaData += ` L ${prevXPos + plateauWidth / 2} ${prevYPos}`;
+                // Connect to current point
+                areaData += ` L ${xPos - plateauWidth / 2} ${yPos}`;
+                areaData += ` L ${xPos + plateauWidth / 2} ${yPos}`;
+            }
+
+            // If last point, close the area
+            if (i === props.data.length - 1) {
+                areaData += ` L ${xPos + plateauWidth / 2} ${height}`;
+                areaData += ` Z`;
+            }
+        });
+
+        return areaData;
+    };
+
     // Add the gradient area
     svg.append('path')
-        .datum(props.data)
-        .attr('fill', 'url(#area-gradient)')
-        .attr('d', area);
+        .attr('d', createCustomArea())
+        .attr('fill', 'url(#area-gradient)');
 
-    // Add the line path
+    // Add the line path with plateaus
     svg.append('path')
-        .datum(props.data)
+        .attr('d', createCustomPath())
         .attr('fill', 'none')
         .attr('stroke', 'var(--color-primaryNormal)')
-        .attr('stroke-width', 2)
-        .attr('d', line);
+        .attr('stroke-width', 2);
 
     // Add orange line through the last data point
     if (props.data.length > 0) {
