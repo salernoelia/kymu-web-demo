@@ -2,10 +2,46 @@
   <div class="parent">
     <Navigation />
     <div class="page-container">
-      <NuxtPage />
+      <NuxtPage :transition="{
+        name: 'page',
+        mode: 'out-in',
+        onBeforeEnter: () => { },
+        onEnter: () => { },
+        onLeave: () => { }
+      }" />
     </div>
   </div>
 </template>
+
+<script setup>
+const routeOrder = [
+  '/',
+  '/editor',
+  '/analyse',
+  '/bericht',
+  '/kommunikation'
+]
+
+const route = useRoute()
+const router = useRouter()
+
+const transitionDirection = ref('forward')
+
+watch(() => route.path, (newPath, oldPath) => {
+  if (oldPath && newPath) {
+    const oldIndex = routeOrder.indexOf(oldPath)
+    const newIndex = routeOrder.indexOf(newPath)
+
+    if (oldIndex !== -1 && newIndex !== -1) {
+      transitionDirection.value = newIndex > oldIndex ? 'forward' : 'backward'
+    } else {
+      transitionDirection.value = 'forward'
+    }
+  }
+})
+
+provide('transitionDirection', transitionDirection)
+</script>
 
 <style>
 @keyframes gradientAnimation {
@@ -33,12 +69,6 @@ body {
 }
 
 .parent {
-  /* 
-  flex-direction: column;
-
-
-  box-sizing: border-box;
-  overflow: hidden; */
   background: linear-gradient(118deg, #f0f8ff 30%, #f5f5f5 60%, #f0f8ff 90%);
   display: flex;
   flex-direction: column;
@@ -73,10 +103,20 @@ body {
 
 .page-enter-from {
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translateX(100%);
 }
 
 .page-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+[data-transition-direction="backward"] .page-enter-from {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+[data-transition-direction="backward"] .page-leave-to {
   opacity: 0;
   transform: translateX(100%);
 }
