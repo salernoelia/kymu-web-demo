@@ -30,21 +30,32 @@ body {
   background-size: 150% 150%;
   animation: gradientAnimation 30s ease infinite;
   font-family: Poppins, sans-serif;
-  overflow: hidden;
 }
 
 .parent {
-  display: flex;
-  height: 100vh;
+  /* 
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 1.5rem 2rem 0 2rem;
+
+
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: hidden; */
+  background: linear-gradient(118deg, #f0f8ff 30%, #f5f5f5 60%, #f0f8ff 90%);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 2rem 0 2rem;
 }
 
 .page-container {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
   min-height: 0;
   overflow: hidden;
   position: relative;

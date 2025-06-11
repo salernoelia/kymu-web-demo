@@ -145,7 +145,7 @@ onMounted(() => {
     max-width: 450px;
     background: #fff;
     height: fit-content;
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 200px - 9rem);
     border-radius: 12px;
     padding: 16px;
     margin-right: 16px;

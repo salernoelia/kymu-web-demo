@@ -104,7 +104,11 @@
   --color-inactiveDarkActive: #3b3b3b;
   --color-inactiveDarker: #2e2e2e;
 
-  --dropshadow-main: rgba(149, 157, 165, 0.1) 0px 0px 20px;
+  --dropshadow-main: rgba(149, 157, 165, 0.15) 0px 0px 20px;
+}
+
+.dropshadow {
+  box-shadow: var(--dropshadow-main);
 }
 
 * {
@@ -218,7 +222,7 @@ h3 {
 h4 {
   margin: 0;
   padding: 0;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0;
   padding: 0;
   font-size: 11pt;

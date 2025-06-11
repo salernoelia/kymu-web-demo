@@ -4,7 +4,7 @@
 
         <img
             src="/index.png"
-            class="h-full p-0"
+            class="img p-0"
         />
     </div>
 </template>
@@ -13,4 +13,8 @@
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.img {
+    width: 95%
+}
+</style>

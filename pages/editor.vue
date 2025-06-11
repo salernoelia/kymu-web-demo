@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-full pb-8">
         <Transition name="fade">
             <div
                 class="overlay"
@@ -8,62 +8,74 @@
         </Transition>
 
         <div class="editor h-full flex flex-col">
-            <div class="flex gap-4 pb-4 items-center flex-shrink-0 justify-between">
-                <div class="flex flex-row gap-2 items-center">
-                    <h1 class="">Phillipp Köbel</h1>
-                    <div class="divider"></div>
-                    <TabsBorder
-                        :tabs="tabs"
-                        v-model:active="activeTab"
-                        class="h-8 min-w-[220px]"
-                    />
-                    <Button
-                        variant="outline"
-                        class="h-8 flex items-center justify-start text-left font-normal"
-                        :class="!value ? 'text-muted-foreground' : ''"
-                    >
-                        <CalendarIcon class="mr-2 h-4 w-4" />
-                        <p>Feedback</p>
-                    </Button>
+            <div class="flex flex-col">
+                <div class="flex gap-4 pb-4 items-center flex-shrink-0 justify-between">
+                    <div class="flex flex-row gap-2 items-center">
+                        <h1 class="">Phillipp Köbel</h1>
+                        <div class="divider"></div>
+                        <TabsBorder
+                            :tabs="tabs"
+                            v-model:active="activeTab"
+                            class="h-8 min-w-[220px]"
+                        />
+                        <Button
+                            variant="outline"
+                            class="h-8 flex items-center justify-start text-left font-normal"
+                            :class="!value ? 'text-muted-foreground' : ''"
+                        >
+                            <CalendarIcon class="mr-2 h-4 w-4" />
+                            <p>Feedback</p>
+                        </Button>
+                    </div>
+                    <div class="flex flex-row gap-6 items-center">
+                        <div class="flex flex-row gap-2 items-center">
+                            <AvatarRound
+                                letters="MM"
+                                variant="secondary"
+                                size="small"
+                            />
+                            <AvatarRound
+                                letters="DS"
+                                variant="tertiary"
+                                size="small"
+                            />
+                            <Icon
+                                name="ic:add"
+                                class="text-[--color-inactiveNormal]"
+                            />
+                        </div>
+                        <div class="flex flex-row gap-2 items-center">
+                            <Icon
+                                name="ic:baseline-history"
+                                class="text-2xl text-[--color-inactiveDarker]"
+                            />
+                            <Icon
+                                name="ic:baseline-more-vert"
+                                class="text-2xl text-[--color-inactiveDarker]"
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-row gap-6 items-center">
-                    <div class="flex flex-row gap-2 items-center">
-                        <AvatarRound
-                            letters="MM"
-                            variant="secondary"
-                            size="small"
-                        />
-                        <AvatarRound
-                            letters="DS"
-                            variant="tertiary"
-                            size="small"
-                        />
-                        <Icon
-                            name="ic:add"
-                            class="text-[--color-inactiveNormal]"
-                        />
-                    </div>
-                    <div class="flex flex-row gap-2 items-center">
-                        <Icon
-                            name="ic:baseline-history"
-                            class="text-2xl text-[--color-inactiveDarker]"
-                        />
-                        <Icon
-                            name="ic:baseline-more-vert"
-                            class="text-2xl text-[--color-inactiveDarker]"
-                        />
-                    </div>
+
+                <div class="kanban-board">
+                    <KanbanUnit
+                        v-for="unit in units"
+                        :key="unit.unitName"
+                        :unit="unit"
+                        class="dropshadow"
+                        @add-exercise="addExerciseToUnit"
+                        @remove-exercise="removeExerciseFromUnit"
+                        @move-exercise="moveExercise"
+                    />
                 </div>
             </div>
 
-            <div class="kanban-board">
-                <KanbanUnit
+            <div class="flex flex-row bg-white rounded-xl w-full h-20 p-4 gap-4 dropshadow">
+                <UnitLabel
                     v-for="unit in units"
                     :key="unit.unitName"
-                    :unit="unit"
-                    @add-exercise="addExerciseToUnit"
-                    @remove-exercise="removeExerciseFromUnit"
-                    @move-exercise="moveExercise"
+                    :name="unit.unitName"
+                    :interface="unit.interface"
                 />
             </div>
         </div>
@@ -147,7 +159,9 @@ const moveExercise = ({ fromUnit, toUnit, exercise, toPosition = -1 }) => {
 
 <style lang="scss" scoped>
 .editor {
+    height: 100%;
     position: relative;
+    justify-content: space-between;
 }
 
 .editor-header {
