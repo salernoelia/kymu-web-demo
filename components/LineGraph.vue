@@ -106,7 +106,7 @@ const drawChart = () => {
     const createDeviatedData = (data) => {
         return data.map(d => ({
             ...d,
-            value: Math.max(0, d.value * 0.25) // Deviate to a quarter of original value
+            value: Math.max(0, d.value * 0.25)
         }));
     };
 
@@ -325,11 +325,10 @@ const drawChart = () => {
 
             tooltip
                 .style('opacity', 1)
-                .html(`<div style="background: white; border: 1px solid var(--color-outline_grayNormal); border-radius: 1rem; padding: 1rem;">Datum: ${new Date(d.date).toLocaleDateString()}<br/>Wert: ${d.value}${props.unit ? ` ${props.unit}` : ''}${painDegreesText}</div>`)
-                .style('left', (event.pageX - 20) + 'px')
-                .style('transform', `translate(${event.pageX - 20}px, ${event.pageY - 120}px)`)
+                .html(`<div style="background: white; border: 1px solid var(--color-outline_grayNormal); border-radius: 1rem; padding: 1rem; text-align: right;">Datum: ${new Date(d.date).toLocaleDateString()}<br/>Wert: ${d.value}${props.unit ? ` ${props.unit}` : ''}${painDegreesText}</div>`)
+                .style('left', '0px')
                 .style('top', '0px')
-                .style('left', '0px');
+                .style('transform', `translate(${event.pageX - 220}px, ${event.pageY - 120}px)`);
         }
     })
         .on('mouseleave', () => {

@@ -322,6 +322,25 @@
                                     />
                                 </div>
 
+                                <div class="flex p-2 gap-4 bg-gray-100 w-fit self-end rounded-xl items-center">
+                                    <p class="text-xs text-[--color-inactiveNormal]">Legende:</p>
+                                    <div class="flex gap-2 items-center">
+                                        <div class="bg-[--color-secondaryNormal] w-2 h-2 rounded-sm"></div>
+                                        <h4>Schmerzpunkt</h4>
+                                    </div>
+                                    <div class="flex gap-2 items-center">
+                                        <div class="bg-[--color-primaryNormal] w-2 h-2 rounded-sm"></div>
+                                        <h4>{{ activeTestSplit[0] }}</h4>
+                                    </div>
+                                    <div
+                                        class="flex gap-2 items-center"
+                                        v-if="activeTestSplit[1]"
+                                    >
+                                        <div class="bg-[--color-tertiaryNormal] w-2 h-2 rounded-sm"></div>
+                                        <h4>{{ activeTestSplit[1] }}</h4>
+                                    </div>
+                                </div>
+
 
                             </div>
 
@@ -420,8 +439,6 @@ const changeView = ref([
 
 const activeView = ref(changeView.value[0].name)
 
-
-
 const timeFrame = ref([
     { name: 'Custom' },
     { name: 'W' },
@@ -453,6 +470,7 @@ const bodyParts = {
 const activeDataset = ref('ROM')
 const activeBodyPart = ref('shoulders')
 const activeTest = ref('Flexion/Extension')
+const activeTestSplit = computed(() => activeTest.value.split('/'))
 
 const datasets = ref({
     ROM: {},
@@ -635,4 +653,7 @@ watch(() => value.value, (newValue) => {
 }, { immediate: true })
 </script>
 
-<style lang="scss" scoped></style>
+<style
+    lang="scss"
+    scoped
+></style>
