@@ -281,7 +281,10 @@ const moveExercise = ({ fromUnit, toUnit, exercise, toPosition = -1 }) => {
 }
 </script>
 
-<style lang="scss" scoped>
+<style
+    lang="scss"
+    scoped
+>
 .editor {
     height: 100%;
     position: relative;

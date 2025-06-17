@@ -99,6 +99,15 @@ const shouldShowDropZone = (position) => {
 
 const handleDropAtPosition = ({ exercise, fromUnit, position }) => {
     if (fromUnit && fromUnit !== props.unit.unitName) {
+
+        emit('move-exercise', {
+            fromUnit,
+            toUnit: props.unit.unitName,
+            exercise,
+            toPosition: position
+        })
+    } else if (fromUnit === props.unit.unitName) {
+
         emit('move-exercise', {
             fromUnit,
             toUnit: props.unit.unitName,
@@ -171,7 +180,10 @@ onMounted(() => {
 </script>
 
 
-<style scoped lang="scss">
+<style
+    scoped
+    lang="scss"
+>
 .kanban-unit {
     min-width: 450px;
     max-width: 450px;
